@@ -72,7 +72,7 @@
 
 ## 常用的Git命令
 
-继续上图![alt](../../public-repertory/img/Git-img/git-order.jpg")
+继续上图![alt](../../public-repertory/img/Git-img/git-order.jpg)
 
 ### 一、新建代码库
 
