@@ -36,10 +36,10 @@
 # 正文
 ## Git工作流程
 
-先上图: ![Alt]("../../git-img.png)
+先上图: ![Alt](document-library/public-repertory/img/Git-img/git-img.png)
 
 
-![图]("../../public-repertory/img/Git-img/git-img.png)
+![Alt](../../public-repertory/img/Git-img/git-img.png)
 
 
 ![Alt]("../../public-repertory/img/git-img.png)
