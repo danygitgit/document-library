@@ -16,7 +16,6 @@ JavaScript 文档库
 | 设计模式   | 设计模式文档仓库 |
 | ECharts|ECharts 文档仓库|
 | eDitor|eDitor 文档仓库|
-| Less|Less 文档仓库|
 
 
 <br>
