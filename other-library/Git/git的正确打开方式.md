@@ -36,17 +36,7 @@
 # 正文
 ## Git工作流程
 
-先上图: ![Alt]("../../git-img.png)
-
-
-![图]("../../public-repertory/img/Git-img/git-img.png)
-
-
-![Alt]("../../public-repertory/img/git-img.png)
-
-![Alt](git-img.png)
-
-
+先上图: ![Alt](../../public-repertory/img/Git-img/git-img.png)
 
 以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。
 - Workapace : 工作区
@@ -73,7 +63,7 @@
 <br>
 &emsp;&emsp;HEAD，它始终指向当前所处分支的最新的提交点。你所处的分支变化了，或者产生了新的提交点，HEAD就会跟着改变。
 <br>
-无图无真相![Alt](./img/git-head.jpg)
+无图无真相![Alt](../../public-repertory/img/Git-img/git-head.jpg)
 ### 小结
 1. 任何对象都是在工作区诞生和被修改；
 2. 任何修改都是从进入index区才开始被版本控制；
@@ -82,7 +72,7 @@
 
 ## 常用的Git命令
 
-继续上图![alt]("../../git-order.jpg")
+继续上图![alt](../../public-repertory/img/Git-img/git-order.jpg")
 
 ### 一、新建代码库
 
