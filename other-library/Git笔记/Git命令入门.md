@@ -135,7 +135,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 - 删除文件夹，并将此更改上传
 > <font color=red>$ git rm -r --cached [dir]</font>
 
-> <font color=red>$ git commit -m '删除了dir' [dir]</font>
+> <font color=red>$ git commit -m '删除了dir'</font>
 
 > <font color=red>$ git push -u origin master</font>
 
