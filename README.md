@@ -10,7 +10,7 @@ Document Library - 文档库
 
 &emsp;本文档库始建于 `2018-12-24`，开始目的是做学习笔记。  
 
-&emsp;如想知道 **db** 最新学习进度，请前往 **[撰文思路]()** 进行查看。  
+&emsp;如想知道 **db** 最新学习进度，请前往 **[学习规划](https://github.com/danygitgit/Cheer-for-yourself/blob/master/myNotes/%E5%85%B3%E4%BA%8E%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%84%E5%88%92.md)** 进行查看。  
 
 &emsp;如想知道 **db** 各种新奇玩意，请前往 **[网站清单]()** 进行查看。
 
