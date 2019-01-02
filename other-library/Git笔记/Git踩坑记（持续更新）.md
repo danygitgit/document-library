@@ -77,12 +77,27 @@
 2. `git add -u [newfolder]` //-u选项会只更新已经追踪的文件和文件夹
 3. `git commit -m "changed the foldername whaddup"` //提交更改
 
-### 7、删除文件夹，并将此更改上传
+## 7、删除文件夹，并将此更改上传
 
 1. `git rm -r --cached [folderName]` 
 2. `git commit -m '删除了folderName'`  
 3. `git push -u origin [分支名]`  
 
+## 8、git add -u与-A .三者的区别
+
+- 添加当前目录下的所有存在更改文件到暂存区
+- （包括提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件）
+> <font color=red> $ git add .</font>
+
+- 添加已经被add的文件且存在更改的文件（Git根路径以下所有文件）到暂存区
+- （提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)）
+> $ git add -u
+
+- 添加所有变化（Git根路径以下所有文件）到暂存区
+- （包括提交新文件(new)、被修改(modified)文件以及被删除(deleted)文件）
+> <font color=red> $ git add --all</font>
+
+> <font color=red> $ git add -A</font> // 简写
 ## 小结
 
 * 勇于尝试，善于总结。开启你的Git踩坑之旅吧！
