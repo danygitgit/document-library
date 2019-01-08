@@ -68,7 +68,7 @@
 1. `git branch -D <barnchName>` //切换分支
 2. `git branch -d [branch-name]`  //删除分支
 
-## 6、 重命名问件或文件夹，并将此更改上传
+## 6、 重命名文件件或文件夹，并将此更改上传
 
 1. - `git mv -f [oldfolder] [newfolder]`  //更改文件夹名称
    - `git mv [foldername tempname] && git mv [tempname folderName]`  //
@@ -98,6 +98,20 @@
 > <font color=red> $ git add --all</font>
 
 > <font color=red> $ git add -A</font> // 简写
+
+## 9、git回退版本并提交
+
+1. 直接找到要回退的版本号（这里是：83ff2785），reset之后，强行推送到服务器端
+
+> git reset --hard 83ff2785
+
+> git push --force
+
+2. 此时如果有人获取了更新的版本，可能拉去不下来，执行以下操作：
+
+> git fetch --all
+
+> git reset --hard origin/branchname
 ## 小结
 
 * 勇于尝试，善于总结。开启你的Git踩坑之旅吧！
