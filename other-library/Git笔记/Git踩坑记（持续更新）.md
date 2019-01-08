@@ -1,7 +1,14 @@
 @[Git踩坑记](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E8%B8%A9%E5%9D%91%E8%AE%B0%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89.md)
 > create by **db** on **2018-12-25 12:10:36**   
-> Recently revised in **2018-12-29 12:12:31**
-# Git踩坑记
+> Recently revised in **2019-1-8 09:33:45**
+
+&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.md)**
+
+&emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Git学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
+
+&emsp;作为一只前端菜鸟，这是我掘金分享的第三篇文章。如有不足，还请多多指教，谢谢大家。
+
+# Git 踩坑记
 
 &emsp;成长之路从不是一帆风顺的，作为Git新手，难免会遇到一些小坑。但只要有耐心，没有什么是解决不了的。
 
@@ -112,6 +119,9 @@
 > git fetch --all
 
 > git reset --hard origin/branchname
+
+&emsp;&emsp;branchname就是分支的名称，这时候就和服务器端一致了。
+
 ## 小结
 
 * 勇于尝试，善于总结。开启你的Git踩坑之旅吧！
