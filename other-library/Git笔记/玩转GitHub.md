@@ -58,8 +58,6 @@
 * 可以推送pull request给官方仓库来贡献代码。
 * 在GitHub上，可以建博客；
 * 在GitHub上，可以写文档；
-* 在GitHub上，可以任意Fork开源仓库；
-* 在GitHub上，可以任意Fork开源仓库；
 
 # 正文
 
@@ -95,72 +93,6 @@
 
 ### Gist 
 &emsp;有些时候你没有项目可以开源，只是单纯的想分享一些代码片段，那这个时候 Gist 就派上用场了
-
-### 版本穿梭
-
-再声明一次：**HEAD指向的版本就是当前版本！**
-
-#### 回到过去
-
-对Git来说，回到过去比把大象装进冰箱还要简单，总共分两步：
-
-1. 倘若需要进行版本切换，首先就是查看有哪些版本咯！
-
-    * 显示从最近到最远的提交日志
-    ><font color=red>$ git log </font>
-    
-    * 如果感觉眼花缭乱，可以选择单行显示
-    > $ git log --pretty=oneline
-    
-2. 看到`commit fcef4ce4280229e2d4a9c914677f6e94e3539ede
-`了没？这就是我们的commit_id，也就是要去的地址。当然，我们不需要用这么长一段，取前五位就好。
-
-    现在我们启动时光穿梭机!
-    > <font color=red>$ git reset --hard </font>commit_id
-    
-#### 重返未来
-
-重返未来同样分两步：
-
-1. 倘若需要重返未来，首先就是确定要回到未来的哪个版本
-
-    * 查看命令历史
-    ><font color=red>$ git reflog </font>
-    
-2. 看到`989d9ce HEAD@{……}: commit:……`了没？选择你想要的未来，出发吧！
-
-    > <font color=red>$ git reset --hard </font>commit_id
-
-### 使用git在本地创建一个项目的过程
-
-1. `$ makdir ~/hello-world`    //创建一个项目hello-world
-2. `$ cd ~/hello-world`       //打开这个项目
-3. `$ git init`             //初始化 
-4. `$ touch README`
-5. `$ git add README`        //更新README文件
-6. `$ git commit -m 'first commit'`     //提交更新，并注释信息“first commit”
-7. `$ git remote add origin git@github.com:dedsf/hello-world.git`     //连接远程github项目  
-8. `$ git push -u origin master`     //将本地项目更新到github项目上去
-
-## GitHub
-
-### 什么是GitHub
-
-&emsp;github是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。
-
-&emsp;Git本身完全可以做到版本控制，但其所有内容以及版本记录只能保存在本机，如果想要将文件内容以及版本记录同时保存在远程，则需要结合GitHub来使用。使用场景：
-* 无GitHub：在本地 .git 文件夹内维护历时文件
-* 有GitHub：在本地 .git 文件夹内维护历时文件，同时也将历时文件托管在远程仓库
-
-推荐一个文科妹子写的风趣易懂的GitHub介绍，戳这里：[如何使用 GitHub？](https://www.zhihu.com/question/20070065/answer/79557687)
-
-### 我们能用GitHub做什么
-
-&emsp;我们一直用GitHub作为免费的远程仓库，如果是个人的开源项目，放到GitHub上是完全没有问题的。其实GitHub还是一个开源协作社区，通过GitHub，既可以让别人参与你的开源项目，也可以参与别人的开源项目。
-
-&emsp;在GitHub出现以前，开源项目开源容易，但让广大人民群众参与进来比较困难，因为要参与，就要提交代码，而给每个想提交代码的群众都开一个账号那是不现实的，因此，群众也仅限于报个bug，即使能改掉bug，也只能把diff文件用邮件发过去，很不方便。
-
-&emsp;但是在GitHub上，利用Git极其强大的克隆和分支功能，广大人民群众真正可以第一次自由参与各种开源项目了。
 
 &emsp;如何参与一个开源项目呢？
 
