@@ -11,11 +11,16 @@
 
 # 前言
 &emsp;作为国人写的一个框架，vue 因其易上手，轻量级，受到广泛的应用。
+
+&emsp;vue-cli作为一款mvvm框架语言(vue)的脚手架，集成了webpack环境及主要依赖，对于项目的搭建、打包、维护管理等都非常方便快捷。在开始项目之前，建议先熟悉vue.js基本语法。
+安装Node环境
+
 &emsp;参考文献：
 
-- [Git版本控制管理教程 | 思否-villelee](https://segmentfault.com/a/1190000015475645)
+- [vue-cli搭建项目 | 思否-villelee](https://segmentfault.com/a/1190000015475645)
 - [windows下搭建vue开发环境 | 充电实践 ](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 - [十分钟上手-搭建vue开发环境（新手教程） | 简书-祈澈菇凉](https://www.jianshu.com/p/0c6678671635)
+- [vue-cli入门（一）——项目搭建 | 思否-Reachel](https://segmentfault.com/a/1190000009151389)
 
 # 正文
 
@@ -132,7 +137,13 @@ $ npm run dev
 &emsp;在浏览器中打开`http://localhost:8080`，就能看到你的项目了
 ![](../../public-repertory/img/vue-cli-img/vue-cli.png)
 
+### 项目打包
 
+运行`npm run build`
+
+运行后打包成功会在项目中生成dist文件夹
+
+部署服务器是把文件夹中的文件丢上服务器即可
 # 总结 
 
 &emsp;路漫漫其修远兮，希望Git及GitHub可以帮我们记录每一个脚印，每一步成长。与诸君共勉。

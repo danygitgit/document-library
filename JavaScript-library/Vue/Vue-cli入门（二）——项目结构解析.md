@@ -7,19 +7,17 @@
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
-&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章如有不足，还请多多指教，谢谢大家。
+&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章。如有不足，还请多多指教，谢谢大家。
 
 # 前言
 
-&emsp;VueJs作为国人开发的一款前端框架，因其易上手，轻量级，有强大的社区支持，受到广泛的应用。
-
-&emsp;学习vue首先要
+&emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及vue-cli，并且已经成功构建了一个vue-cli项目，那么接下来，我们来梳理一下vue-cli项目的结构。
 
 &emsp;参考文献：
 
-- [Git版本控制管理教程 | 思否-villelee](https://segmentfault.com/a/1190000015475645)
-- [windows下搭建vue开发环境 | 充电实践 ](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-- [十分钟上手-搭建vue开发环境（新手教程） | 简书-祈澈菇凉](https://www.jianshu.com/p/0c6678671635)
+- [vue-cli入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
+- [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
+- [Vue系列之WebPack与Eslint | 充电实践 ](https://www.toutiao.com/i6378822382726939138/?group_id=6378816803061907713&group_flags=0)
 
 # 正文
 
@@ -61,10 +59,68 @@
 
 就是说vue的默认页面是index.html，index中的<div id="app"></div>挂载了App.vue这个大组件，然后所有的其他子组件（hello.vue等）都归属在App.vue这个主组件下。
 
-main.js 是入口文件，作用是初始化vue实例并使用需要的插件（router等）。
 
-## Vue项目结构一览
+## 主要文件详解
 
+在vue-cli的项目中，其中src文件夹是需要掌握的，其中的文件可参考以下文章：
+- [vue-cli入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
+
+，至于其他配置文件，详情可参考以下文章：
+- [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
+
+### vue 模板文件
+
+这是我自己做的一个vue模板文件，符合Eslint规则
+```html
+<!--  -->
+<template>
+  <div/>
+</template>
+
+<script>
+// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+// 例如：import 《组件名称》 from '《组件路径》'
+
+export default {
+  // import引入的组件需要注入到对象中才能使用
+  components: {},
+  data() {
+    // 这里存放数据
+    return {
+
+    }
+  },
+  // 监听属性 类似于data概念
+  computed: {},
+  // 监控data中的数据变化
+  watch: {},
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {
+
+  },
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+
+  },
+  beforeCreate() {}, // 生命周期 - 创建之前
+  beforeMount() {}, // 生命周期 - 挂载之前
+  beforeUpdate() {}, // 生命周期 - 更新之前
+  updated() {}, // 生命周期 - 更新之后
+  beforeDestroy() {}, // 生命周期 - 销毁之前
+  destroyed() {}, // 生命周期 - 销毁完成
+  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
+  // 方法集合
+  methods: {
+
+  }
+}
+
+</script>
+<style lang='less' scoped>
+//@import url(); 引入公共css类
+
+</style>
+```
 
 ### 1、安装node
 
