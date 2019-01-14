@@ -1,19 +1,19 @@
 @[vue-cli搭建项目](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.md)
 
-> create by **db** on **2019-1-10 16:28:10**   
-> Recently revised in **2019-1-10 19:37:50**
+> create by **db** on **2019-1-10 16:28:10**
+> Recently revised in **2019-1-14 23:19:07**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
-&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章如有不足，还请多多指教，谢谢大家。
+&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章。如有不足，还请多多指教，谢谢大家。
 
 # 前言
+
 &emsp;作为国人写的一个框架，vue 因其易上手，轻量级，受到广泛的应用。
 
 &emsp;vue-cli作为一款mvvm框架语言(vue)的脚手架，集成了webpack环境及主要依赖，对于项目的搭建、打包、维护管理等都非常方便快捷。在开始项目之前，建议先熟悉vue.js基本语法。
-安装Node环境
 
 &emsp;参考文献：
 
@@ -31,7 +31,7 @@
 &emsp;Vue项目通常通过webpack工具来构建，而webpack命令的执行是依赖node.js的环境的，所以首先要安装node.js。node.js的官方地址为：`https://nodejs.org/en/download/`，下载相应版本
 ![](../../public-repertory/img/vue-cli-img/node.png)
 
-下载好node之后，以管理员身份打开cmd管理工具，，输入 `node -v `，回车，查看node版本号，出现版本号则说明安装成功。
+安装好node之后，以管理员身份打开cmd管理工具，，输入 `node -v `，回车，查看node版本号，出现版本号则说明安装成功。
 
 > node -v
 
@@ -47,7 +47,7 @@
 
 &emsp;vue-cli是vue官方提供的一个命令行工具，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需一分钟即可启动带热重载、保存时静态检查以及可用于生产环境的构建配置的项目。
 
-&emsp;淘宝镜像安装成功之后，我们就可以全局vue-cli脚手架。
+&emsp;淘宝镜像安装成功之后，我们就可以安装全局vue-cli脚手架。
 
 输入以下命令，回车；
 
@@ -58,6 +58,8 @@
 ## 创建vue项目
 
 ### 1、通过vue-cli创建一个vue项目
+
+&emsp;进入你需要创建在项目的文件夹，打开命令行。
 
 输入以下命令，回车
 > <font color=red> vue init webpack</font> test
@@ -144,9 +146,12 @@ $ npm run dev
 运行后打包成功会在项目中生成dist文件夹
 
 部署服务器是把文件夹中的文件丢上服务器即可
+
 # 总结 
 
-&emsp;路漫漫其修远兮，希望Git及GitHub可以帮我们记录每一个脚印，每一步成长。与诸君共勉。
+&emsp;至此，我们的Vue项目就搭建完成了。万里长征第一步，希望你能一步步走下去，加油！
+
+&emsp;路漫漫其修远兮，与诸君共勉。
 
 &emsp;祝大家2019更上一层楼！
 
