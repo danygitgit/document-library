@@ -1,4 +1,4 @@
-@[vue-cli搭建项目](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.md)
+@[vue-cli搭建项目](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue-cli%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.md)
 
 > create by **db** on **2019-1-10 16:28:10**
 > Recently revised in **2019-1-14 23:19:07**
@@ -11,9 +11,11 @@
 
 # 前言
 
-&emsp;作为国人写的一个框架，vue 因其易上手，轻量级，受到广泛的应用。
+&emsp;作为一款前端框架，vue 因其易上手，轻量级，受到广泛的应用。
 
-&emsp;vue-cli作为一款mvvm框架语言(vue)的脚手架，集成了webpack环境及主要依赖，对于项目的搭建、打包、维护管理等都非常方便快捷。在开始项目之前，建议先熟悉vue.js基本语法。
+&emsp;vue-cli作为Vue的脚手架工具，集成了webpack环境及主要依赖，只需要几分钟的时间就可以运行起来一个项目。对于项目的搭建、打包、维护管理等都非常方便快捷。
+
+&emsp;此笔记旨在帮助Vue小白了解并应用Vue2.0项目搭建过程，希望能帮得到大家。
 
 &emsp;参考文献：
 
@@ -21,6 +23,8 @@
 - [windows下搭建vue开发环境 | 充电实践 ](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 - [十分钟上手-搭建vue开发环境（新手教程） | 简书-祈澈菇凉](https://www.jianshu.com/p/0c6678671635)
 - [vue-cli入门（一）——项目搭建 | 思否-Reachel](https://segmentfault.com/a/1190000009151389)
+  
+&emsp;另：个人以为，学习vue最好的途径还是[官方文档](https://cn.vuejs.org/)
 
 # 正文
 
@@ -149,12 +153,12 @@ $ npm run dev
 
 # 总结 
 
-&emsp;至此，我们的Vue项目就搭建完成了。万里长征第一步，希望你能一步步走下去，加油！
+&emsp;至此，我们的Vue项目就搭建完成了。万里长征第一步，加油！
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
 &emsp;祝大家2019更上一层楼！
 
-**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue-cli%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.md)**
 
 > <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="wzh" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
