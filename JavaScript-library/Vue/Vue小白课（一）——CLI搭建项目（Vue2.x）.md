@@ -155,6 +155,8 @@ $ npm run dev
 
 &emsp;至此，我们的Vue项目就搭建完成了。万里长征第一步，加油！
 
+&emsp;如需进一步了解关于vue项目结构的基础知识，请戳[Vue小白课（二）——项目结构解析（Vue2.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)
+
 &emsp;路漫漫其修远兮，与诸君共勉。
 
 &emsp;祝大家2019更上一层楼！

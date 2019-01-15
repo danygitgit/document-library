@@ -1,17 +1,17 @@
-@[Vue项目就够详解](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.md)
+@[Vue项目结构解析](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)
 
 > create by **db** on **2019-1-10 16:28:10**   
-> Recently revised in **2019-1-10 19:37:50**
+> Recently revised in **2019-1-15 11:46:47**
 
-&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)**
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
-&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章。如有不足，还请多多指教，谢谢大家。
+&emsp;作为一只前端菜鸟，这是我掘金分享的第五篇文章。如有不足，还请多多指教，谢谢大家。
 
 # 前言
 
-&emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及vue-cli，并且已经成功构建了一个vue-cli项目，那么接下来，我们来梳理一下vue-cli项目的结构。
+&emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及vue-cli，并且已经成功构建了一个vue-cli项目——见[Vue小白课（一）——CLI搭建项目（Vue2.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue2.x%EF%BC%89.md)。那么接下来，我们来梳理一下vue-cli项目的结构。
 
 &emsp;参考文献：
 
@@ -55,18 +55,163 @@
 ├── .README.md------------------------------- 项目的说明文档，markdown 格式。想怎么写怎么写，不会写就参照github上star多的项目，看人家怎么写的
 ```
 
-在webpack的配置文件里，设置了main.js是入口文件，我们的项目默认访问index.html，这个文件里面<div id="app"></div>和App.vue组件里面的容器完美的重合了，也就是把组件挂载到了index页面，然后我们只需要去建设其他组件就好了，在App组件中我们也可以引入，注册，应用其他组件，后面我会介绍如何通过路由将其他组件渲染在App组件，这样我们就只需要去关注每个组件的功能完善。
+## Vue实现原理
 
-就是说vue的默认页面是index.html，index中的<div id="app"></div>挂载了App.vue这个大组件，然后所有的其他子组件（hello.vue等）都归属在App.vue这个主组件下。
+&emsp;在webpack的配置文件里，设置了main.js是入口文件，我们的项目默认访问index.html，这个文件里面`<div id="app"></div>`和App.vue组件里面的容器完美的重合了，也就是把组件挂载到了index页面，然后我们只需要去建设其他组件就好了，在App组件中我们也可以引入，注册，应用其他组件，可以通过路由将其他组件渲染在App组件，这样我们就只需要去关注每个组件的功能完善。
+
+&emsp;就是说vue的默认页面是index.html，index中的`<div id="app"></div>`挂载了App.vue这个大组件，然后所有的其他子组件（hello.vue等）都归属在App.vue这个主组件下。
 
 
 ## 主要文件详解
 
-在vue-cli的项目中，其中src文件夹是需要掌握的，其中的文件可参考以下文章：
-- [vue-cli入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
+### src——[项目核心文件]
 
-，至于其他配置文件，详情可参考以下文章：
+&emsp;在vue-cli的项目中，其中src文件夹是必须要掌握的，因为基本上要做的事情都在这个目录里。
+
+#### index.html——[主页]
+
+&emsp;index.html如其他html一样，但一般只定义一个空的根节点，在main.js里面定义的实例将挂载在根节点下，内容都通过vue组件来填充
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vuedemo</title>
+  </head>
+  <body>
+      <!-- 定义的vue实例将挂载在#app节点下 -->
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+#### App.vue——[根组件]
+
+&emsp;一个vue页面通常由三部分组成:模板(template)、js(script)、样式(style)
+
+```html
+<!-- 模板 -->
+<template>
+  <div id="app">
+    <img src="./assets/logo.png">
+    <router-view></router-view>
+  </div>
+</template>
+
+<!-- script -->
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<!-- 样式 -->
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+【template】
+
+&emsp;其中模板只能包含一个父节点，也就是说顶层的div只能有一个（例如上面代码，父节点为#app的div，其没有兄弟节点）
+
+&emsp;`<router-view></router-view>`是子路由视图，后面的路由页面都显示在此处
+
+&emsp;打一个比喻吧,`<router-view>`类似于一个插槽，跳转某个路由时，该路由下的页面就插在这个插槽中渲染显示
+
+【script】
+
+&emsp;vue通常用es6来写，用`export default`导出，其下面可以包含数据data，生命周期(mounted等)，方法(methods)等，具体语法请看vue.js文档。
+
+【style】
+
+&emsp;样式通过style标签<style></style>包裹，默认是影响全局的，如需定义作用域只在该组件下起作用，需在标签上加scoped.
+
+`<style scoped></style>`
+
+&emsp;如要引入外部css文件，首先需给项目安装css-loader依赖包，打开cmd，进入项目目录，输入`npm install css-loader`,回车。
+
+&emsp;安装完成后，就可以在style标签下import所需的css文件，例如：
+
+```css
+<style>
+    import './assets/css/public.css'
+</style>
+
+```
+#### main.js——[入口文件]
+
+&emsp;main.js主要是引入vue框架，根组件及路由设置，并且定义vue实例，下面的
+`components:{App}`就是引入的根组件App.vue
+
+&emsp;后期还可以引入插件，当然首先得安装插件。
+
+```javascript
+/*引入vue框架*/
+import Vue from 'vue'
+/*引入根组件*/
+import App from './App'
+/*引入路由设置*/
+import router from './router'
+
+/*关闭生产模式下给出的提示*/ 
+Vue.config.productionTip = false
+
+/*定义实例*/ 
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
+})
+```
+
+#### router——[路由配置]
+
+&emsp;vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。
+
+&emsp;router文件夹下，有一个index.js，即为路由配置文件。
+
+```javascript
+/*引入vue框架*/
+import Vue from 'vue'
+/*引入路由依赖*/
+import Router from 'vue-router'
+/*引入页面组件，命名为Hello*/ 
+import Hello from '@/components/Hello'
+
+/*使用路由依赖*/ 
+Vue.use(Router)
+
+/*定义路由*/ 
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Hello',
+      component: Hello
+    }
+  ]
+})
+```
+&emsp;这里定义了路径为'/'的路由，该路由对应的页面是Hello组件，所以当我们在浏览器url访问http://localhost:8080/#/时就渲染的Hello组件
+
+&emsp;类似的，我们可以设置多个路由，‘/index’,'/list'之类的，当然首先得引入该组件，再为该组件设置路由。
+
+### 其他配置文件
+
+&emsp;主要包括webpack的配置，项目配置，项目依赖等等。
+
+详情可参考以下文章：
 - [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
+
 
 ### vue 模板文件
 
@@ -122,18 +267,14 @@ export default {
 </style>
 ```
 
-### 1、安装node
-
-&emsp;Vue项目通常通过webpack工具来构建，而webpack命令的执行是依赖node.js的环境的，所以首先要安装node.js。node.js的官方地址为：`https://nodejs.org/en/download/`，下载相应版本
-![](../../public-repertory/img/vue-cli-img/node.png)
-
-
 # 总结 
 
-&emsp;路漫漫其修远兮，希望Git及GitHub可以帮我们记录每一个脚印，每一步成长。与诸君共勉。
+&emsp;vue-cli给创建vue项目提供了很大的便利。但是同时大量的第三方库的使用，会让打包后的js变的很大，所以还是要熟悉配置,熟悉第三方插件的使用，才可以开发更高效的开发web应用。这里把vue-cli的一些相关内容给自己做一个总结，便于以后查阅。也是希望对其他开发者有帮助。有不足之处请指正。
+
+&emsp;路漫漫其修远兮，与诸君共勉。
 
 &emsp;祝大家2019更上一层楼！
 
-**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)**
 
 > <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="wzh" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
