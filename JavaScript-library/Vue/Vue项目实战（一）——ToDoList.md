@@ -7,119 +7,152 @@
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
-&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章如有不足，还请多多指教，谢谢大家。
+&emsp;作为一只前端菜鸟，这是我掘金分享的第六篇文章。如有不足，还请多多指教，谢谢大家。
 
 # 前言
-&emsp;作为国人写的一个框架，vue 因其易上手，轻量级，受到广泛的应用。
 
-&emsp;vue-cli作为一款mvvm框架语言(vue)的脚手架，集成了webpack环境及主要依赖，对于项目的搭建、打包、维护管理等都非常方便快捷。在开始项目之前，建议先熟悉vue.js基本语法。
-安装Node环境
+&emsp;作为国人写的一个框架，vue 因其易上手，轻量级，受到广泛的应用。
 
 &emsp;参考文献：
 
 - [Vue之ToDoList实战 | CSDN -充电实践 ](https://blog.csdn.net/wu__di/article/details/54918454 )
 - [简单实现一个todo-list | FatDong1 ](https://segmentfault.com/a/1190000010487690#vue)
-- [十分钟上手-搭建vue开发环境（新手教程） | 简书-祈澈菇凉](https://www.jianshu.com/p/0c6678671635)
-- [vue-cli入门（一）——项目搭建 | 思否-Reachel](https://segmentfault.com/a/1190000009151389)
-作者：充电实践 
-来源：CSDN 
-原文：https://blog.csdn.net/wu__di/article/details/54918454 
-版权声明：本文为博主原创文章，转载请附上博文链接！
+
 # 正文
 
-之前的文章windows下搭建vue开发环境，我们已经搭建好了vue的环境，并且写了Vue系列之WebPack与Eslint，对vue项目的整体情况有了了解，这篇文章我们就来练习一下vue，实现ToDoList项目。
+&emsp;之前的文章windows下搭建vue开发环境，我们已经搭建好了vue的环境，并且写了Vue系列之WebPack与Eslint，对vue项目的整体情况有了了解，这篇文章我们就来练习一下vue，实现ToDoList项目。
 
 以下是我们的项目目录结构：
 
+![](../../public-repertory/img/vue-todolist-img/项目结构.png)
 
+&emsp;就是初始化项目后，将`HelloWorld.vue`文件删除掉，保留其他目录结构。
 
-请点击此处输入图片描述
+&emsp;在这个ToDoList当中，涉及到知识点包括以下内容:
 
-在这个ToDoList当中，涉及到知识点包括以下内容:
+## 1、创建Vue实例：
 
-1、创建Vue实例：
+&emsp;在main.js中，我们看到vue-cli默认的
 
-在main.js中，我们看到vue-cli默认的
-
+```javascript
 new Vue({
-
-el: '#app',
-
-template: '<App/>',
-
-components: { App }
-
+  el: '#app',
+  components: { App },
+  template: '<App/>'
 })
+```
 
-其中，el是vue实例化的选项，提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
+&emsp;其中，`el`是vue实例化的选项，提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
 
-template，作为 Vue 实例的标识使用。模板将会替换挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
+&emsp;`template`，作为 Vue 实例的标识使用。模板将会替换挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
 
-2、data的使用
+&emsp;`components`，组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 js 特性扩展。
 
-data是Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。
+## 2、data的使用
 
+&emsp;`data`是Vue 实例的数据对象。
 
+&emsp;Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。
+
+```javascript
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      title: 'ToDoList'
+    }
+  }
+}
+</script>
+```
+
+&emsp;上面的js代码，我们在App.vue中使用data，来返回title，我们的目的是title能够展现到页面上，那么这条数据如何绑定呢？
+
+```javascript
+<template>
+  <div id="app">
+    <h1 v-text="title"></h1>
+  </div>
+</template>
+```
+
+&emsp;我们定义标签h1，使用v-text绑定title，这样就显示了title。
 
 请点击此处输入图片描述
 
-上面的js代码，我们在App.vue中使用data，来返回title，我们的目的是title能够展现到页面上，那么这条数据如何绑定呢？
+&emsp;改变title的值，显示的内容也会立即刷新。如果title的内容包含html元素，比如
 
+`title: '<span></span>this is a todo list'`
 
-
-请点击此处输入图片描述
-
-我们定义标签h1，使用v-text绑定title，这样就显示了title：
-
-
-
-请点击此处输入图片描述
-
-改变title的值，显示的内容也会立即刷新。如果title的内容包含html元素，比如title: '<span></span>this is a todo list'，那么使用v-text显示会是：
-
-
+&emsp;那么使用v-text显示会是：
 
 请点击此处输入图片描述
 
 而使用v-htm会自动替换html元素：
 
-
-
 请点击此处输入图片描述
 
-2、列表渲染
+## 2、列表渲染
 
-接下来，我们使用v-for指令来实现列表的：
+&emsp;接下来，我们使用v-for指令来实现列表的渲染：
 
+```html
+<template>
+  <div id="app">
+    <h1 v-text="title"></h1>
+    <ul>
+      <li
+        v-for="item in items"
+        :key="item.id">
+        <!-- 待办事项 -->
+        <span v-text="item.title" ></span>
+        <!-- 完成按钮 -->
+        <button v-bind="item.id">删除</button>
+      </li>
+    </ul>
+  </div>
+</template>
 
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      title: 'ToDoList',
+      items: [
+        {
+          id: 1,
+          title: '吃饭',
+          isdelete: true
+        },
+        {
+          id: 2,
+          title: '睡觉',
+          isdelete: true
+        },
+        {
+          id: 3,
+          title: '打豆豆',
+          isdelete: true
+        }
+      ]
+    }
+  }
+}
+</script>
+```
+**注：**
 
-请点击此处输入图片描述
+&emsp;vue中列表循环需加:key="唯一标识" 唯一标识可以是item里面id index等，因为vue组件高度复用增加Key可以标识组件的唯一性，为了更好地区别各个组件 key的作用主要是为了高效的更新虚拟DOM。详情请参考[VUE中演示v-for为什么要加key](https://www.jianshu.com/p/4bd5e745ce95)
 
-在data中，我们又返回了items数组，其中每个元素包括一个label字符串，我们将items使用v-for绑定，最后的结果如下：
+&emsp;在data中，我们又返回了items数组，其中每个元素包括id,title，我们将items使用v-for绑定到列表中，渲染后的结果如下：
 
+![](../../public-repertory/img/vue-todolist-img/项目结构.png)
 
+### 3、绑定事件
 
-请点击此处输入图片描述
-
-为了体现不同的行的效果，我们使用<li v-for="item in items" class="finished">，来标识当前行是否有下划线，然后在style中添加以下代码：
-
-
-
-请点击此处输入图片描述
-
-效果如下：
-
-
-
-请点击此处输入图片描述
-
-再接下来，我们使用v-bind替换class，将items的每一行中的isFinished绑定到finished属性上，使得每一行根据isFinished的值来决定是否有下划线显示：
-
-<li v-for="item in items" v-bind:class="{finished: item.isFinished}>
-
-3、绑定事件
-
-接下来我们使用v-on来绑定事件，目的是点击每一行的时候，原先没有下划线的添加下划线，有下划线的取消下划线。
+接下来我们使用v-on来绑定事件，目的是删除按钮的时候，将列表中相应的选项删除。
 
 
 
