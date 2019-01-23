@@ -180,8 +180,6 @@ toggleFinish方法对当前item的属性isFinished取反。
 
 使用指令v-model在表单控件或者组件上创建双向绑定，即绑定newItem，使用v-on来绑定事件监听器，输入框输完内容按下回车后会响应事件addNew，addNew同样在methods中编写如下：
 
-
-
 请点击此处输入图片描述
 
 在data中，items默认为空，newItem也为空，输入内容回车后items中push一条内容，其中的label为输入框输入的内容，isFinished默认为false，表示不带下划线，并且最后将输入框清空。
@@ -190,12 +188,9 @@ toggleFinish方法对当前item的属性isFinished取反。
 
 通过以上几个关键的知识点，我们最终就实现了ToDoList的基本功能，效果如下：
 
-
-
 请点击此处输入图片描述
 
 大家可以在后续的学习过程中加入更多的功能，巩固自己学到的知识。
---------------------- 
 
 # 总结 
 
