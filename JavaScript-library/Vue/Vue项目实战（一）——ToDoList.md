@@ -17,10 +17,11 @@
 
 - [Vue之ToDoList实战 | CSDN -充电实践 ](https://blog.csdn.net/wu__di/article/details/54918454 )
 - [简单实现一个todo-list | FatDong1 ](https://segmentfault.com/a/1190000010487690#vue)
+- [TodoMVC Example | Vue官网](https://cn.vuejs.org/v2/examples/todomvc.html)
 
 # 正文
 
-&emsp;之前的文章windows下搭建vue开发环境，我们已经搭建好了vue的环境，并且写了Vue系列之WebPack与Eslint，对vue项目的整体情况有了了解，这篇文章我们就来练习一下vue，实现ToDoList项目。
+&emsp;之前的文章windows下搭建vue开发环境，我们已经搭建好了vue的环境，并且写了Vue系列之WebPack与Eslint，对vue项目的整体情况有了了解，这篇文章我们就来练习一下Vue，实现ToDoList项目。
 
 以下是我们的项目目录结构：
 
@@ -32,7 +33,7 @@
 
 ## 1、创建Vue实例：
 
-&emsp;在main.js中，我们看到vue-cli默认的
+&emsp;在 main.js 中，我们看到vue-cli默认的
 
 ```javascript
 new Vue({
@@ -42,17 +43,17 @@ new Vue({
 })
 ```
 
-&emsp;其中，`el`是vue实例化的选项，提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
-
-&emsp;`template`，作为 Vue 实例的标识使用。模板将会替换挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
+&emsp;其中，`el`是Vue实例化的选项，提供一个在页面上已存在的 DOM 元素（#app）作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
 
 &emsp;`components`，组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 js 特性扩展。
+
+&emsp;`template`，模板,作为 Vue 实例的标识使用。模板将会替换挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
 
 ## 2、data的使用
 
 &emsp;`data`是Vue 实例的数据对象。
 
-&emsp;Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。
+&emsp;在 App.vue 中，Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。
 
 ```javascript
 <script>
@@ -77,9 +78,9 @@ export default {
 </template>
 ```
 
-&emsp;我们定义标签h1，使用v-text绑定title，这样就显示了title。
+&emsp;我们定义标签h1，使用`v-text`绑定title，这样就显示了title。
 
-请点击此处输入图片描述
+**此处有图**
 
 &emsp;改变title的值，显示的内容也会立即刷新。如果title的内容包含html元素，比如
 
@@ -87,11 +88,11 @@ export default {
 
 &emsp;那么使用v-text显示会是：
 
-请点击此处输入图片描述
+**此处有图**
 
 而使用v-htm会自动替换html元素：
 
-请点击此处输入图片描述
+**此处有图**
 
 ## 2、列表渲染
 
@@ -108,7 +109,7 @@ export default {
         <!-- 待办事项 -->
         <span v-text="item.title" ></span>
         <!-- 完成按钮 -->
-        <button v-bind="item.id">删除</button>
+        <button>完成</button>
       </li>
     </ul>
   </div>
@@ -156,7 +157,7 @@ export default {
 
 
 
-请点击此处输入图片描述
+**此处有图**
 
 这里我们增加了click方法，方法名为toggleFinish，参数为字符串item。
 
@@ -166,7 +167,7 @@ export default {
 
 
 
-请点击此处输入图片描述
+**此处有图**
 
 toggleFinish方法对当前item的属性isFinished取反。
 
@@ -176,11 +177,11 @@ toggleFinish方法对当前item的属性isFinished取反。
 
 
 
-请点击此处输入图片描述
+**此处有图**
 
 使用指令v-model在表单控件或者组件上创建双向绑定，即绑定newItem，使用v-on来绑定事件监听器，输入框输完内容按下回车后会响应事件addNew，addNew同样在methods中编写如下：
 
-请点击此处输入图片描述
+**此处有图**
 
 在data中，items默认为空，newItem也为空，输入内容回车后items中push一条内容，其中的label为输入框输入的内容，isFinished默认为false，表示不带下划线，并且最后将输入框清空。
 
@@ -188,7 +189,7 @@ toggleFinish方法对当前item的属性isFinished取反。
 
 通过以上几个关键的知识点，我们最终就实现了ToDoList的基本功能，效果如下：
 
-请点击此处输入图片描述
+**此处有图**
 
 大家可以在后续的学习过程中加入更多的功能，巩固自己学到的知识。
 
