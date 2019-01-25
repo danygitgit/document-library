@@ -1,3 +1,8 @@
+@[键盘快捷键笔记](https://github.com/danygitgit/document-library/blob/master/other-library/%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0.md)
+
+> create by **db** on **2018-12-30 15:42:36**
+> Recently revised in **2019-1-25 23:36:22**
+
 # MAC地址和IP地址的区别与联系（计算机网络篇）
 
 ## MAC地址和IP地址的区别与联系
@@ -64,8 +69,6 @@
 &emsp;每个Ethernet网卡生产厂家必须向IEEE组织申请一组MAC地址，在生产网卡时在网卡的串行EEPROM中写入一个唯一的MAC地址。任何两个Ethernet网卡的MAC地址，不管是哪一个厂家生产的都不应相同。Ethernet芯片厂家不必负责MAC地址的申请，MAC地址存在于每一个Ethernet包中，是Ethernet包头的组成部分，Ethernet交换机根据Ethernet包头中的MAC源地址和MAC目的地址实现包的交换和传递。
 
 &emsp;IP地址是Internet协议地址，每个Internet包必须带有IP地址，每个Internet服务提供商（ISP）必须向有关组织申请一组IP地址，然后一般是动态分配给其用户。IP地址现是32位长，正在扩充到128位。IP地址与MAC地址无关，因为Ethernet的用户，仍然可通过Modem连接Internet，取得一个动态的IP地址，这个地址每次可以不一致。IP地址通常工作于广域网，路由器处理的就是IP地址。 MAC地址工作于局域网，局域网之间的互连一般通过现有的公用网或专用线路，需要进行网间协议转换。可以在Ethernet上传送IP信息，此时IP地址只是Ethernet信息包数据域的一部分，Ethernet交换机或处理器看不见IP地址，只是将其作为普通数据处理。
-
-
 
 --------------------- 
 作者：gogo_hua 
