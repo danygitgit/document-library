@@ -95,12 +95,65 @@ npm就自动为我们更新到最新版本
 
 此处有两个选择：
 
-* default (babel, eslint)：默认套餐，提供babel和eslint支持
+* `default (babel, eslint)`：默认套餐，提供`babel`和`eslint`支持
 
-* Manually select features：自己去选择需要的功能，提供更多的特性选择。比如如果想要支持 TypeScript ，就应该选择这一项。
+* `Manually select features`：自己去选择需要的功能，提供更多的特性选择。比如如果想要支持 `TypeScript` ，就应该选择这一项。
 
-&emsp;可以使用上下方向键来切换选项。如果只需要 babel 和 eslint 支持，那么选择第一项，就完事了，静静等待 vue 初始化项目。
+&emsp;可以使用`上下方向键`来切换选项。如果只需要 `babel` 和 `eslint` 支持，那么选择第一项，就完事了，静静等待 vue 初始化项目。
 vue-cli 内置支持了8个功能特性，可以多选：使用方向键在特性选项之间切换，使用空格键选中当前特性，使用 a 键切换选择所有，使用 i 键翻转选项。
+
+对于每一项的功能，此处做个简单描述：
+
+* `TypeScript`: 支持使用 TypeScript 书写源码
+* `Progressive Web App (PWA) Support`: PWA 支持。
+* `Router`: 支持 vue-router 。
+* `Vuex`: 支持 vuex 。
+* `CSS Pre-processors~: 支持 CSS 预处理器。
+* `Linter / Formatter`: 支持代码风格检查和格式化。
+* `Unit Testing`: 支持单元测试。
+* `E2E Testing`: 支持 E2E 测试。
+
+我选择了 Router，Vuex，CSS Pre-processors，Linter / Formatter
+
+按住enter进入下一步，接下来都是对之前每项选项的更详细的选择。
+
+css选择SCSS/SASS
+Linter / Formatter选择prettier
+
+这一步就是要选择配置文件的位置了。对于 Babel 、 PostCSS 等，都可以有自己的配置文件： .babelrc 、 .postcssrc 等等，同时也可以把配置信息放在 package.json 里面。此处出于对编辑器（ Visual Studio Code ）的友好支持（编辑器一般默认会在项目根目录下寻找配置文件），选择把配置文件放在外面，选择 In dedicated config files
+待补充
+Save this as a preset for future projects?这个就是问要不要把当前的这一系列选项配置保存起来，方便下一次创建项目时复用。选择y。
+选完之后， vue-cli 就根据前面选择的内容，开始初始化项目了。
+
+## 启动项目
+初始完之后，进入到项目根目录：
+cd my-project
+启动项目：
+npm run serve
+稍等一会儿，可以看到自动在浏览器中打开了
+
+
+
+安装postcss-import和postcss-url插件
+$ npm install postcss-import和$ npm install postcss-url
+postcss-import相关配置点击这里。主要功有是解决@import引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、node_modules或者web_modules的文件。这个插件配合postcss-url让你引入文件变得更轻松。
+postcss-url相关配置可以点击这里。该插件主要用来处理文件，比如图片文件、字体文件等引用路径的处理。在Vue项目中，vue-loader已具有类似的功能，只需要配置中将vue-loader配置进去。
+autoprefixer插件是用来自动处理浏览器前缀的一个插件。如果你配置了postcss-cssnext，其中就已具备了autoprefixer的功能。在配置的时候，未显示的配置相关参数的话，表示使用的是Browserslist指定的列表参数，你也可以像这样来指定last 2 versions 或者 > 5%。如此一来，你在编码时不再需要考虑任何浏览器前缀的问题，可以专心撸码。这也是PostCSS最常用的一个插件之一。
+其他插件
+我们要完成vw的布局兼容方案，或者说让我们能更专心的撸码，还需要配置下面的几个PostCSS插件：
+
+postcss-aspect-ratio-mini
+postcss-px-to-viewport
+postcss-write-svg
+postcss-cssnext
+cssnano
+postcss-viewport-units
+--------------------- 
+作者：徐子玉 
+来源：CSDN 
+原文：https://blog.csdn.net/xuqipeter/article/details/80452271 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
 
 接下来会要求你进行一些选项设置，其实就是初始化项目：
 
@@ -129,7 +182,9 @@ vue-cli 内置支持了8个功能特性，可以多选：使用方向键在特�
 mended) npm
    vue-cli · Generated "test".
 ```
+
 &emsp;最后出现如下代码
+
 ```
 To get started:
 
