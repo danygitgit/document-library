@@ -11,17 +11,17 @@
 
 # 前言
 
-&emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及vue-cli，并且已经成功构建了一个vue-cli项目——见[Vue小白课（一）——CLI搭建项目（Vue2.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue2.x%EF%BC%89.md)。那么接下来，我们来梳理一下vue-cli项目的结构。
+&emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及Vue-CLI3，并且已经成功构建了一个Vue-CLI3项目——见[Vue小白课（三）——CLI搭建项目（Vue3.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue3.X%EF%BC%89.md)。那么接下来，我们来梳理一下Vue-CLI3项目的结构。
 
 &emsp;参考文献：
 
-- [vue-cli入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
-- [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
+- [Vue-CLI3入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
+- [Vue-CLI3创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
 - [Vue系列之WebPack与Eslint | 充电实践 ](https://www.toutiao.com/i6378822382726939138/?group_id=6378816803061907713&group_flags=0)
 
 # 正文
 
-## Vue项目结构一览
+## Vue-CLI3项目结构一览
 
 ```
 ├── build --------------------------------- 项目构建(webpack)相关配置文件，配置参数什么的，一般不用动 
@@ -66,7 +66,7 @@
 
 ### src——[项目核心文件]
 
-&emsp;在vue-cli的项目中，其中src文件夹是必须要掌握的，因为基本上要做的事情都在这个目录里。
+&emsp;在Vue-CLI3的项目中，其中src文件夹是必须要掌握的，因为基本上要做的事情都在这个目录里。
 
 #### index.html——[主页]
 
@@ -210,7 +210,7 @@ export default new Router({
 &emsp;主要包括webpack的配置，项目配置，项目依赖等等。
 
 详情可参考以下文章：
-- [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
+- [Vue-CLI3创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
 
 
 ### vue 模板文件
@@ -269,7 +269,7 @@ export default {
 
 # 总结 
 
-&emsp;vue-cli给创建vue项目提供了很大的便利。但是同时大量的第三方库的使用，会让打包后的js变的很大，所以还是要熟悉配置,熟悉第三方插件的使用，才可以开发更高效的开发web应用。这里把vue-cli的一些相关内容给自己做一个总结，便于以后查阅。也是希望对其他开发者有帮助。有不足之处请指正。
+&emsp;Vue-CLI3给创建vue项目提供了很大的便利。但是同时大量的第三方库的使用，会让打包后的js变的很大，所以还是要熟悉配置,熟悉第三方插件的使用，才可以开发更高效的开发web应用。这里把Vue-CLI3的一些相关内容给自己做一个总结，便于以后查阅。也是希望对其他开发者有帮助。有不足之处请指正。
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 

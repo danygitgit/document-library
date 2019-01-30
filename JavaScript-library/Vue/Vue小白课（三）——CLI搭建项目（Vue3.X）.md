@@ -1,13 +1,13 @@
-@[Vue-CLI搭建项目](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue-CLI%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.md)
+@[Vue-CLI3搭建项目](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue3.X%EF%BC%89.md)
 
 > create by **db** on **2019-1-10 16:28:10**
-> Recently revised in **2019-1-26 20:28:44**
+> Recently revised in **2019-1-30 17:21:58**
 
-&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue-CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue3.X%EF%BC%89.md)**
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue2.0学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
-&emsp;作为一只前端菜鸟，这是我掘金分享的第四篇文章。如有不足，还请多多指教，谢谢大家。
+&emsp;作为一只前端菜鸟，这是我掘金分享的第六篇文章。如有不足，还请多多指教，谢谢大家。
 
 # 前言
 
@@ -57,7 +57,7 @@ Vue CLI 3.0 已发布，该版本经历了重构，旨在：
 > npm install -g npm
 
 &emsp;npm就自动为我们更新到最新版本
-&emsp;安装好node之后，以管理员身份打开cmd管理工具，，输入 `node -v `，回车，可查看node版本号.
+&emsp;更新完成之后，以管理员身份打开cmd管理工具，，输入 `node -v `，回车，可查看node版本号.
 
 ### 2、安装全局Vue-CLI3.x脚手架
 
@@ -73,7 +73,7 @@ Vue CLI 3.0 已发布，该版本经历了重构，旨在：
 
 > cnpm i -g @vue/cli
 
-&emsp;再次查看Vue的版本号`3.X.X`，则说明更新成功；
+&emsp;再次查看Vue的版本号`3.x.x`，则说明更新成功；
 
 ## 创建vue项目
 
@@ -112,13 +112,13 @@ Vue CLI 3.0 已发布，该版本经历了重构，旨在：
 
 按住`enter`进入下一步，接下来都是对之前每项选项的更详细的选择。
 
-* css选择SCSS/SASS
+* css:选择SCSS/SASS
 
-* Linter / Formatter选择prettier
+* Linter / Formatter:选择prettier
 
 &emsp;这一步就是要选择配置文件的位置了。对于 `Babel` 、` PostCSS` 等，都可以有自己的配置文件： `.babelrc` 、 `.postcssrc` 等等，同时也可以把配置信息放在 `package.json` 里面。此处出于对编辑器（ Visual Studio Code ）的友好支持（编辑器一般默认会在项目根目录下寻找配置文件），选择把配置文件放在外面，选择 `In dedicated config files`
 
-待补充
+**补充**
 
 `Save this as a preset for future projects?`:这个就是问要不要把当前的这一系列选项配置保存起来，方便下一次创建项目时复用。选择y。
 
@@ -147,7 +147,7 @@ To get started:
 &emsp;因为各个模板之间都是相互依赖的，所以现在我们要安装依赖。
 
 输入以下命令，回车安装依赖
-> <font color=red>cnpm install</font>
+> <font color=red>npm install</font>
 
 ### 4、启动项目
 
@@ -171,57 +171,27 @@ $ npm run dev
 ```
 &emsp;在浏览器中打开`http://localhost:8080`，就能看到你的项目了
 ![](../../public-repertory/img/Vue-CLI-img/Vue-CLI.png)
-## 启动项目
 
-初始完之后，进入到项目根目录：
+## 项目打包
 
-> cd text
+&emsp;在开发完项目之后，就应该打包上线了。 vue-cli 也提供了打包的命令，在项目根目录下执行：
 
-启动项目：
+> npm run build
 
-> npm run serve
+&emsp;执行完之后，可以看到在项目根目录下多出了一个 `dist `目录，该目录下就是打包好的所有静态资源，直接部署到静态资源服务器就好了。
 
-稍等一会儿，可以看到自动在浏览器中打开了
-
-安装postcss-import和postcss-url插件
-
-`$ npm install postcss-import和$ npm install postcss-url`
-
-postcss-import相关配置点击这里。主要功有是解决@import引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、node_modules或者web_modules的文件。这个插件配合postcss-url让你引入文件变得更轻松。
-postcss-url相关配置可以点击这里。该插件主要用来处理文件，比如图片文件、字体文件等引用路径的处理。在Vue项目中，vue-loader已具有类似的功能，只需要配置中将vue-loader配置进去。
-autoprefixer插件是用来自动处理浏览器前缀的一个插件。如果你配置了postcss-cssnext，其中就已具备了autoprefixer的功能。在配置的时候，未显示的配置相关参数的话，表示使用的是Browserslist指定的列表参数，你也可以像这样来指定last 2 versions 或者 > 5%。如此一来，你在编码时不再需要考虑任何浏览器前缀的问题，可以专心撸码。这也是PostCSS最常用的一个插件之一。
-其他插件
-我们要完成vw的布局兼容方案，或者说让我们能更专心的撸码，还需要配置下面的几个PostCSS插件：
-
-postcss-aspect-ratio-mini
-postcss-px-to-viewport
-postcss-write-svg
-postcss-cssnext
-cssnano
-postcss-viewport-units
-
-
-
-
-
-### 项目打包
-
-运行`npm run build`
-
-运行后打包成功会在项目中生成dist文件夹
-
-部署服务器是把文件夹中的文件丢上服务器即可
+&emsp;实际上，在部署的时候要注意，假设静态服务器的域名是 `http://static.baidu.com` ，那么对应到访问 `<项目根目录>/dist/index.html` 的 URL 一定要是 `http://static.baidu.com/index.html` ，其他的静态资源以此类推。
 
 # 总结 
 
 &emsp;至此，我们的Vue项目就搭建完成了。万里长征第一步，加油！
 
-&emsp;如需进一步了解关于vue项目结构的基础知识，请戳[Vue小白课（二）——项目结构解析（Vue2.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)
+&emsp;如需进一步了解关于vue项目结构的基础知识，请戳[Vue小白课（四）——项目结构解析（Vue4.x）]https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue2.x%EF%BC%89.md)
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
 &emsp;祝大家2019更上一层楼！
 
-**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue-CLI%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.md)**
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue3.x%EF%BC%89.md)**
 
 > <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="wzh" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
