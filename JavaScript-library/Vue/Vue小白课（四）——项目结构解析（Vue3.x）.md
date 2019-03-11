@@ -15,10 +15,14 @@
 &emsp;参考文献：
 
 - [Vue-CLI3入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
-- [Vue-CLI3创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)
-- [Vue系列之WebPack与Eslint | 充电实践 ](https://www.toutiao.com/i6378822382726939138/?group_id=6378816803061907713&group_flags=0)
 
 # 正文
+
+&emsp;vue-cli3.0默认项目目录与2.0的相比，更精简:
+1. 移除的配置文件根目录下的，build和config等目录，
+2. 移除了static文件夹，新增了public文件夹，并且index.html移动到public中。
+3. 在src文件夹中新增了views文件夹，用于分类 试图组件 和 公共组件 。
+4. 大部分配置 都集成到 vue.config.js这里,在项目根目录下
 
 ## Vue-CLI3项目结构一览
 
