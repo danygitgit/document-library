@@ -163,7 +163,7 @@
   To create a production build, run npm run build.
 ```
 &emsp;在浏览器中打开`http://localhost:8080`或者Network的地址，就能看到你的项目了
-![](../../public-repertory/img/Vue-CLI-img/Vue-CLI2.png)
+![](../../public-repertory/img/vue-cli-img/vue-cli3.png)
 
 ## vue ui 图形化界面创建项目
 
@@ -174,7 +174,7 @@
 > vue ui
 
 然后会自动打浏览器页面：
-![](../../public-repertory/img/Vue-CLI-img/vue-ui.png)
+![](../../public-repertory/img/vue-cli-img/vue-ui.png)
 
 &emsp;然后就可以按照也页面按钮一步步常见项目了。
 

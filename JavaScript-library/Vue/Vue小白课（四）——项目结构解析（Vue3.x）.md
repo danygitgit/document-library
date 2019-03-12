@@ -18,6 +18,8 @@
 
 - [利用vue-cli3快速搭建vue项目详细过程 | 简书-zhyzhyzz](https://www.jianshu.com/p/8105d6c16d80)
 
+- [vue-cli3.0项目结构 | 简书-戴眼镜的松鼠](https://www.jianshu.com/p/2edcf71f7730)
+
 # 正文
 
 &emsp;vue-cli3.0默认项目目录与2.0的相比，更加精简:
@@ -27,15 +29,13 @@
 4. 大部分配置 都集成到 vue.config.js这里,在项目根目录下
 
 ## Vue-CLI3项目结构一览
-![](../../public-repertory/img/Vue-CLI-img/vue-cli3.0项目结构.webp)
+![](../../public-repertory/img/vue-cli-img/vue-cli30.jpg)
  
 # 总结
 
 &emsp;Vue-CLI3给创建vue项目提供了很大的便利。但是同时大量的第三方库的使用，会让打包后的js变的很大，所以还是要熟悉配置,熟悉第三方插件的使用，才可以开发更高效的开发web应用。这里把Vue-CLI3的一些相关内容给自己做一个总结，便于以后查阅。也是希望对其他开发者有帮助。有不足之处请指正。
 
 &emsp;路漫漫其修远兮，与诸君共勉。
-
-&emsp;祝大家2019更上一层楼！
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90%EF%BC%88Vue3.x%EF%BC%89.md)**
 
