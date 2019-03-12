@@ -11,7 +11,10 @@
 
 # 前言
 
-&emsp;Vue-CLI 是 vue 官方团队推出的一款快速开发 vue 项目的构建东西，具有开箱即用并且供给简练的自定义配备等功用。
+&emsp;Vue-CLI 是 vue 官方团队推出的一款快速开发 vue 项目的构建东西，具有开箱即用并且供给简练的自定义配备等功用。包括三个组件：
+* **CLI**：@vue/cli 全局安装的 npm 包，提供了终端里的vue命令（如：vue create 、vue serve 、vue ui 等命令）
+* **CLI** 服务：@vue/cli-service是一个开发环境依赖。构建于 webpack 和 webpack-dev-server 之上（提供 如：serve、build 和 inspect 命令）
+* **CLI 插件**：给Vue 项目提供可选功能的 npm 包 （如： Babel/TypeScript 转译、ESLint 集成、unit和 e2e测试 等）
 
 &emsp;Vue-CLI 3.0 正式版于 2018年8月10号发布，大神尤雨溪表示，Vue CLI 3.0与其他的版本完全不同，它经历了重构，目的是：
 
@@ -26,21 +29,25 @@
 
 &emsp;参考文献：
 
+- [Vue3.x官方文档](https://cli.vuejs.org/)
+
 - [vue cli 3.0快速创建项目 | CSDN-徐子玉](https://blog.csdn.net/xuqipeter/article/details/80452271)
 
-- [Vue3.x官方文档](https://cli.vuejs.org/)
+- [利用vue-cli3快速搭建vue项目详细过程 | 简书-zhyzhyzz](https://www.jianshu.com/p/8105d6c16d80)
 
 # 正文
 
-## 搭建Vue开发环境
+## 搭建Vue-CLI3.x开发环境
 
 ### 1、更新npm到最新版本
+&emsp;Vue CLI 3需要 nodeJs ≥ 8.9 (官方推荐 8.11.0+，你可以使用 nvm 或 nvm-windows在同一台电脑中管理多个 Node 版本）。
 
 &emsp;命令运行
 
 > npm install -g npm
 
 &emsp;npm就自动为我们更新到最新版本
+
 &emsp;更新完成之后，以管理员身份打开cmd管理工具，，输入 `node -v `，回车，可查看node版本号.
 
 ### 2、安装全局Vue-CLI3.x脚手架
@@ -59,17 +66,17 @@
 
 &emsp;再次查看Vue的版本号`3.x.x`，则说明更新成功；
 
-## 创建vue项目
+## 命令行创建Vue-CLI3项目
 
 ### 1、通过Vue-CLI3创建一个vue项目
 
-&emsp;进入你需要创建在项目的文件夹，打开命令行。
+&emsp;进入你需要创建项目的文件夹，打开命令行。
 
 输入以下命令，回车
 
 > <font color=red> vue create</font> test
 
-&emsp;这里test指的是项目名，该命令执行后会创建一个名为test的目录，也就是我们所搭建的项目。
+&emsp;这里`test`指的是项目名，该命令执行后会创建一个名为`test`的目录，也就是我们所搭建的项目。
 
 此处有两个选择：
 
@@ -83,15 +90,18 @@
 
 对于每一项的功能，此处做个简单描述：
 
-* `TypeScript`: 支持使用 TypeScript 书写源码
-* `Progressive Web App (PWA) Support`: PWA 支持。
-* `Router`: 支持 vue-router 。
-* `Vuex`: 支持 vuex 。
-* `CSS Pre-processors`: 支持 CSS 预处理器。
-* `Linter / Formatter`: 支持代码风格检查和格式化。
-* `Unit Testing`: 支持单元测试。
-* `E2E Testing`: 支持 E2E 测试。
-
+```
+? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+>( ) Babel                           //转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。                      
+ ( ) TypeScript// TypeScript是一个JavaScript（后缀.js）的超集（后缀.ts）包含并扩展了 JavaScript 的语法，需要被编译输出为 JavaScript在浏览器运行，目前较少人再用
+ ( ) Progressive Web App (PWA) Support// 渐进式Web应用程序
+ ( ) Router                           // vue-router（vue路由）
+ ( ) Vuex                             // vuex（vue的状态管理模式）
+ ( ) CSS Pre-processors               // CSS 预处理器（如：less、sass）
+ ( ) Linter / Formatter               // 代码风格检查和格式化（如：ESlint）
+ ( ) Unit Testing                     // 单元测试（unit tests）
+ ( ) E2E Testing                      // e2e（end to end） 测试
+```
 我选择了 `Router`，`Vuex`，`CSS Pre-processors`，`Linter / Formatter`
 
 按住`enter`进入下一步，接下来都是对之前每项选项的更详细的选择。
@@ -114,9 +124,9 @@
 To get started:
 
   cd test
-  npm run dev
+  npm run serve
 ```
-&emsp;说明已经初始化成功，Vue-CLI已经将项目搭建完成。
+&emsp;说明已经初始化成功，Vue-CLI3已经将项目搭建完成。
 
 ### 2、进入你的项目文件夹
 
@@ -126,7 +136,7 @@ To get started:
 
 > <font color=red>cd</font> test
 
-### 3、通过cnpm在项目里安装依赖
+### 3、通过npm在项目里安装依赖
 
 &emsp;因为各个模板之间都是相互依赖的，所以现在我们要安装依赖。
 
@@ -141,30 +151,34 @@ To get started:
 
 > <font color=red>npm run serve</font>
 
-结果会弹出一个浏览器访问地址默认为localhost:8080，如下：
+结果会弹出一个浏览器访问地址默认为`localhost:8080`，如下：
 
 ```
-$ npm run dev
 
-> test@1.0.0 dev D:\ptest\test
-> webpack-dev-server --inline --progress --config build/webpack.dev.conf.js
-
- 95% emitting DONE  Compiled successfully in 5547ms11:59:13
-
- I  Your application is running here: http://localhost:8080
 ```
 &emsp;在浏览器中打开`http://localhost:8080`，就能看到你的项目了
 ![](../../public-repertory/img/Vue-CLI-img/Vue-CLI2.png)
 
+## vue ui 图形化界面创建项目
+
+&emsp;Vue-CLI3.x给我们同样提供了图形化界面,用来管理和创建项目
+
+> vue ui
+
+命令行输入命令，操作如下
+
+
 ## 项目打包
 
-&emsp;在开发完项目之后，就应该打包上线了。 Vue-CLI 也提供了打包的命令，在项目根目录下执行：
+&emsp;在开发完项目之后，就应该打包上线了。 Vue-CLI3 也提供了打包的命令，在项目根目录下执行：
 
 > npm run build
 
 &emsp;执行完之后，可以看到在项目根目录下多出了一个 `dist `目录，该目录下就是打包好的所有静态资源，直接部署到静态资源服务器就好了。
 
 &emsp;实际上，在部署的时候要注意，假设静态服务器的域名是 `http://static.baidu.com` ，那么对应到访问 `<项目根目录>/dist/index.html` 的 URL 一定要是 `http://static.baidu.com/index.html` ，其他的静态资源以此类推。
+
+
 
 # 总结 
 
