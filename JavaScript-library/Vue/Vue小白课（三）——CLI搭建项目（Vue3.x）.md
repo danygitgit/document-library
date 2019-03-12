@@ -1,7 +1,7 @@
 @[Vue-CLI3搭建项目](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue3.X%EF%BC%89.md)
 
 > create by **db** on **2019-1-10 16:28:10**
-> Recently revised in **2019-3-9 21:41:55**
+> Recently revised in **2019-3-12 15:59:45**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue3.x%EF%BC%89.md)**
 
@@ -62,7 +62,7 @@
 
 然后我们就需要更新升级了，命令行输入以下命令，回车；
 
-> cnpm i -g @vue/cli
+> npm i -g @vue/cli
 
 &emsp;再次查看Vue的版本号`3.x.x`，则说明更新成功；
 
@@ -121,10 +121,11 @@
 &emsp;最后出现如下代码
 
 ```
-To get started:
+🎉  Successfully created project test.
+👉  Get started with the following commands:
 
-  cd test
-  npm run serve
+ $ cd test
+ $ npm run serve
 ```
 &emsp;说明已经初始化成功，Vue-CLI3已经将项目搭建完成。
 
@@ -154,19 +155,28 @@ To get started:
 结果会弹出一个浏览器访问地址默认为`localhost:8080`，如下：
 
 ```
+ App running at:
+  - Local:   http://localhost:8080/
+  - Network: http://***.***.***.***:8080/
 
+  Note that the development build is not optimized.
+  To create a production build, run npm run build.
 ```
-&emsp;在浏览器中打开`http://localhost:8080`，就能看到你的项目了
+&emsp;在浏览器中打开`http://localhost:8080`或者Network的地址，就能看到你的项目了
 ![](../../public-repertory/img/Vue-CLI-img/Vue-CLI2.png)
 
 ## vue ui 图形化界面创建项目
 
 &emsp;Vue-CLI3.x给我们同样提供了图形化界面,用来管理和创建项目
 
+命令行输入命令
+
 > vue ui
 
-命令行输入命令，操作如下
+然后会自动打浏览器页面：
+![](../../public-repertory/img/Vue-CLI-img/vue-ui.png)
 
+&emsp;然后就可以按照也页面按钮一步步常见项目了。
 
 ## 项目打包
 
