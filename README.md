@@ -30,7 +30,7 @@ Document Library - 文档库
 | [Less-library](https://github.com/danygitgit/document-library/tree/master/Less-library) | Less/Sass 文档仓库                |
 | [JavaScript-library](https://github.com/danygitgit/document-library/tree/master/JavaScript-library) | JavaScript 文档仓库                |
 | [other-library](https://github.com/danygitgit/document-library/tree/master/other-library)     | 其他文档仓库(git/计算机基础)                      |
-| [public-repertory](https://github.com/danygitgit/document-library/tree/master/public-library)   | 文档仓库使用到的图片、CSS文件等…… |
+| [public-repertory](https://github.com/danygitgit/document-library/tree/master/public-repertory)   | 文档仓库使用到的图片、CSS文件等…… |
 
 <br>
 
