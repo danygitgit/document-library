@@ -272,7 +272,7 @@ addNewItem () {
 
 &emsp;通过以上几个关键的知识点，我们最终就实现了ToDoList的基本功能，效果如下：
 
-<iframe height=400 width=500 src="../../public-repertory/img/vue-todolist-img/todolist.gif"></iframe>
+![](../../public-repertory/img/vue-todolist-img/todolist.gif)
 
 &emsp;如果喜欢，可以再加一些样式。
 
