@@ -1,9 +1,9 @@
-@[vue-cli2搭建项目](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/Git%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.md)
+@[vue-cli2搭建待办事项项目](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)
 
-> create by **db** on **2019-1-10 16:28:10**   
+> create by **db** on **2019-3-10 16:28:10**   
 > Recently revised in **2019-4-1 17:06:13**
 
-&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
 
 &emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
 
@@ -54,7 +54,7 @@ new Vue({
 
 &emsp;其中，`el`是Vue实例化的选项，提供一个在页面上已存在的 DOM 元素（#ToDoList）作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例。
 
-&emsp;其中，`router`是Vue的路由。vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。路由模块的本质 就是建立起url和页面之间的映射关系。
+&emsp;`router`是Vue的路由。vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。路由模块的本质 就是建立起url和页面之间的映射关系。
 
 &emsp;至于我们为啥不能用a标签，这是因为用Vue做的都是单页应用，就相当于只有一个主的index.html页面，所以你写的<a></a>标签是不起作用的，你必须使用vue-router来进行管理。
 
@@ -66,7 +66,7 @@ new Vue({
 
 &emsp;`/src/router`中的`index.js`文件是Vue项目的路由配置文件。
 
-&emsp;要使用路由我们首先要在router/index.js文件中创建路由并配置路由映射。我们可以将vue-cli默认的`HelloWorld`组件改名为`ToDoList`,如下：
+&emsp;要使用路由我们首先要在`router/index.js`文件中创建路由并配置路由映射。我们可以将vue-cli默认的`HelloWorld`组件改名为`ToDoList`,如下：
 ```javascript
 // 引入路由模块并使用它
 import Vue from 'vue'
@@ -268,23 +268,18 @@ addNewItem () {
 
 &emsp;在data中，我们声明一个变量`id`默认为0，`items`默认为空，`newItem`也为空。输入框输入内容后，点击添加按钮items中push一条内容，其中包括id与title，然后id自增，并且最后将输入框清空。
 
-### 6、更改样式
-
-&emsp;ToDoList的基本功能以及结构都搭建好了，下面我们就给这个页面装修一下：
-```css
-
-```
-
 ## 6、总结
 
 &emsp;通过以上几个关键的知识点，我们最终就实现了ToDoList的基本功能，效果如下：
 
-**此处有图**
+<iframe height=400 width=500 src="../../public-repertory/img/vue-todolist-img/todolist.gif"></iframe>
+
+&emsp;如果喜欢，可以再加一些样式。
 
 &emsp;大家可以在后续的学习过程中加入更多的功能，巩固自己学到的知识。
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/vue-cli%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE.md)**
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
 
 > <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="wzh" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
