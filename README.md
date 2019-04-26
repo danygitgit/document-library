@@ -29,7 +29,7 @@ Document Library - 文档库
 | [CSS-library](https://github.com/danygitgit/document-library/tree/master/CSS-library)        | CSS 文档仓库                       |
 | [HTML-library](https://github.com/danygitgit/document-library/tree/master/HTML-library)       | HTML 文档仓库                      |
 | [Less-library](https://github.com/danygitgit/document-library/tree/master/Less-library) | Less/Sass 文档仓库                |
-| [JavaScript-library](https://github.com/danygitgit/document-library/tree/master/JavaScript-library) | JavaScript 文档仓库                |
+| [JavaScript-library](https://github.com/danygitgit/document-library/tree/master/JavaScript-library) | JavaScript 文档仓库，包括Vue、ES6、jQuery、文本编辑器等            |
 | [other-library](https://github.com/danygitgit/document-library/tree/master/other-library)     | 其他文档仓库(git/计算机基础)                      |
 | [public-repertory](https://github.com/danygitgit/document-library/tree/master/public-repertory)   | 文档仓库使用到的图片、CSS文件等…… |
 

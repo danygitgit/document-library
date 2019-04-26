@@ -1,6 +1,26 @@
-@[Less笔记](这里写自定义目录标题)
+@[Less学习笔记](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)
+
+> create by **db** on **2019-4-26 18:06:31**   
+> Recently revised in **2019-4-26 18:06:35**
+
+&emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
+
+&emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Less学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
+
+&emsp;作为一只前端菜鸟，本篇文章旨在记录自己的学习心得，如有不足，还请多多指教，谢谢大家。
 
 # 前言
+
+> I hear and I fogorget.
+
+> I see and I remember.
+
+> I do and I understand.
+
+&emsp;参考文献：
+
+- [学习Less-看这篇就够了](https://segmentfault.com/a/1190000012360995#articleHeader10)
+- [Less.js中文文档](https://www.html.cn/doc/less/#)
 
 ## CSS短板
 
@@ -52,13 +72,38 @@ $ lessc styles.less > styles.css
 详细步骤请参考官方文档
 * 如果你在本地环境，可以使用第一种方式，非常简单；但在生产环境中，性能非常重要，最好使用第二种方式
 
+
+
+
+## 6、总结
+
+&emsp;通过以上几个关键的知识点，我们最终就实现了ToDoList的基本功能，效果如下：
+
+![](../../public-repertory/img/vue-todolist-img/todolist.gif)
+
+&emsp;如果喜欢，可以再加一些样式。
+
+&emsp;大家可以在后续的学习过程中加入更多的功能，巩固自己学到的知识。
+
+&emsp;路漫漫其修远兮，与诸君共勉。
+
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
+
+> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="wzh" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
+
+
 # 正文
+
 * Less的功能特性
+
 ## 变量（Variables）
+
 &emsp;&emsp;我们常常在CSS中看到同一个值重复出现了了很多次，这样不仅降低效率，还使得代码难以维护。
 <br>
 &emsp;&emsp;**变量**通过为你提供一种在一个地方管理这些值的方法让你的代码变得更容易维护（值得一提的是，其变量是常量 ，所以只能定义一次，不能重复使用。
+
 ### 值变量
+
 以@开头定义变量，并且使用时直接键入@名称
 ```less
 /* less */
