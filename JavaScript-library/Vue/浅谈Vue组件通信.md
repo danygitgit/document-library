@@ -17,12 +17,13 @@
 
 > I do and I understand.
 
-&emsp;Vue中实现组件之间的通信方式有很多种，eventBus, props, vuex, v-on, ref...等等。
+&emsp;组件间的通信是是实际开发中非常常用的一环，Vue中实现组件之间的通信方式有很多种，eventBus, props, vuex, v-on, ref...等等。如何使用对项目整体设计、开发、规范都有很实际的的作用，我在项目开发中对此深有体会，总结下vue组件间通信的几种方式，讨论下各自的使用场景
 
 &emsp;参考文献：
 
 - [Vue组件通信 | 思否-老虎不长牙 ](https://segmentfault.com/a/1190000015040856#articleHeader8)
 - [vue组件通信全揭秘(共7章) | 掘金-混元霹雳手 ](https://juejin.im/post/5bd97e7c6fb9a022852a71cf#heading-87)
+- [vue组件通信--注意事项及经验总结 | 掘金-王文健 ](http://blog.wwenj.com/index.php/archives/69/)
 
 # 正文
 &emsp;组件通信包括：子组件与父组件之间，兄弟组件之间，模块之间
