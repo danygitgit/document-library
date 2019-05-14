@@ -1,7 +1,7 @@
 @[Vue组件通信](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)
 
 > create by **db** on **2019-4-28 17:13:46**   
-> Recently revised in **2019-4-28 17:13:53**
+> Recently revised in **2019-5-13 16:15:47**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
 
@@ -17,7 +17,7 @@
 
 > I do and I understand.
 
-&emsp;Vue中实现组件之间的通信方式有很多种，eventBus, props, vuex, v-on, ref...等等。自己在很多时候用的没有章法，简单的想着实现功能就可以了，以至于逻辑混论，后期很难维护。所以给自己做个总结，方法并不是唯一，只是我现在认为的解决方案。
+&emsp;Vue中实现组件之间的通信方式有很多种，eventBus, props, vuex, v-on, ref...等等。
 
 &emsp;参考文献：
 
@@ -28,8 +28,11 @@
 &emsp;组件通信包括：子组件与父组件之间，兄弟组件之间，模块之间
 
 ## 父子组件通信
+
 ### props
+
 **`props`是响应式的，可以做数据绑定**
+
 &emsp;`index.vue`父组件相关的代码
 
 &emsp;如果传给子组件的是一个变量或者数字，则需要前面加上：(v-bind的缩写)绑定。
@@ -107,34 +110,34 @@ methods: {
 ```
 理解v-on在组件上的机制，就可以更好的认识到，为什么v-model仅仅是个语法糖。
 
-$ref
+## $ref
 ref 被用来给元素或子组件注册引用信息。就是绑定在普通元素上，则获取到这个DOM元素，若是绑定在组件上，则获取到的是这个组件的Vue实例vm。
 
 同一个vue中：
-
+```javascript
 <div ref="child"></div>
 mounted() {
     let domA = document.querySelector('[ref=child]');
     let domB = this.$ref.child;
     console.log('domA与domB是等价的，但是用$ref可以减少获取dom节点的消耗')
 }
+```
 index.vue
-
+```javascript
 <template>
     <div>
         <child ref="childName"></child>
     </div>
 </template>
 
-
-----------
 mounted(){
     let childData = this.$ref.childName.$data.childData;
     let childMethod = this.$ref.childName.doSomething;
     console.log('都可以访问到');
 }
+```
 child.vue子组件
-
+```javascript
 data(){
     return {
         childData: 'xxxx'
@@ -145,28 +148,30 @@ methods: {
         // todo
     }
 }
+```
 注意：
-vue更新数据是异步的,我们需要等到DOM更新完成，所以使用$ref进行DOM操作的时候，需要放在created的$nextTick(() => {})，或者直接放在mounted。
+&emsp;vue更新数据是异步的,我们需要等到DOM更新完成，所以使用$ref进行DOM操作的时候，需要放在created的$nextTick(() => {})，或者直接放在mounted。
 因为绑定组件的话返回的是vm实例，所以参考实例属性获取想要的数据等。
 $refs 也不是响应式的，因此不应该试图用它在模板中做数据绑定。
 
-兄弟组件通信
-兄弟组件通信有两种方法，eventBus，vuex。但是我跟愿意将eventBus放在模块之间的通信来讲。
+## 兄弟组件通信
+兄弟组件通信有两种方法，eventBus，vuex。但是我更愿意将eventBus放在模块之间的通信来讲。
 
-vuex
+### vuex
 当非父子组件之间通信较多时，用eventBus很容易逻辑混乱，较难维护。vuex将状态管理单独拎出来，应用统一的方式进行处理，可以理解为组件间公用的一个全局对象。
 
 使用Vuex
 
 安装
 
-npm install --save vuex
+> npm install --save vuex
+
 其实一般来说，用到vuex的时候，业务逻辑都已经比较复杂，所以我就讲我自己在用的时候，项目文件的处理。
 
 clipboard.png
 
 store/index.js
-
+```javaScript
 import Vuex from 'vuex';
 import Vue from 'vue';
 Vue.use(Vuex);
@@ -191,8 +196,9 @@ const store = new Vuex.Store({
        
 });
 export default store;
+```
 main.js
-
+```javaScript
 console.log("store为实例化生成的");
 import store from './store/index.js';
 new Vue({
@@ -201,9 +207,10 @@ new Vue({
   console.log("将store挂载到vue实例上")
   render: h => h(App)
 })
+```
 在组件中使用
 child.vue js部分
-
+```javaScript
 import { mapActions, mapMutations, mapState } from 'vuex';
 export default {
     computed: {
@@ -218,8 +225,9 @@ export default {
     // 接下来在实例中就可以用this.stateName,this.actionName来调用
 
 }
+```
 当兄弟组件很多，涉及到的处理数据庞大的时候，可以用到vuex中的modules，使得结构更加清晰
-
+```javaScript
 const moduleA = {
   state: { ... },
   mutations: { ... },
@@ -242,18 +250,22 @@ const store = new Vuex.Store({
 
 store.state.a // -> moduleA 的状态
 store.state.b // -> moduleB 的状态
+```
 vuex讲细篇幅很长，更多更复杂的内容，参考官方教程
 
-模块通信
-eventBus
-eventBus的原理是引入一个新的vue实例，然后通过分别调用这个实例的事件触发和监听来实现通信和参数传递。
-eventBus.js 一般会直接用公共一个文件来存放vue实例
+### 模块通信
+**eventBus**
 
+eventBus的原理是引入一个新的vue实例，然后通过分别调用这个实例的事件触发和监听来实现通信和参数传递。
+
+eventBus.js 一般会直接用公共一个文件来存放vue实例
+```javaScript
 import Vue from 'vue';  
-export default new Vue();  
+export default new Vue(); 
+``` 
 我们在apple.vue中监听一个事件
 apple.vue
-
+```javaScript
 import eventBus from 'eventBus.js'; 
 // 我们在create钩子中监听方法
 create(){
@@ -269,8 +281,9 @@ methods: {
         // todo
     }
 }
+```
 在orange.vue中触发
-
+```javaScript
 import eventBus from 'eventBus.js'; 
 // 必须引入同一个实例
 
@@ -280,6 +293,7 @@ methods： {
         console.log("向getTarget方法传参22");
     }
 }
+```
 总结
 eventBus其实非常方便，任何的组件通信都能用它来完成。但是，我们会根据情况来选择更易维护的方式。因为eventBus比较不好找到对应的监听或者触发事件具体实现的地方，所以一般组件通信更考虑上面的实现方式。在模块之间通信利用eventBus，然后在模块内部，利用vuex通信，维护数据，会在逻辑上比较清晰。
 
