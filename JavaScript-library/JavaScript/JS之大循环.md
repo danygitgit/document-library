@@ -293,6 +293,38 @@ iter.next() // { value: 'b', done: false }
 iter.next() // { value: 'c', done: false }  
 iter.next() // { value: undefined, done: true }  
 不过，这个内容超出了本文的范围，而且 Iterator 要讲的也有很多，以后有时间专门写一篇文章介绍，欢迎关注。 -->  
+## map()循环  
+&emsp;map方法将数组的所有成员依次传入参数函数，然后把每一次的执行结果组成一个新数组返回。  
+
+注意：是返回一个新数组，而不会改变原数组。  
+```javaScript  
+let numbers = [1, 2, 3];  
+ 
+numbers.map(function (n) {  
+  return n + 1;  
+});  
+// [2, 3, 4]  
+ 
+numbers // [1, 2, 3]  
+```  
+&emsp;map方法接受一个函数作为参数。该函数调用时，map方法向它传入三个参数：当前成员、当前位置和数组本身。  
+```javaScript  
+[1, 2, 3].map(function(elem, index, arr) {  
+  return elem * index;  
+});  
+// [0, 2, 6]  
+```  
+&emsp;此外，map()循环还可以接受第二个参数，用来绑定回调函数内部的this变量，将回调函数内部的this对象，指向第二个参数，间接操作这个参数（一般是数组）。  
+```javaScript  
+let arr = ['a', 'b', 'c'];  
+ 
+[1, 2].map(function (e) {  
+  return this[e];  
+}, arr)  
+ // ['b', 'c']  
+ ```  
+&emsp;上面代码通过map方法的第二个参数，将回调函数内部的this对象，指向arr数组。间接操作了数组arr; forEach同样具有这个功能。
+
 ## forEach循环  
 
 &emsp;在 ES5 中，引入了新的循环，即 forEach 循环。  
@@ -326,7 +358,7 @@ arr[0] = "a";
 arr[3] = "b";  
 arr[10] = "c";  
 arr.name = "Hello world";  
-arr.forEach((data, index, array) => {  
+arr.forEach((daelta, index, array) => {  
   console.log(data, index, array);  
 });  
 ```  
@@ -346,39 +378,7 @@ c 10 ["a", 3: "b", 10: "c", name: "Hello world"]
 - some: 循环在第一次 return true 后返回  
 - filter: 返回一个新的数组，该数组内的元素满足回调函数  
 - map: 将原数组中的元素处理后再返回  
-- reduce: 对数组中的元素依次处理，将上次处理结果作为下次处理的输入，最后得到最终结果。  
-
-## map()循环  
-&emsp;map方法将数组的所有成员依次传入参数函数，然后把每一次的执行结果组成一个新数组返回。  
-
-注意：是返回一个新数组，而不会改变原数组。  
-```javaScript  
-let numbers = [1, 2, 3];  
- 
-numbers.map(function (n) {  
-  return n + 1;  
-});  
-// [2, 3, 4]  
- 
-numbers // [1, 2, 3]  
-```  
-&emsp;map方法接受一个函数作为参数。该函数调用时，map方法向它传入三个参数：当前成员、当前位置和数组本身。  
-```javaScript  
-[1, 2, 3].map(function(elem, index, arr) {  
-  return elem * index;  
-});  
-// [0, 2, 6]  
-```  
-&emsp;此外，map()循环还可以接受第二个参数，用来绑定回调函数内部的this变量，将回调函数内部的this对象，指向第二个参数，间接操作这个参数（一般是数组）。  
-```javaScript  
-let arr = ['a', 'b', 'c'];  
- 
-[1, 2].map(function (e) {  
-  return this[e];  
-}, arr)  
- // ['b', 'c']  
- ```  
-&emsp;上面代码通过map方法的第二个参数，将回调函数内部的this对象，指向arr数组。间接操作了数组arr; forEach同样具有这个功能。   
+- reduce: 对数组中的元素依次处理，将上次处理结果作为下次处理的输入，最后得到最终结果。     
 
 ## filter()过滤循环  
 
@@ -620,14 +620,14 @@ s: 3
 ## 6、总结  
 
 | 循环方法 |   语法   | 传入参数 | 返回值 | 应用场景 | 使用频率 | 特点 |对空位的处理|
-| :------- | :------: | :------: | :----- | :------: | :------: | :----: |:----: |
+| :------- | :------: | :------: | :----- | :------: | :------ | :---- |:---- |
 | while|while (`循环条件`){`循环体`} | key |无|通常用在循环次数不确定的时候|不常用|先判断，再执行|不会忽略空位，标记undefined|
 | do-while|do{`循环体`}while(`循环条件`);| key |无|循环至少要执行一次|不常用|先执行，再判断，至少执行一次|  不会忽略空位，标记undefined|
 |for|for(`声明循环变量`;`判断循环条件`;`更新循环变量`;){`循环体`} |key |无|确定循环次数以及对象遍历的时候使用|常用|已知循环的初始和结束条件时非常有用| 不会忽略空位，标记undefined| 
 |for-in|for( let `key` in `obj`){`循环体`}|key|无|遍历对象及稀疏数组|常用|循环会遍历一个object所有的可枚举属性。最好不要用，可能会遍历原型链上的属性|  会忽略空位| 
 |for-of|for(let `value` of `arr`) {`循环体`}|value| 无|遍历数组|常用|最简洁、最直接的遍历数组元素的语法| 不会忽略空位，标记undefined| 
 |forEach|`arr`.forEach((`data`, `index`, `array`) => { `循环体`})| 函数 | 无|为一些相同的元素，绑定事件处理器|常用|调用数组的每个元素，将元素传给回调函数；没有返回一个新数组&没有返回值；不能正确响应 break, continue, return。| 会忽略空位| 
-|map|`arr`.map(function(`elem`, `index`, `array`) { return `elem * index;`})| 函数 | 一个新数组|在遍历出的数据需要处理的时候|常用|返回一个新数组，而不会改变原数组|  会忽略空位|  
+|map|`arr`.map(function(`elem`, `index`, `array`) { return `elem * index;`})| 函数 | 一个新数组|在遍历出的数据需要处理的时候,如处理数据每一项，或者取到对象中某些属性并返回|常用|返回一个新数组，而不会改变原数组|  会忽略空位|  
 |filter|`arr`.filter(function (`elem`, `index`, `arr`) { return index % 2 === 0; })  | 函数 | 一个新数组|用于过滤数组成员，满足条件的成员组成一个新数组返回；|常用|返回一个新数组，而不会改变原数组| 会忽略空位| 
 
 &emsp;循环是让计算机做重复任务的有效的方法，有些时候，如果代码写得有问题，会让程序陷入“死循环”，也就是永远循环下去。JavaScript的死循环会让浏览器无法正常显示或执行当前页面的逻辑，有的浏览器会直接挂掉，有的浏览器会在一段时间后提示你强行终止JavaScript的执行，因此，要特别注意死循环的问题。

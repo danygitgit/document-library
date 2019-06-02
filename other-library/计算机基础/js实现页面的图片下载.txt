@@ -1,0 +1,12 @@
+<a>标签.html5的a标签增加了download属性,可利用此属性实现图片下载.
+
+
+<a href="https://geekjc-img.geekjc.com/logo.png" download="logo.png">下载图片</a>
+
+
+
+
+将a标签的href属性指向图片的地址;同时增加download属性;即可实现点击下载.
+download属性的属性值选填,代表下载图片的名称,如不填写,则使用href中的图片名称,即图片的原名称.
+a标签的download属性目前主流浏览器只有火狐和谷歌支持.
+
