@@ -1,6 +1,6 @@
 # Chrome获取PC硬件信息插件
 
-转至元数据结尾
+转至元数据结尾(放硬盘了)
 由 曲翰林创建, 最终由 王振华修改于 六月 04, 2019 转至元数据起始
 
 ## 插件安装说明：
@@ -46,7 +46,7 @@ winXP 系统不需要此步骤，直接运行install_xp.bat即可
 
 
 
-#测试
+## 测试
 打开http://192.168.0.16/login
 
 打开F12，查看是否存在setPCInfo打印
@@ -56,3 +56,31 @@ winXP 系统不需要此步骤，直接运行install_xp.bat即可
 首次运行后会将主板uuid，cpuid，mac地址信息生成的md5串，存放到C:\Program Files\PIM\md5.txt 缓存起来，下次使用会从其中直接加载，
 
 如果设备md5有重复，可以考虑直接修改C:\Program Files\PIM\md5.txt，设置一个不重复的md5串
+
+## 使用方法
+
+使用getPCInfo发送消息给插件获取信息
+window.postMessage({ type: 'getPCInfo' }, '*')
+如果vue，created中使用，需要使用setTimeout
+
+监听插件回发消息
+```javascript
+window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'setPCInfo') {
+        console.log('setPCInfo', event.data.msg)
+    }
+}, false)
+
+msg：
+{
+    cpu: cpuId
+    ip: ip地址，多网卡逗号隔开
+    mac: mac地址，多网卡逗号隔开
+    uuidBios: 主板uuid
+    md5: 使用主板uuid，cpuid，mac地址生成的md5串
+    name: 计算机名
+    systemName: 系统名
+}
+```
+首次运行后会将主板uuid，cpuid，mac地址信息生成的md5串，存放到C:\Program Files\PIM\md5.txt 缓存起来，下次使用会从其中直接加载
+同时前端获取过md5后使用localstorage缓存
