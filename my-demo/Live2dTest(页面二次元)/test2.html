@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://l2dwidget.js.org/dev.html -->
+<html class="windows desktop landscape"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Live2d Test Env</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" charset="utf-8" async="" src="./Live2d Test Env_files/L2Dwidget.0.min.js"></script>
+<style>
+  .live2d-widget-dialog-container {
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    bottom: 65%;
+    right: 0px;
+    transform-origin: right;
+    padding: 12px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+  .live2d-widget-dialog {
+    width: 100%;
+    height: 100%;
+    color: #917159;
+    font-size: 16px;
+    padding: 12px;
+    border: 2px solid rgb(236, 203, 180);
+    background: rgb(252, 248, 244);
+    box-sizing: border-box;
+    border-radius: 10px;
+    transform: rotate(-2deg);
+    opacity: 0;
+    transition: 200ms opacity;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    animation: live2d-widget-dialog-tingle 4s ease-in-out 0s infinite alternate;
+  }
+  @keyframes live2d-widget-dialog-tingle {
+    0% { transform: translate(-1px, 1.5px) rotate(-2deg); }
+    100% { transform: translate(1px, -1.5px) rotate(2deg); }
+  }
+</style>
+</head>
+  <body>
+    <p>试试摸摸头和这颗星星会有不同的对话哦</p>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="190" height="180" class="star">
+      <polygon points="100,0 160,180 10,60 190,60 40,180" style="fill:yellow;stroke:yellow;stroke-width:1;"></polygon>
+    </svg>
+    <script src="./Live2d Test Env_files/L2Dwidget.min.js"></script>
+    <script type="text/javascript">
+      L2Dwidget
+        .on('*', (name) => {
+          console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+        })
+        .init({
+          dialog: {
+            // 开启对话框
+            enable: true,
+            script: {
+              // 每空闲 10 秒钟，显示一条一言
+              'every idle 10s': '$hitokoto$',
+              // 当触摸到星星图案
+              'hover .star': '星星在天上而你在我心里 (*/ω＼*)',
+              // 当触摸到角色身体
+              'tap body': '哎呀！别碰我！',
+              // 当触摸到角色头部
+              'tap face': '人家已经不是小孩子了！'
+            }
+          }
+        });
+    </script>
+  
+
+<div id="live2d-widget" class="live2d-widget-container" style="position: fixed; right: 0px; bottom: -20px; width: 200px; height: 400px; z-index: 99999; opacity: 1; pointer-events: none;"><div class="live2d-widget-dialog-container" style="transform: scale(0.8);"><div class="live2d-widget-dialog" style="opacity: 1;">共道人间惆怅事，不知今夕是何年。</div></div><canvas id="live2dcanvas" width="400" height="800" style="position: absolute; left: 0px; top: 0px; width: 200px; height: 400px;"></canvas></div></body></html>
