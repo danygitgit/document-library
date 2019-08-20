@@ -1,12 +1,11 @@
-@[Vue组件通信](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)
+@[浅谈Vue组件通信](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)
 
-> create by **db** on **2019-4-28 17:13:46**   
-> Recently revised in **2019-5-13 16:15:47**
+> create by **db** on **2019-8-15 19:41:55**   
+> Recently revised in **2019-8-15 19:42:01**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94ToDoList.md)**
 
-&emsp;查阅网上诸多资料，并结合自己的学习经验，写下这篇Vue学习笔记，以记录自己的学习心得。现分享给大家，以供参考。
-
+&emsp;这是一篇欠下很久的文章了。对于以Vue为工作栈的我来说，Vue组件之间的通信问题是接触最多的问题之一。因此，参考一些文章，并结合自己的工作及学习经验，写下这篇博客——温故而知新。
 &emsp;作为一只前端菜鸟，本篇文章旨在记录自己的学习心得，如有不足，还请多多指教，谢谢大家。
 
 # 前言
@@ -17,7 +16,7 @@
 
 > I do and I understand.
 
-&emsp;组件间的通信是是实际开发中非常常用的一环，Vue中实现组件之间的通信方式有很多种，eventBus, props, vuex, v-on, ref...等等。如何使用对项目整体设计、开发、规范都有很实际的的作用，我在项目开发中对此深有体会，总结下vue组件间通信的几种方式，讨论下各自的使用场景
+&emsp;组件间的通信是是实际开发中非常常用的一环，Vue中实现组件之间的通信方式有很多种， props,eventBus, vuex, v-on, ref...等等。如何使用组件通信，对项目整体设计、开发、规范都有很实际的的作用。Vue文档上以及各类大佬博客中对总结vue组件间通信都写的很详细了，我也抛砖引玉，浅谈一下vue组件间通信的几种方式以及各自的使用场景。
 
 &emsp;参考文献：
 
@@ -26,30 +25,55 @@
 - [vue组件通信--注意事项及经验总结 | 掘金-王文健 ](http://blog.wwenj.com/index.php/archives/69/)
 
 # 正文
+
 &emsp;组件通信包括：子组件与父组件之间，兄弟组件之间，模块之间
 
 ## 父子组件通信
 
-### props
+### props 父传子
 
-**`props`是响应式的，可以做数据绑定**
+`index.vue`  父组件
 
-&emsp;`index.vue`父组件相关的代码
-
-&emsp;如果传给子组件的是一个变量或者数字，则需要前面加上：(v-bind的缩写)绑定。
-
-&emsp;这边的imgHeight是一个变量,closeFuction是一个方法
 ```html
 <template>
     <div>
         <child :img-width="344" :img-height="imgHeight" title="静态文字" :before-close="closeFuction"></child>
     </div>
 </template>
+<script>
+import child from './child.vue'  // 引入子组件
+   export default {
+     data () {
+       return  {
+          imgHeight: 300
+       }
+     },
+     components: {
+       child                    // 声明子组件
+     },
+     mothods: {
+       closeFuction() {
+         console.log('叫爸爸！')
+       }
+     }
+   }
+</script>
 ```
-&emsp;`child.vue`子组件中的,使用的话直接可以用 `this.imgWidth`形式获取到。
+`child.vue`  子组件
 
-```javascript
-props:{
+```html
+<template>
+  <div>
+     <h1>{{title}]</h1>
+     <button>点我返回<button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'child',
+  // 接收父子组件参数
+  props:{
     imgWidth: {
         type: Number,
         default: 300
@@ -64,12 +88,45 @@ props:{
     beforeClose: {
         type: Function,
         default: function() {
-            console.warn('need a init submitHandle Prop!');
+            console.warn('你这个糟老头太坏了！');
         }
     }
+  },
+  created () {
+     console.log(this.imgWidth)
+     console.log(this.imgHeight)
+  },
 }
+</script>
 ```
-&emsp;因为html对于大小写并不敏感，所以子组件中驼峰命名在父组件中建议采用下划线。传递给子组件的方法类似于一个回调函数。调用之后可以更改父组件中的内容，也算是子组件向父组件通信了。另外值得注意的是，根据Vue风格指南中建议的，prop 的定义应该尽量详细，至少需要指定其类型。
+**注**
+1. 父组件传递数据时类似在标签中写了一个属性，如果是传递的数据是`data`中的自然是要在传递属性前加`：`(`v-bind`的缩写)，如果传递的是一个已知的固定值呢
+    -  `字符串`是静态的可直接传入无需在属性前加`：`
+    - `数字`，`布尔`，`对象`，`数组`，因为这些是js表达式而不是字符串，所以即使这些传递的是静态的，也需要前面加上`：`绑定，把数据放到`data`中引用，
+
+2. 如果`prop`传到子组件中的数据是一个`对象`的话，要注意传递的是一个`对象引用`，虽然父子组件看似是分离的但最后都是在同一对象下。
+
+    - 如果`prop`传到子组件的值只是作为初始值使用，且在父组件中不会变化赋值到`data`中使用
+    - 如果传到子组件的`prop`的数据在父组件会被改变的，放到**计算属性**中监听变化使用。因为**如果传递的是个`对象`的话，只改变下面的某个属性子组件中是不会响应式更新的，如果子组件需要在数据变化时响应式更新那只能放到`computed`中或者用`watch`深拷贝`deep:true`才能监听到变化**
+    - 当然如果你又需要在子组件中通过`prop`传递数据的变化做些操作，那么写在`computed`中会报警告，因为计算属性中不推荐有任何数据的改变，最好只进行计算。如果你非要进行数据的操作那么可以把监听写在`watch`（注意deep深拷贝）或者使用`computed`的`get`和`set`。
+    - 
+&emsp;但问题又来了，如果你传进来的是个`对象`，同时你又需要在子组件中操作传进来的这个数据，那么在父组件中的这个数据也会改变，因为你传递的只是个引用， 即使你把`prop`的数据复制到`data`中也是一样的，无论如何赋值都是引用的赋值，你只能对对象做**深拷贝**创建一个副本才能继续操作，你可以用JSON的方法先转化字符串在转成对象更方便一点
+  - `JSON.stringify(obj)`      将JSON对象转为字符串。
+  - `JSON.parse(string)`      将字符串转为JSON对象格式。
+
+&emsp;所以在父子传递数据时要先考虑好数据要如何使用，否则你会遇到很多问题或子组件中修改了父组件中的数据，这是很隐蔽并且很危险的。
+
+
+<!-- &emsp;这边的imgHeight是一个变量,closeFuction是一个方法 -->
+
+**注**
+<!-- &emsp;`child.vue`子组件中的,使用的话直接可以用 `this.imgWidth`形式获取到。 -->
+- 使用`props`传递数据作用域是孤立的，它是父组件通过模板传递而来，想接收到父组件传来的数据，需要通过`props`选项来进行接收。
+- 子组件需要显示的声明接收父组件传递来的数据的`数量`，`类型`，`初始值`。
+- 简单的接收可以通过数组的形式来进行接收。
+- 使用的话直接可以用 `this.imgWidth`形式获取到
+&emsp;子组件需要显示的声明接收父组件传递来的数据的数量，类型，初始值。
+
 
 ### v-on
 
