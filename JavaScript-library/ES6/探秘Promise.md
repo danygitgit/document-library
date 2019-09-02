@@ -1,7 +1,7 @@
 @[探秘Promise](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/ES6/%E6%8E%A2%E7%A7%98Promise.md)  
 
 > create by **db** on **2019-8-18 18:54:39**   
-> Recently revised in **2019-8-20 23:01:08**  
+> Recently revised in **2019-9-2 21:53:12**  
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/ES6/%E6%8E%A2%E7%A7%98Promise.md)**  
 
@@ -25,8 +25,6 @@
 - [廖雪峰的官方网站 | 廖雪峰 ](https://www.liaoxuefeng.com/wiki/1022910821149312/1023023924160384) 
 - [关于ES6的Promise的使用 |简书-紫陌兰溪 ](https://www.jianshu.com/p/1ec8d1c4e287)  
  
-
-
 # 正文
 
 ## 什么是Promise
@@ -538,7 +536,9 @@ Promise代表了一个对象，这个对象的状态现在还不确定，但是�
 
 # 总结  
 
-&emsp;作为一只前端菜鸟，本篇文章旨在记录自己的学习心得，如有不足，还请多多指教，谢谢大家。  
+&emsp;作为javascript的新标准，ES6为我们提供了很多新语法及新特性，让我们的代码更加简单与易用。
+
+&emsp;作为一只前端菜鸟，本篇文章旨在记录自己的学习心得，如有不足，还请多多指教，谢谢大家。
 
 &emsp;路漫漫其修远兮，与诸君共勉。  
 
