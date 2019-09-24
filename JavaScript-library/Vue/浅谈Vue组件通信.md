@@ -216,72 +216,89 @@ $refs 也不是响应式的，因此不应该试图用它在模板中做数据�
 兄弟组件通信有两种方法，eventBus，vuex。但是我更愿意将eventBus放在模块之间的通信来讲。
 
 ### vuex
-当非父子组件之间通信较多时，用eventBus很容易逻辑混乱，较难维护。vuex将状态管理单独拎出来，应用统一的方式进行处理，可以理解为组件间公用的一个全局对象。
 
-使用Vuex
+&emsp;当非父子组件之间通信较多时，用`eventBus`很容易逻辑混乱，较难维护。`vuex`将状态管理单独拎出来，应用统一的方式进行处理，可以理解为组件间公用的一个全局对象。
+
+#### 使用Vuex
 
 安装
-
 > npm install --save vuex
-
+<!-- 
 其实一般来说，用到vuex的时候，业务逻辑都已经比较复杂，所以我就讲我自己在用的时候，项目文件的处理。
 
-clipboard.png
+clipboard.png -->
 
-store/index.js
+`store/index.js`
 ```javaScript
-import Vuex from 'vuex';
-import Vue from 'vue';
+import Vuex from 'vuex'; // 引入Vuex
+import Vue from 'vue';   // 引入Vue
+// 使用Vuex
 Vue.use(Vuex);
-console.log("必须引入vuex");
+
+// 创建Vuex实例
 const store = new Vuex.Store({
-    state: {
-        stateName: 'xxxx'
-    },
-    mutations: {
-       mutationsName(state, {params}) {
-           state.stateName = params;
-            console.log("只有在mutations中才能直接改变state中的值")
-       } 
-    },
-    actions: {
-        actionName({ state,commit}, {params}) {
-        let actionParam = 'mmm';
-            commit('mutationsName', actionParam );
-            console.log(" 触发mutation 方法要用commit分发，以此改变state");
-        }
+  // state：vuex中的数据源，我们需要保存的数据就保存在这里，可以在页面通过 this.$store.state.stateName来获取我们定义的数据；
+  state: {                  
+    stateName: 'xxxx'
+  },
+  // mutations：修改store中的值唯一的方法就是提交mutation，可以在组件中使用 this.$store.commit('xxx') 提交 mutation
+  mutations: {              
+    mutationsName(state, { params }) {  // 定义更改state的方法，可以传参，必须是同步函数
+      state.stateName = params;
     }
-       
+  },
+  // Action 提交的是 mutation，而不是直接变更状态。Action 可以包含任意异步操作。类似于vue的methods。可以在组件中使用this.$store.dispatch('actionName', 'xxx')分发
+  actions: {               
+    actionName({ state, commit }, { params }) {  // 触发mutation 方法要用commit分发，以此改变state
+      let actionParam = 'mmm';
+      commit('mutationsName', actionParam);
+    }
+  },
+  // getters：相当于Vue中的computed,可以用于监听、state中的值的变化，返回计算后的结果。可以在组件中使用this.$store.getters.getStateName获取其中的值 
+  getters: {               
+    getStateName: state => {
+      return state.stateName
+    }
+  }
+
 });
-export default store;
+export default store;  // 导出store
 ```
-main.js
+`main.js`
 ```javaScript
-console.log("store为实例化生成的");
+// store为实例化生成的
 import store from './store/index.js';
 new Vue({
   el: '#app',
-  store,
-  console.log("将store挂载到vue实例上")
+  store,           // 将store挂载到vue实例上
   render: h => h(App)
 })
 ```
-在组件中使用
-child.vue js部分
+#### 在组件中使用
+&emsp;如果我们不喜欢这种在页面上使用
+
+> this.$store.state.stateName
+
+> this.$store.getters.getStateName
+
+> this.$store.dispatch('actionName', 'xxx')
+> 
+这种很长的写法，那么我们可以使用`mapState`、`mapGetters`、`mapActions`就不会这么麻烦了；
+
+`child.vue` js部分
 ```javaScript
-import { mapActions, mapMutations, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
 export default {
     computed: {
         ...mapState({ stateName })
+        ...mapGetters({ stateName })
     },
     methods: {
         ...mapActions(['actionName']),
-        ...mapMutations(['mutationName'])
-        console.log("使用辅助函数mapMutations直接将触发函数映射到methods上")
-    }
-    
+        //使用辅助函数mapMutations直接将触发函数映射到methods上
+        ...mapMutations(['mutationName']) 
+    } 
     // 接下来在实例中就可以用this.stateName,this.actionName来调用
-
 }
 ```
 当兄弟组件很多，涉及到的处理数据庞大的时候，可以用到vuex中的modules，使得结构更加清晰
