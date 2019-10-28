@@ -1,7 +1,7 @@
 @[一波ESLint小技巧](https://github.com/danygitgit/document-library/blob/master/other-library/%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/%E4%B8%80%E6%B3%A2ESLint%E5%B0%8F%E6%8A%80%E5%B7%A7.md)
 
 > create by **db** on **2019-10-28 16:31:00**   
-> Recently revised in **2019-10-28 17:44:27**
+> Recently revised in **2019-10-28 17:15:25**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/other-library/%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/%E4%B8%80%E6%B3%A2ESLint%E5%B0%8F%E6%8A%80%E5%B7%A7.md)**
 
@@ -220,7 +220,7 @@ alert(‘foo’);
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-&emsp;PMP，必胜！！！
+&emsp;PMP,必胜！！！
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/other-library/%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/%E4%B8%80%E6%B3%A2ESLint%E5%B0%8F%E6%8A%80%E5%B7%A7.md)**
 
