@@ -27,7 +27,7 @@
 
 ##  Vue文件一键格式化
 
-&emsp;在vscode的`文件`-`首选项`-`设置`里，右侧配置里添加如下代码即可（代码有注释！），从此直接 `Ctrl+S`就能一键格式化了
+&emsp;在vscode的`文件`-`首选项`-`设置`里，右侧配置里添加如下代码即可（代码有注释！），从此直接 `Shift+Alt+F`就能一键格式化了
 
 ```json
 {
@@ -89,9 +89,11 @@
   // 重新设定tabsize
   "editor.tabSize": 2,
   // #每次保存的时候自动格式化 
-  "editor.formatOnSave": true,
+  // "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // #每次保存的时候将代码按eslint格式进行修复
-  "eslint.autoFixOnSave": true,
+  // "eslint.autoFixOnSave": true,
+  "eslint.autoFixOnSave": false,
   // 添加 vue 支持
   "eslint.validate": [
     "javascript",
@@ -128,7 +130,10 @@
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "editor.fontSize": 16
+  "editor.fontSize": 18,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
 ```
 

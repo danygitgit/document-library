@@ -57,9 +57,11 @@
   // 重新设定tabsize
   "editor.tabSize": 2,
   // #每次保存的时候自动格式化 
-  "editor.formatOnSave": true,
+  // "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // #每次保存的时候将代码按eslint格式进行修复
-  "eslint.autoFixOnSave": true,
+  // "eslint.autoFixOnSave": true,
+  "eslint.autoFixOnSave": false,
   // 添加 vue 支持
   "eslint.validate": [
     "javascript",
@@ -96,5 +98,8 @@
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "editor.fontSize": 16
+  "editor.fontSize": 18,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }

@@ -1,0 +1,75 @@
+{
+  // Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and description. 
+  // The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "Print to console": {
+    "prefix": "vue",
+    "body": [
+      "<!-- 我的页面$1 -->",
+      "<template>",
+      "  <div class='my_page'>",
+      "    <el-container>",
+      "      <el-header>Header</el-header>",
+      "      <el-main>Main</el-main>",
+      "      <el-footer>Footer</el-footer>",
+      "    </el-container>",
+      "  </div>",
+      "</template>",
+      "",
+      "<script>",
+      "// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）",
+      "// 例如：import 《组件名称》 from '《组件路径》'",
+      "",
+      "export default {",
+      "  // import引入的组件需要注入到对象中才能使用",
+      "  components: {},",
+      "  data () {",
+      "    // 这里存放数据",
+      "    return {",
+      "",
+      "    }",
+      "  },",
+      "  // 监听属性 类似于data概念",
+      "  computed: {},",
+      "  // 监控data中的数据变化",
+      "  watch: {},",
+      "  // 生命周期 - 创建完成（可以访问当前this实例）",
+      "  created () {",
+      "",
+      "  },",
+      "  // 生命周期 - 挂载完成（可以访问DOM元素）",
+      "  mounted () {",
+      "",
+      "  },",
+      "  beforeCreate () { }, // 生命周期 - 创建之前",
+      "  beforeMount () { }, // 生命周期 - 挂载之前",
+      "  beforeUpdate () { }, // 生命周期 - 更新之前",
+      "  updated () { }, // 生命周期 - 更新之后",
+      "  beforeDestroy () { }, // 生命周期 - 销毁之前",
+      "  destroyed () { }, // 生命周期 - 销毁完成",
+      "  activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发",
+      "  // 方法集合",
+      "  methods: {",
+      "",
+      "  }",
+      "}",
+      "</script>",
+      "",
+      "<style lang='less' scoped>",
+      "//@import url($3); 引入公共css类",
+      "$4",
+      "</style>",
+      ""
+    ],
+    "description": "Log output to console"
+  }
+}
