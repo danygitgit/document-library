@@ -1,6 +1,6 @@
 @[git配置ssh服务](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/git%E9%85%8D%E7%BD%AEssh%E6%9C%8D%E5%8A%A1.md)
-> create by **db** on **2018-12-25 12:10:36**   
-> Recently revised in **2019-1-8 09:33:45**
+> create by **db** on **2020-2-16 18:49:26**   
+> Recently revised in **2020-2-16 18:49:31**
 
 &emsp;**Hello 小伙伴们，如果觉得本文还不错，麻烦点个赞或者给个 star，你们的赞和 star 是我前进的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/other-library/Git%E7%AC%94%E8%AE%B0/git%E9%85%8D%E7%BD%AEssh%E6%9C%8D%E5%8A%A1.md)**
 
@@ -13,11 +13,8 @@
 - 使用`https url`克隆对初学者来说会比较方便，复制`https url`然后到git Bash里面直接用clone命令克隆到本地就好了，但是每次fetch和push代码都需要输入账号和密码，这也是https方式的麻烦之处。
 
 - 而使用`SSH url`克隆却需要在克隆之前先配置和添加好`SSH key`，因此，如果你想要使用`SSH url`克隆的话，你必须是这个项目的拥有者。否则你是无法添加`SSH key`的，另外ssh默认是每次fetch和push代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和push也可以另外进行设置。
-- 
-&emsp;下面主要是讲述如何配置使用ssh方式来提交和克隆代码。
 
-版权声明：本文为CSDN博主「90后纳税人」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/ShuTongIt/article/details/89165054
+&emsp;下面主要是讲述如何配置使用ssh方式来提交和克隆代码。
 
 # 正文
 ## 配置本机ssh
@@ -155,9 +152,9 @@
 
 # 总结 
 
-* 勇于尝试，善于总结。开启你的Git踩坑之旅吧！
+&emsp;磨刀不误砍柴工。勇于尝试，善于总结。开启你的Git踩坑之旅吧！
   
-&emsp;&emsp;路漫漫其修远兮，希望Git及GitHub可以帮我们记录每一个脚印，每一步成长。与诸君共勉。
+&emsp;路漫漫其修远兮，希望Git可以帮我们记录每一个脚印，每一步成长。与诸君共勉。
 
 &emsp;祝大家2020更上一层楼！
 
