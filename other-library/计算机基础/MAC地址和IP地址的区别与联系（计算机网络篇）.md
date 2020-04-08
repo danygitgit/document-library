@@ -1,9 +1,23 @@
-@[键盘快捷键笔记](https://github.com/danygitgit/document-library/blob/master/other-library/%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0.md)
+@[MAC地址和IP地址的区别与联系（计算机网络篇）]
 
 > create by **db** on **2018-12-30 15:42:36**
 > Recently revised in **2019-1-25 23:36:22**
 
-# MAC地址和IP地址的区别与联系（计算机网络篇）
+# 前言  
+
+> I hear and I fogorget. 
+
+> I see and I remember.  
+
+> I do and I understand.  
+
+&emsp;作为一个前端码农，每天都在跟浏览器打交道，大家有对浏览器的数据存储方案有多少了解呢？
+
+&emsp;参考文献：
+
+- [MAC地址和IP地址的区别与联系 | CSDN-gogo_hua ](https://blog.csdn.net/yang_best/article/details/41643589 )
+
+# **正文**
 
 ## MAC地址和IP地址的区别与联系
 
@@ -68,17 +82,11 @@
 
 &emsp;每个Ethernet网卡生产厂家必须向IEEE组织申请一组MAC地址，在生产网卡时在网卡的串行EEPROM中写入一个唯一的MAC地址。任何两个Ethernet网卡的MAC地址，不管是哪一个厂家生产的都不应相同。Ethernet芯片厂家不必负责MAC地址的申请，MAC地址存在于每一个Ethernet包中，是Ethernet包头的组成部分，Ethernet交换机根据Ethernet包头中的MAC源地址和MAC目的地址实现包的交换和传递。
 
-&emsp;IP地址是Internet协议地址，每个Internet包必须带有IP地址，每个Internet服务提供商（ISP）必须向有关组织申请一组IP地址，然后一般是动态分配给其用户。IP地址现是32位长，正在扩充到128位。IP地址与MAC地址无关，因为Ethernet的用户，仍然可通过Modem连接Internet，取得一个动态的IP地址，这个地址每次可以不一致。IP地址通常工作于广域网，路由器处理的就是IP地址。 MAC地址工作于局域网，局域网之间的互连一般通过现有的公用网或专用线路，需要进行网间协议转换。可以在Ethernet上传送IP信息，此时IP地址只是Ethernet信息包数据域的一部分，Ethernet交换机或处理器看不见IP地址，只是将其作为普通数据处理。
+&emsp;IP地址是Internet协议地址，每个Internet包必须带有IP地址，每个Internet服务提供商（ISP）必须向有关组织申请一组IP地址，然后一般是动态分配给其用户。IP地址现是32位长，正在扩充到128位。IP地址与MAC地址无关，因为Ethernet的用户，仍然可通过Modem连接Internet，取得一个动态的IP地址，这个地址每次可以不一致。IP地址通常工作于广域网，路由器处理的就是IP地址。 MAC地址工作于局域网，局域网之间的互连一般通过现有的公用网或专用线路，需要进行网间协议转换。可以在Ethernet上传送IP信息，此时IP地址只是Ethernet信息包数据域的一部分，Ethernet交换机或处理器看不见IP地址，只是将其作为普通数据处理。、
+# 总结
 
---------------------- 
-作者：gogo_hua 
-来源：CSDN 
-原文：https://blog.csdn.net/yang_best/article/details/41643589 
-版权声明：本文为博主原创文章，转载请附上博文链接！
+&emsp;路漫漫其修远兮，与诸君共勉。  
 
-<a>标签.html5的a标签增加了download属性,可利用此属性实现图片下载.
-<a href="https://geekjc-img.geekjc.com/logo.png" download="logo.png">下载图片</a>
+**后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library/blob/master/other-library/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E6%BC%AB%E8%B0%88.md)**  
 
-将a标签的href属性指向图片的地址;同时增加download属性;即可实现点击下载.
-download属性的属性值选填,代表下载图片的名称,如不填写,则使用href中的图片名称,即图片的原名称.
-a标签的download属性目前主流浏览器只有火狐和谷歌支持.
+> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="db" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。  
