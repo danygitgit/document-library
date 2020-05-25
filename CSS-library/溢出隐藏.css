@@ -1,0 +1,20 @@
+ /* 单行文本溢出隐藏变为... */
+ p {
+    /* 隐藏元素溢出内容 */
+    overflow: hidden;
+    /* 单行显示 */
+    white-space: nowrap;
+    /* 溢出显示省略号 */
+    text-overflow: ellipsis;
+  }
+
+  /* 多行文本溢出隐藏变为... */
+  p {
+    overflow: hidden;
+    /* 将对象作为弹性伸缩盒子模型显示 。 */
+    display: -webkit-box;
+    /* 限制在一个块元素显示的文本的行数，即行数设置 */
+    -webkit-line-clamp: 3;
+    /* 规定框从上向下垂直排列子元素 */
+    -webkit-box-orient: vertical;
+  }
