@@ -18,3 +18,11 @@
     /* 规定框从上向下垂直排列子元素 */
     -webkit-box-orient: vertical;
   }
+
+  /* display: inline-block;下增加overflow:hidden;产生高度问题 */
+  p {
+    display: inline-block;
+    /* 增加vertical-align 属性设置元素的垂直对齐方式 */
+    /* bottom：把元素的顶端与行中最低的元素的顶端对齐。 */
+    vertical-align: bottom
+  }
