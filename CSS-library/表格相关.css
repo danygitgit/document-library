@@ -1,0 +1,14 @@
+
+/* 1，实现table细边框,设置如下css： */
+
+table,table td,table th {
+  border:1px solid #ff0000;
+  border-collapse:collapse;
+}
+ 
+/* 2，table表格宽度固定，同时td内容过长也不会被撑开，设置如下css： */
+
+table {
+  table-layout:fixed;
+  word-break:break-all;
+}
