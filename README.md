@@ -4,7 +4,7 @@ Document Library - 文档库
 > Recently revised in **2019-6-27 23:23:02**
 
 * Here is the db's learning and working experience document on programming. If you have doubts about this, please send an email to 741790002@qq.com.
-* 这里存放了db的学习、工作中关于编程的经验文档。如果你对此有疑惑，请发邮件到741790002@qq.com。
+* 这里存放了db的学习、工作中关于编程的经验文档。如果你对此有疑惑，请发邮件到 741790002@qq.com。
 
 <br>
 
@@ -18,9 +18,7 @@ Document Library - 文档库
 
 &emsp;因而建此文档库，以期留下学习中的每个脚印，记录自己成长历程。与君共勉！
 
-&emsp;**君子不器** 
-
-<br>
+&emsp;**闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
 # 二、 文件目录
 
@@ -30,9 +28,9 @@ Document Library - 文档库
 | [HTML-library](https://github.com/danygitgit/document-library/tree/master/HTML-library)             | HTML 文档仓库                                           |
 | [Less-library](https://github.com/danygitgit/document-library/tree/master/Less-library)             | Less/Sass 文档仓库                                      |
 | [JavaScript-library](https://github.com/danygitgit/document-library/tree/master/JavaScript-library) | JavaScript 文档仓库，包括Vue、ES6、jQuery、文本编辑器等 |
-| [other-library](https://github.com/danygitgit/document-library/tree/master/other-library)           | 其他文档仓库(git/计算机基础)                            |
+| [other-library](https://github.com/danygitgit/document-library/tree/master/other-library)           | 其他文档仓库(git/计算机基础/工作效率/面试准备……)                            |
 | [public-repertory](https://github.com/danygitgit/document-library/tree/master/public-repertory)     | 文档仓库使用到的图片、CSS文件等……                       |
-| [my-demo](https://github.com/danygitgit/document-library/tree/master/my-demo)     | 存放一写自己认为有价值的小demo                      |
+| [my-demo](https://github.com/danygitgit/document-library/tree/master/my-demo)                       | 存放一写自己认为有价值的小demo                          |
 <br>
 
 # 三、 文档协议 
