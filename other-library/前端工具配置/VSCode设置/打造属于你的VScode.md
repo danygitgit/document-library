@@ -77,7 +77,30 @@
 
 &emsp;第一章开始内容！
 
-### <a name="chapter-2-1" id="chapter-2-1">1. 调整字体</a>
+### <a name="chapter-2-1" id="chapter-2-1">1. 常用设置</a>
+
+> [返回目录](#menu-catalog)
+
+#### 自动保存
+
+&emsp;打开文件----》首选项----》设置
+
+搜索：`auto save`
+
+四个选项分别是
+
+- off: 关闭自动保存
+- afterDelay: XX毫秒后自动保存，这个就是我所讲的解决方法，下面会详细介绍
+- onFocusChange: 当焦点移出编辑框
+- onWindowChange: 当焦点移出VSCode窗口
+
+#### 设置代码自动换行
+
+&emsp;打开文件----》首选项----》设置
+
+搜索：`Editor:WordWrap`，将`off`修改为`on`即可
+
+### <a name="chapter-2-2" id="chapter-2-2">2. 调整字体</a>
 
 > [返回目录](#menu-catalog)
 
@@ -85,18 +108,13 @@
 
 &emsp;打开文件----》首选项----》设置
 
-搜索：editor.fontSize，在右侧的 工作区设置，editor.fontSize ：18 
+搜索：`editor.fontSize`，在右侧的 工作区设置，`editor.fontSize ：18 `
 
 #### 调整整体界面字体
 
 &emsp;打开文件----》首选项----》设置
 
-搜索：window.zoomLevel，在右侧的 工作区设置，window.zoomLevel ：1 
-### <a name="chapter-2-2" id="chapter-2-2">2. 第二节</a>
-
-> [返回目录](#menu-catalog)
-
-&emsp;第2节内容！
+搜索：`window.zoomLevel`，在右侧的 工作区设置，`window.zoomLevel ：1 `
 
 ### <a name="chapter-2-3" id="chapter-2-3">3. 第三节</a>
 
