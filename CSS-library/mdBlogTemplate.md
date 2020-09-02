@@ -1,7 +1,7 @@
 # [Markdown 博客模板](https://github.com/danygitgit/document-library)
 
-> create by **db** on **2020-6-27 15:43:09**  
-> Recently revised in **2020-6-27 16:34:03**
+> create by **db** on **2020-9-2 11:45:34**  
+> Recently revised in **2020-9-2 11:45:38**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -11,18 +11,9 @@
 
 - <a name="menu-main-body" id="menu-main-body"></a>[正文](#main-body)
 
-  - <a name="menu-chapter-1" id="menu-chapter-1"></a>[一、第一章](#chapter-1)
-
-    - [1.绝对定位](#chapter-1-1)
-    - [2、margin 负值](#chapter-1-2)
-    - [3、css3 transform](#chapter-1-3)
-    - [3、css3 transform](#chapter-1-4)
-    - [3、css3 transform](#chapter-1-5)
-
-
 - <a name="menu-chapter3" id="menu-chapter3"></a>[总结](#chapter3)
 
-  - [参考文档](#reference-documents)
+- [参考文档](#reference-documents)
 
 # <a name="preface" id="preface">前言</a>
 
@@ -31,112 +22,9 @@
 &emsp;这里是前言内容！
 
 # <a name="main-body" id="main-body">正文</a>
+> [返回目录](#menu-catalog)
 
 &emsp;这里是正文内容！
-
-
-
-
-
-
-复制代码
-4、flex 布局方式
-
-````html
-<div class="box">
-  <div class="child">child</div>
-</div>
-<style>
-  .box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-```　
- 5、table-cell 方式 
-```html
-<div class="box">
-  <div class="child">child</div>
-</div>
-<style>
-  .box {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
-</style>
-````
-
-## <a name="chapter-1" id="chapter-1">一、第一章</a>
-
-&emsp;第一章开始内容！
-
-### <a name="chapter-1-1" id="chapter-1-1">1.绝对定位</a>
-
-> [返回目录](#menu-catalog)
-
-1、绝对定位（常用于登录模块）
-备注：前提条件 div 需要有宽高
-
-```html
-<div class="box"></div>
-<style>
-  .box{
-  position:absolute/fixed;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  margin:auto;
-</style>
-```
-
-### <a name="chapter-1-2" id="chapter-1-2">2、margin 负值</a>
-
-> [返回目录](#menu-catalog)
-
-2、margin 负值
-备注：前提条件 div 需要有宽高
-
-```HTML
-<div class="box"></div>
-<style>
-.box{
-width:200px;
-height: 200px;
-position: absolute;
-left:50%;
-top:50%;
-margin-left:-100px;
-margin-top:-100px;
-}
-</style>
-```
-
-### <a name="chapter-1-3" id="chapter-1-3">3、css3 transform</a>
-
-3、css3 transform
-备注：用于不确定当前 div 的宽度和高度
-
-复制代码
-
-```html
-<div class="box"></div>
-<style>
-  .box {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-</style>
-```
-
-### <a name="chapter-1-4" id="chapter-1-4">3、css3 transform</a>
-
-
-### <a name="chapter-1-5" id="chapter-1-5">3、css3 transform</a>
 
 # <a name="chapter3" id="chapter3">总结</a>
 
