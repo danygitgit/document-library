@@ -1,0 +1,14 @@
+html {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+html,body {
+  height: 100%;
+}
+html {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
