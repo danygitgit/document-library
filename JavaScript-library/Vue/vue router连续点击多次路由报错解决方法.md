@@ -25,6 +25,7 @@
 > [返回目录](#catalog)
 
 ## 报错信息
+![router报错](../../public-repertory/img/router报错.png)
 
 ## 报错原因
 
