@@ -10,7 +10,10 @@ function throttle (fn, delay) {
     }
   }
 }
-const throttled = throttle(() => console.log('Hi'))
+const throttled = throttle(() => console.log('Hi'),100)
+throttled()
+throttled()
+throttled()
 throttled()
 throttled()
 
@@ -30,6 +33,10 @@ function debounce (fn, delay) {
     }
   }
 }
-const debounced = throttle(() => console.log('Hi'))
+const debounced = debounce(() => console.log('Hi'),10)
+debounced()
+debounced()
+debounced()
+debounced()
 debounced()
 debounced()
