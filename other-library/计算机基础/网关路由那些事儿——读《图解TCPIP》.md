@@ -1,7 +1,5 @@
-# [网关路由那些事儿](https://github.com/danygitgit/document-library)
-
 > create by **db** on **2020-10-17 12:55:25**  
-> Recently revised in **2020-10-17 16:55:14**
+> Recently revised in **2020-10-19 14:35:50**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -9,9 +7,9 @@
 
 - [前言](#preface)
 
-- [正文](#main-body)
+- [网关路由那些事儿](#main-body)
 
-- [总结](#summary)
+- [读《图解TCP/IP》](#summary)
 
 - [参考文档](#reference-documents)
 
@@ -21,7 +19,9 @@
 
 &emsp;最近在看《图解 TCP/IP》，里面有些关于网络协议的概念不是特别了解，正巧看到的一篇很不错的文章，形象地阐释了网络里的抽象概念。特地分享给大家。
 
-# <a  id="main-body">正文</a>
+# <a  id="main-body">网关路由那些事儿</a>
+
+## 小不点的故事
 
 &emsp;&emsp;假设你叫小不点（**本地主机**），住在一个大院子（**本地局域网**）里，有很多邻居（**网络邻居**），门口传达室有个看大门的李大爷，李大爷就是你的网关。当你想跟院子里的某个伙伴玩，只要你在院子里大喊一声他的名字（`ping他一下`），他听到了就会回应你，并且跑出来跟你玩。
 
@@ -134,9 +134,7 @@
 
 &emsp;&emsp;除此之外，小丽也知道了小明改他家的电话号码。于是王大爷就登门一个一个把电话和门牌号记下来。并且藏起来不允许 外人修改，只能自己有钥匙（`密码`）。这是 **ip 地址和 MAC 地址绑定**。当有人改了电话号码的时候，就得找王大爷改。麻烦是麻烦了，但是安全了。不过小明偷偷 的把王大爷的钥匙偷配了一把（`盗窃密码成功`），于是他还可以修改。
 
-### 补充：
-
-**ARP 欺骗**：
+## ARP 欺骗（补充）：
 
 小王、小张都住在一个楼里（A、B 计算机在一个**网段**），要想找到他们，必须通过门口看门的张大爷（**网关**），而张大爷记性不好，只是根据小张小王告诉他的：我是小王，我在 A 房来这个纪录，告诉来访者，你去 A 房找小王去吧。正常的情况下，你要找小王，先找到张大爷，然后，张大爷告诉你小王在 A 房间（**计算机 A 的地址**）
 
@@ -172,10 +170,27 @@
 
 对付 ARP 病毒，最彻底的方法，是在交换机端口和本地端口之间进行双向的 IP、MAC 绑定，这实在是体力活。能把网管累个死，防毒很关键哦
 
-# <a  id="summary">总结</a>
+# <a  id="summary">读《图解TCP/IP》</a>
 
 > [返回目录](#catalog)
 
+## 网络协议分层
+
+| 网络协议分层| 对应OSI分层| 相关协议 | 职责                                           |
+| ----------- | ----------------------------------------------------- |----------- | ----------------------------------------------------- |
+| 应用层| 医用层/表示层/会话层| TELNET,SSH,HTTTP,SMTP,POP,SSL/TLS,FTP,MIME,HTML,SNMP,MIB,SIP,RTP……    | 定义数据格式，并按照对应的格式解读数据。                               |
+| 传输层| 传输层| TCP,UDP,UDP-Lite,SCTP,DCCP     | 定义端口，确认主机上应用程序的身份，并将数据包交给对应的应用程序； |
+| 网络层| 网络层| ARP,IPv4,IPv6,ICMP,IPsec     | 定义IP地址，确认主机所在的网络位置，并通过IP进行MAC寻址，对外网数据包进行路由转发； |
+| 链路层| 数据链路层/物理层| 以太网、无线LAN、PPP^(双绞线，无线，光纤…… )    | 对0和1进行分组，定义数据帧，确认主机的物理地址，传输数据； |
+
+
+## 网络模型通信流程
+
+把每层模型的职责串联起来，用一句通俗易懂的话讲就是：
+
+- 当你输入一个网址并按下回车键的时候，首先，应用层协议对该请求包做了格式定义；紧接着传输层协议加上了双方的端口号，确认了双方通信的应用程序；然后网络协议加上了双方的IP地址，确认了双方的网络位置；最后链路层协议加上了双方的MAC地址，确认了双方的物理位置，同时将数据进行分组，形成数据帧，采用广播方式，通过传输介质发送给对方主机。而对于不同网段，该数据包首先会转发给网关路由器，经过多次转发后，最终被发送到目标主机。目标机接收到数据包后，采用对应的协议，对帧数据进行组装，然后再通过一层一层的协议进行解析，最终被应用层的协议解析并交给服务器处理。
+
+##  读《图解TCP/IP》
 &emsp;今天终于蜻蜓点水的将《图解 TCP/IP》看完了，说一下自己的感受吧。
 
 &emsp;首先说下定位，这是一本通俗的网络协议入门书籍，适合网络小白阅读。
@@ -192,8 +207,10 @@
 
 - [网关 DNS DHCP 路由 | CSDN-yugui_huang0305](https://blog.csdn.net/yugui_huang0305/article/details/7495557)
 
+- [深入浅出 TCP/IP 协议栈 | 博客园-一像素](https://www.cnblogs.com/onepixel/p/7092302.html)
+
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
 # 文档协议
 
-> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://user-gold-cdn.xitu.io/2018/12/23/167d9537f3e29c99?w=88&h=31&f=png&s=1888" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="db" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
+> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c2c2a873bdad472f88ee6143620245de~tplv-k3u1fbpfcp-zoom-1.image" /></a><br /><a xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**db** 的文档库</a> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="db" property="cc:attributionName" rel="cc:attributionURL">db</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/danygitgit" rel="dct:source">https://github.com/danygitgit</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
