@@ -10,12 +10,6 @@
 - [前言](#preface)
 - [正文](#main-body)
 
-  - [一、第一章](#chapter-1)
-  - [二、第二章](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
-  - [五、第五章](#chapter-5)
-
 - [总结](#summary)
 
 - [参考文档](#reference-documents)
@@ -28,15 +22,8 @@
 
 # <a  id="main-body">正文</a>
 
-&emsp;这里是正文内容！
-
-
-
-## <a  id="chapter-1">一、第一章</a>
-
 > [返回目录](#catalog)
 
-&emsp;第一章内容！
 1、设置定时器
 
 ```JS
@@ -50,15 +37,9 @@ mounted() {
 2、清除定时器
 ```JS
 beforeDestroy() {
-    clearInterval(this.timer);
+    // clearInterval(this.timer);
 }
 ```
-
-## <a  id="chapter-2">二、第二章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第二章内容！
 
 js实现定时任务，每隔N秒请求后台
 ```JS
@@ -87,25 +68,7 @@ js实现定时任务，每隔N秒请求后台
 	}
 ```
 
-## <a  id="chapter-3">三、第三章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第三章内容！
-
-## <a  id="chapter-4">四、第四章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第四章内容！
-
-## <a  id="chapter-5">五、第五章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第五章内容！
-
-# <a  id="summary">总结</a>
+# <  id="summary">总结</>
 
 > [返回目录](#catalog)
 
