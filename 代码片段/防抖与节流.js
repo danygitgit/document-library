@@ -1,4 +1,8 @@
-// 节流
+/**
+ * 节流
+ * @param {String} fn 回调方法
+ * @param {String} delay 缓冲时间
+ */
 // 一段时间执行一次之后，不再执行第二次（冷却时间）
 function throttle (fn, delay) {
   let canUse = true
@@ -17,8 +21,11 @@ throttled()
 throttled()
 throttled()
 
-
-// 防抖
+/**
+ * 防抖
+ * @param {String} fn 回调方法
+ * @param {String} delay 缓冲时间
+ */
 // 多次执行变为最后一次执行
 function debounce (fn, delay) {
   let timerId = null

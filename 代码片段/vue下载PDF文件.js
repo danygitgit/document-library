@@ -1,10 +1,10 @@
 import axios from "axios"; //引入axios
 axios.defaults.timeout = 15000; //超时时间
 
-/*
+/**
  * 封装下载文件
- * filename(String/文件名)
- * url(String/下载路径)
+ * @param {String} filename 需复制的字符串
+ * @param {String} url 下载路径
  */
 export const downLoadPDF = (filename, url) => {
   // let userInfor = sessionStorage.getItem("userInfo");
@@ -46,13 +46,15 @@ export const downLoadPDF = (filename, url) => {
 /****************************************************************************/
 
 
-
-/*
+/**
  * 调用下载方法
- * filename(String/文件名)
- * url(String/下载路径)
+ * @param {String} filename 需复制的字符串
+ * @param {String} url 下载路径
  */
-import { downLoadPDF } from "@/utils/request.js";
+import {
+  downLoadPDF
+} from "@/utils/request.js";
+
 function downLoad() {
   let date = this.searchData.processTime
   let fileName = '差错记录' + date + '.xlsx'
