@@ -10,8 +10,8 @@
 - [前言](#preface)
 - [正文](#main-body)
 
-  - [一、第一章](#chapter-1)
-  - [二、第二章](#chapter-2)
+  - [一、Tradingview 介绍](#chapter-1)
+  - [二、如何使用 Tradingview](#chapter-2)
   - [三、第三章](#chapter-3)
   - [四、第四章](#chapter-4)
   - [五、第五章](#chapter-5)
@@ -24,79 +24,125 @@
 
 > [返回目录](#catalog)
 
-&emsp;&emsp;因为公司目前是在做一个交易所的项目，页面中需要用到k线图，之前用了echart的k线，太过简陋了，参考了另外几个同级网站，决定用tradingview这个专业的股票交易所类的图表库。
-
-从上周开始就研究tradingview，一直到昨天才算是勉强能够在本地运行，真的是不容易。下面来说说使用过程中遇到的一些坑。
+&emsp;&emsp;因为公司在做一个交易所的项目，页面中需要用到 k 线图,参考了另外几个同级网站，决定用 tradingview 这个专业的股票交易所类的图表库。参考了一些类似的项目，以及 Tradingview 的文档，终究是吧 K 线做出来了。现在整理一下笔记，以记录自己的心得。分享给大家，以供参考。
 
 # <a  id="main-body">正文</a>
 
-&emsp;这里是正文内容！
-
-## <a  id="chapter-1">一、第一章</a>
+## <a  id="chapter-1">一、Tradingview 介绍</a>
 
 > [返回目录](#catalog)
 
-&emsp;&emsp;Tradingview是一个价格图表和分析软件，提供免费和付费选项，由一群交易员和软件开发商在2011年9月推出。投资者可以通过Tradingview查看各种不同金融市场和资产类别的价格图表，包括股票、货币对、债券、期货以及加密货币。除此之外，投资者还可以通过该平台查看多个交易品种，比如股指期货、欧美货币对、黄金、原油、比特币等等。
+&emsp;&emsp;Tradingview 是一个价格图表和分析软件，提供免费和付费选项，由一群交易员和软件开发商在 2011 年 9 月推出。投资者可以通过 Tradingview 查看各种不同金融市场和资产类别的价格图表，包括股票、货币对、债券、期货以及加密货币。除此之外，投资者还可以通过该平台查看多个交易品种，比如股指期货、欧美货币对、黄金、原油、比特币等等。
 
-昨天我说我们将来的重点放在行情分析上面，那么要分析行情肯定要看K线图啦，今天就给大家介绍一个看行情神器——TradingView。
+&emsp;&emsp;TradingView 可以说是全球在网页 K 线图上最专业的网站了，凡是在网页上提供 K 线图的，大部分使用的都是 TradingView 的技术，比如说火币、币安……
 
-TradingView可以说是全球在网页K线图上最专业的网站了，凡是在网页上提供K线图的，大部分使用的都是TradingView的技术，比如说火币的K线图就使用的是TradingView。
+&emsp;&emsp;简而言之，这是一个图表插件，刨除外观 UI 的设置，它的功能就是：获得数据——数据可视化——响应用户操作——获得数据——数据可视化——……
 
-这是一个图表插件，刨除外观UI的设置，它的功能就是：获得数据——数据可视化——响应用户操作——获得数据——数据可视化——……
-一般在交易所中使用比较多，数字货币交易所如火币网、币安都在使用这个插件。
+&emsp;&emsp;有兴趣可以看下[在线demo](https://www.tradingview.com/chart/)
 
-## <a  id="chapter-2">二、第二章</a>
+## <a  id="chapter-2">二、如何使用 Tradingview</a>
 
 > [返回目录](#catalog)
 
-&emsp;GitHub上有demo可以下载，支持多种语言，但是demo缺少关键的核心库，这个需要到官网申请获得。
-官方demo使用的数据获取方式为ajax获取，数据接口是官方提供的。
-但是我们自己的项目，自然要使用我们自己的数据，所以接口得自己实现。
+### 1. 申请核心图表库
 
-1、tradingview虽然是开源免费，可也是仅限于一些基本的图表服务，但这也基本上够用了。如果你要定制高级别的，那需要联系官方。使用之前，需要进入tradingview官网去申请他的chart_library（https://cn.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/ ）, 申请步骤是我见过最复杂的，需要下载它的一份协议，签名盖章之后扫描上传上去，然后填写一堆表单（邮箱公司地址等等），如果填写都ok的话，会在一两天之内回复你的邮箱，是github的链接(已授权过的，不然会报404)。
-2、github授权之后，你就可以clone到本地了，可以用http-server运行（npm install http-server/ http-server -p 8080）
-运行之后，可以看到demo的效果。demo中的代码都是使用的tradingview官方的UDF接口来获取数据的。这有很大的局限性，如果你的团队后台人手够的话，也完全可以参照（https://b.aitrade.ga/books/tradingview/book/UDF.html ）, 去开发一个接口供使用，这样前端代码会少很多。
-3、当然，如果像我这样，因为后台框架的限制，无法给我一个适配UDF的接口，那就很蛋疼了。
+&emsp;&emsp;Tradingview 图表库是开源免费的，GitHub 上有官网 demo 可以下载——[demo 下载地址](https://github.com/tradingview/charting-library-examples)。
+
+&emsp;&emsp;该图表库支持多种语言及框架（如 Vue/React/Angular 等），其实下载了demo并不能直接运行，其中缺少关键的核心库(charting-library)，这个需要到官网申请获得——[申请地址](https://cn.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/)，申请步骤比较麻烦，需要下载它的一份协议，签名盖章之后扫描上传上去，然后填写一堆表单（邮箱公司地址等等），如果填写没问题的话，会在一两天之内回复你的邮箱，是 github 的链接(已授权过的，不然会报 404)。
+
+申请页面如下：
+
+![](../public-repertory/img/tradingView-img/tv官网.jpg)
+
+&emsp;&emsp;获取 github 授权之后，就可以将核心库(charting-library)下载到本地了。可以用`http-server`打开 charting-library 中的`index.html`（npm install http-server/ http-server -p 8080）,我使用的是 VScode 的`Live Server`插件运行的，运行之后，可以看到 demo 效果如下。
+
+![](../public-repertory/img/tradingView-img/liveServer.jpg)
+
+&emsp;&emsp;demo 中的代码都是使用的 tradingview 官方的 UDF 接口来获取数据的，这有很大的局限性。如果我们需要自己的数据的，就要按照 Tradingviewd 的格式(返回值为[{高、开、低、收、数量、时间戳}])，实现自己的接口。
+
+&emsp;&emsp;不过，如果你的团队后台人手够的话，也完全可以参照[UDF](https://b.aitrade.ga/books/tradingview/book/UDF.html), 去开发一个接口供使用，这样前端代码会少很多（这个我没尝试过）
+
+### 2. 图表库内容说明
+
+下载的图标库内容如下：
+
+```
+    +/charting_library
+        + /static
+        - charting_library.min.js
+        - charting_library.min.d.ts
+        - datafeed-api.d.ts
+    + /datafeeds
+        + /udf
+    - index.html
+    - mobile_black.html
+    - mobile_white.html
+    - test.html
+```
+文件介绍：
+
+- `/charting\_library` 包含全部的图表库文件。
+- `/charting\_library/charting\_library.min.js` 包含外部图表库widget接口。此文件不应该被修改。
+- `/charting_library/charting_library.min.d.ts` 包含TypeScript定义的widget接口
+- `/charting_library/datafeed-api.d.ts` 包含TypeScript定义的datafeed接口。
+- `/charting_library/datafeeds/udf/` 包含UDF-compatible 的datafeed包装类（用于实现JS API通过UDF传输数据给图表库）。例子中的datafeed包装器类实现了脉冲实时仿真数据。您可以自由编辑此文件。
+- `/charting\_library/static` 文件夹中存储图表库内部资源，不适用于其他目的。
+- `/index.html 为使用Charting Library widget` 的html例子。
+- `/test.html` 为不同的图表库自定义功能使用的示例。
+- `/mobile\*.html` 也是Widget自定义的示例。
+
+### 3. 参考文档
+
+&emsp;&emsp;因为开发文档写的可能不怎么友好，在此罗列一下自己的一些参考文档及一些实现的demo
+
+**文档**
+
+-  [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/) ==> https://zlq4863947.gitbook.io/tradingview/
+
+这是个很不错的文档，作者很用心，文档也很详尽，只是小白可能看着有点绕。
+
+**开源项目**
+
+&emsp;&emsp;因为我们用的是Vue框架，所以推荐的大都是基于Vue的一些开源项目，都是可以去github直接下载的。
+
+1. [vue-tradingview](https://github.com/webdatavisualdev/vue-tradingview) ==> https://github.com/webdatavisualdev/vue-tradingview
+
+一个基于Vue 2 + Vuex + TypeScript + TradingView Component的项目，里面面数据是随机生成的，有在线演示--[demo](https://vue-vuex-tradingview.firebaseapp.com/)
+
+https://github.com/472647301/tradingView-webSocke
+https://github.com/webdatavisualdev/vue-tradingview
+
+**同类网站**
+
+- [火币](https://futures.huobi.fm/zh-cn/contract/exchange/#symbol=BTC&&contract_type=this_week) ==> https://futures.huobi.fm/zh-cn/contract/exchange/#symbol=BTC&&contract_type=this_week
+
+- [币安](https://www.binancezh.pro/cn/trade/BNB_BUSD) ==> https://www.binancezh.pro/cn/trade/BNB_BUSD
 
 ## <a  id="chapter-3">三、第三章</a>
 
-> [返回目录](#catalog)
-
-&emsp;&emsp;第 2 节内容！3.图表库内容说明：
-https://zlq4863947.gitbooks.io/tradingview/book/Package-Content.html#%E5%9B%BE%E8%A1%A8%E5%BA%93%E5%86%85%E5%AE%B9
-/charting_library 包含所有的库文件。
-/charting_library/charting_library.min.js 包含外部图表库widget 接口。不建议修改该文件。
-/charting_library/charting_library.min.d.ts 包含TypeScript 定义的widget接口
-/charting_library/datafeed-api.d.ts 包含TypeScript 定义的data feed接口。
-/charting_library/datafeeds/udf/datafeed.js 包含UDF-compatible 的datafeed包装器（用于实现JS API以连接图表库通过UDF传输数据）。例子中的datafeed包装器实现了脉冲实时仿真数据。您可以自由编辑此文件。
-/charting_library/static 文件夹中存储图表库内部资源，不适用于其他目的。
-/index.html 为使用Charting Library widget 的html例子。
-/test.html 为不同的图表库自定义功能使用的示例。
-/mobile*.html 也是Widget自定义的示例。
 
 ## <a  id="chapter-4">四、第四章</a>
 
 > [返回目录](#catalog)
 
-&emsp;1.TradingView中文开发文档
+&emsp;1.TradingView 中文开发文档
 https://b.aitrade.ga/books/tradingview/CHANGE-LOG.html
-2.vue开源项目：
+2.vue 开源项目：
 https://github.com/webdatavisualdev/vue-tradingview
 https://github.com/472647301/tradingView-webSocke
 https://github.com/webdatavisualdev/vue-tradingview
 
-
 4、图表事件
-推荐仔细阅读官方JS Api，内容比较繁琐，但很有阅读必要。里面定义了数据的格式，用户操作的响应，每个参数是如何传递给图表的。
+推荐仔细阅读官方 JS Api，内容比较繁琐，但很有阅读必要。里面定义了数据的格式，用户操作的响应，每个参数是如何传递给图表的。
 
 5、工作原理
 在我们对图表事件有所了解之后，可以知道，图表的工作原理就是我们喂数据，图表做可视化的展示。
-而我们如何把数据喂给图表，插件本身已经定义了对外接口，需要我们提供一个拥有这些接口的对象datafeed。如getBars方法，这是获取交易记录的，我们用来实例化图表的对象datafeed，需要实现这个方法，而且返回的值必须是图表插件预期的。
-对应的用户操作，图表插件对应的调用对外接口，所以我们需要在datafeed实现这些接口，返回预期数据，图表将会展示这些数据。
+而我们如何把数据喂给图表，插件本身已经定义了对外接口，需要我们提供一个拥有这些接口的对象 datafeed。如 getBars 方法，这是获取交易记录的，我们用来实例化图表的对象 datafeed，需要实现这个方法，而且返回的值必须是图表插件预期的。
+对应的用户操作，图表插件对应的调用对外接口，所以我们需要在 datafeed 实现这些接口，返回预期数据，图表将会展示这些数据。
 
 6、websocket
-ajax获取数据在用户量比较多的情况下，实时数据轮询会造成服务器压力大，所以一般都会使用websocket来获取数据，这个需要我们自己实现数据的获取而不能使用demo的数据交互方式。
-对于websocket，官方没有给出demo，但是很幸运的是，已经有博主实现了websocket的demo，这个博主是个好人，地址在这里。我已经在github上放了一个websocket的例子，有需要的同学可以看一下传送门
+ajax 获取数据在用户量比较多的情况下，实时数据轮询会造成服务器压力大，所以一般都会使用 websocket 来获取数据，这个需要我们自己实现数据的获取而不能使用 demo 的数据交互方式。
+对于 websocket，官方没有给出 demo，但是很幸运的是，已经有博主实现了 websocket 的 demo，这个博主是个好人，地址在这里。我已经在 github 上放了一个 websocket 的例子，有需要的同学可以看一下传送门
 
 7、结语
 对于用户，这是一个很好用的插件，但是对于前端工程师，这个插件并不够友好。很多人接手这个插件都是云里雾里，包括我。但是通过对这个插件的学习，还是获得了很多知识。
@@ -336,15 +382,11 @@ ajax获取数据在用户量比较多的情况下，实时数据轮询会造成�
 - [TradingView 配置 |个人博客](https://www.imemm.com/index.php/archives/50/)
 - [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/4-tu-biao-ding-zhi/customization-overview)
 
-- [tradingview使用心得 | jacoby_fire - CSDN](https://blog.csdn.net/jacoby_fire/article/details/83376937)
+- [tradingview 使用心得 | jacoby_fire - CSDN](https://blog.csdn.net/jacoby_fire/article/details/83376937)
 
-- [tradingview入门 | jacoby_fire - CSDN](https://segmentfault.com/a/1190000016886299)
+- [tradingview 入门 | jacoby_fire - CSDN](https://segmentfault.com/a/1190000016886299)
 
-
-
-
-
-作者：FTG王展堂
+作者：FTG 王展堂
 链接：https://www.jianshu.com/p/3e26cf0d2922
 来源：简书
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处
