@@ -11,10 +11,9 @@
 - [正文](#main-body)
 
   - [一、Tradingview 介绍](#chapter-1)
-  - [二、如何使用 Tradingview](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
-  - [五、第五章](#chapter-5)
+  - [二、使用之前](#chapter-2)
+  - [三、使用 Tradingview](#chapter-3)
+  - [四、一些小坑](#chapter-4)
 
 - [总结](#summary)
 
@@ -38,9 +37,9 @@
 
 &emsp;&emsp;简而言之，这是一个图表插件，刨除外观 UI 的设置，它的功能就是：获得数据——数据可视化——响应用户操作——获得数据——数据可视化——……
 
-&emsp;&emsp;有兴趣可以看下[在线demo](https://www.tradingview.com/chart/)
+&emsp;&emsp;有兴趣可以看下[在线 demo](https://www.tradingview.com/chart/)
 
-## <a  id="chapter-2">二、如何使用 Tradingview</a>
+## <a  id="chapter-2">二、使用之前</a>
 
 > [返回目录](#catalog)
 
@@ -48,7 +47,7 @@
 
 &emsp;&emsp;Tradingview 图表库是开源免费的，GitHub 上有官网 demo 可以下载——[demo 下载地址](https://github.com/tradingview/charting-library-examples)。
 
-&emsp;&emsp;该图表库支持多种语言及框架（如 Vue/React/Angular 等），其实下载了demo并不能直接运行，其中缺少关键的核心库(charting-library)，这个需要到官网申请获得——[申请地址](https://cn.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/)，申请步骤比较麻烦，需要下载它的一份协议，签名盖章之后扫描上传上去，然后填写一堆表单（邮箱公司地址等等），如果填写没问题的话，会在一两天之内回复你的邮箱，是 github 的链接(已授权过的，不然会报 404)。
+&emsp;&emsp;该图表库支持多种语言及框架（如 Vue/React/Angular 等），其实下载了 demo 并不能直接运行，其中缺少关键的核心库(charting-library)，这个需要到官网申请获得——[申请地址](https://cn.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/)，申请步骤比较麻烦，需要下载它的一份协议，签名盖章之后扫描上传上去，然后填写一堆表单（邮箱公司地址等等），如果填写没问题的话，会在一两天之内回复你的邮箱，是 github 的链接(已授权过的，不然会报 404)。
 
 申请页面如下：
 
@@ -57,10 +56,6 @@
 &emsp;&emsp;获取 github 授权之后，就可以将核心库(charting-library)下载到本地了。可以用`http-server`打开 charting-library 中的`index.html`（npm install http-server/ http-server -p 8080）,我使用的是 VScode 的`Live Server`插件运行的，运行之后，可以看到 demo 效果如下。
 
 ![](../public-repertory/img/tradingView-img/liveServer.jpg)
-
-&emsp;&emsp;demo 中的代码都是使用的 tradingview 官方的 UDF 接口来获取数据的，这有很大的局限性。如果我们需要自己的数据的，就要按照 Tradingviewd 的格式(返回值为[{高、开、低、收、数量、时间戳}])，实现自己的接口。
-
-&emsp;&emsp;不过，如果你的团队后台人手够的话，也完全可以参照[UDF](https://b.aitrade.ga/books/tradingview/book/UDF.html), 去开发一个接口供使用，这样前端代码会少很多（这个我没尝试过）
 
 ### 2. 图表库内容说明
 
@@ -79,38 +74,44 @@
     - mobile_white.html
     - test.html
 ```
+
 文件介绍：
 
 - `/charting\_library` 包含全部的图表库文件。
-- `/charting\_library/charting\_library.min.js` 包含外部图表库widget接口。此文件不应该被修改。
-- `/charting_library/charting_library.min.d.ts` 包含TypeScript定义的widget接口
-- `/charting_library/datafeed-api.d.ts` 包含TypeScript定义的datafeed接口。
-- `/charting_library/datafeeds/udf/` 包含UDF-compatible 的datafeed包装类（用于实现JS API通过UDF传输数据给图表库）。例子中的datafeed包装器类实现了脉冲实时仿真数据。您可以自由编辑此文件。
+- `/charting\_library/charting\_library.min.js` 包含外部图表库 widget 接口。此文件不应该被修改。
+- `/charting_library/charting_library.min.d.ts` 包含 TypeScript 定义的 widget 接口
+- `/charting_library/datafeed-api.d.ts` 包含 TypeScript 定义的 datafeed 接口。
+- `/charting_library/datafeeds/udf/` 包含 UDF-compatible 的 datafeed 包装类（用于实现 JS API 通过 UDF 传输数据给图表库）。例子中的 datafeed 包装器类实现了脉冲实时仿真数据。您可以自由编辑此文件。
 - `/charting\_library/static` 文件夹中存储图表库内部资源，不适用于其他目的。
-- `/index.html 为使用Charting Library widget` 的html例子。
+- `/index.html 为使用Charting Library widget` 的 html 例子。
 - `/test.html` 为不同的图表库自定义功能使用的示例。
-- `/mobile\*.html` 也是Widget自定义的示例。
+- `/mobile\*.html` 也是 Widget 自定义的示例。
 
 ### 3. 参考文档
 
-&emsp;&emsp;因为开发文档写的可能不怎么友好，在此罗列一下自己的一些参考文档及一些实现的demo
+&emsp;&emsp;因为开发文档写的可能不怎么友好，在此罗列一下自己的一些参考文档及一些实现的 demo
 
 **文档**
 
--  [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/) ==> https://zlq4863947.gitbook.io/tradingview/
+- [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/) ==> https://zlq4863947.gitbook.io/tradingview/
 
 这是个很不错的文档，作者很用心，文档也很详尽，只是小白可能看着有点绕。
 
 **开源项目**
 
-&emsp;&emsp;因为我们用的是Vue框架，所以推荐的大都是基于Vue的一些开源项目，都是可以去github直接下载的。
+&emsp;&emsp;因为我们用的是 Vue 框架，所以推荐的大都是基于 Vue 的一些开源项目，都是可以去 github 直接下载的。
 
-1. [vue-tradingview](https://github.com/webdatavisualdev/vue-tradingview) ==> https://github.com/webdatavisualdev/vue-tradingview
+1. [vue-tradingview | xushanpei ](https://github.com/xushanpei/Vue-tradingview) ==> https://github.com/xushanpei/Vue-tradingview
 
-一个基于Vue 2 + Vuex + TypeScript + TradingView Component的项目，里面面数据是随机生成的，有在线演示--[demo](https://vue-vuex-tradingview.firebaseapp.com/)
+很基础的一个项目，Vue + tradingview 实现交易所交易 K 线，里面 K 线是随机创建的假数据，有在线演示--[demo](https://xushanpei.github.io/Vue-tradingview/#/)
 
-https://github.com/472647301/tradingView-webSocke
-https://github.com/webdatavisualdev/vue-tradingview
+2. [vue-tradingview | webdatavisualdev](https://github.com/webdatavisualdev/vue-tradingview) ==> https://github.com/webdatavisualdev/vue-tradingview
+
+一个基于 Vue 2 + Vuex + TypeScript + TradingView Component 的项目，有在线演示--[demo](https://vue-vuex-tradingview.firebaseapp.com/)
+
+3. [tradingview-vue | 杭州蘇小小](https://gitee.com/SuHangWeb/tradingview-vue) ==> https://gitee.com/SuHangWeb/tradingview-vue
+
+其中包含了移动端和 PC 端
 
 **同类网站**
 
@@ -118,278 +119,228 @@ https://github.com/webdatavisualdev/vue-tradingview
 
 - [币安](https://www.binancezh.pro/cn/trade/BNB_BUSD) ==> https://www.binancezh.pro/cn/trade/BNB_BUSD
 
-## <a  id="chapter-3">三、第三章</a>
+## <a  id="chapter-3">三、使用 Tradingview</a>
 
+&emsp;&emsp;现在我们已经大致了解了 TradingView，也已经运行起了相关的 demo。不过，要将 Tradingview 放进我们的项目使用，仅仅是考 demo 是不够的，我们还要了解其他的东西。现在我们从头开始。
 
-## <a  id="chapter-4">四、第四章</a>
+### 1、引入图表
 
-> [返回目录](#catalog)
+1. 首先官方仓库（地址）下载代码到本地，新建`tradingview-test`项目，然后将
 
-&emsp;1.TradingView 中文开发文档
-https://b.aitrade.ga/books/tradingview/CHANGE-LOG.html
-2.vue 开源项目：
-https://github.com/webdatavisualdev/vue-tradingview
-https://github.com/472647301/tradingView-webSocke
-https://github.com/webdatavisualdev/vue-tradingview
-
-4、图表事件
-推荐仔细阅读官方 JS Api，内容比较繁琐，但很有阅读必要。里面定义了数据的格式，用户操作的响应，每个参数是如何传递给图表的。
-
-5、工作原理
-在我们对图表事件有所了解之后，可以知道，图表的工作原理就是我们喂数据，图表做可视化的展示。
-而我们如何把数据喂给图表，插件本身已经定义了对外接口，需要我们提供一个拥有这些接口的对象 datafeed。如 getBars 方法，这是获取交易记录的，我们用来实例化图表的对象 datafeed，需要实现这个方法，而且返回的值必须是图表插件预期的。
-对应的用户操作，图表插件对应的调用对外接口，所以我们需要在 datafeed 实现这些接口，返回预期数据，图表将会展示这些数据。
-
-6、websocket
-ajax 获取数据在用户量比较多的情况下，实时数据轮询会造成服务器压力大，所以一般都会使用 websocket 来获取数据，这个需要我们自己实现数据的获取而不能使用 demo 的数据交互方式。
-对于 websocket，官方没有给出 demo，但是很幸运的是，已经有博主实现了 websocket 的 demo，这个博主是个好人，地址在这里。我已经在 github 上放了一个 websocket 的例子，有需要的同学可以看一下传送门
-
-7、结语
-对于用户，这是一个很好用的插件，但是对于前端工程师，这个插件并不够友好。很多人接手这个插件都是云里雾里，包括我。但是通过对这个插件的学习，还是获得了很多知识。
-
-## <a  id="chapter-5">五、第五章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第五章内容！
-
-```JS
- TradingView.onready(function () {
-        var widget = window.tvWidget = new TradingView.widget({
-            debug: false, // uncomment this line to see Library errors and warnings in the console
-            symbol: 'ETH/BTC',    //币名称
-            interval: '30',   //默认显示规则
-            container_id: "tv_chart_container", //`id`属性为指定要包含widget的DOM元素id。
-            timezone: "Asia/Shanghai",    //默认时区
-            // width: 800,         //宽度
-            // height: 800,        //高度
-            fullscreen: true,  //布尔值显示图表是否占用窗口中所有可用的空间。
-            toolbar_bg: "#fff",  //背景色
-            //  BEWARE: no trailing slash is expected in feed URL
-            // datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),    //请求地址
-            datafeed: new Datafeeds.UDFCompatibleDatafeed("https://k.a.mom/Index"),
-            library_path: "/charting_library/",          //默认脚本核心文件存储位置
-            locale: "zh",     //  语言
-            //  Regression Trend-related functionality is not implemented yet, so it's hidden for a while
-            // drawings_access: {type: 'black', tools: [{name: "Regression Trend"}]}, // 点击灰色回调函数？？
-            // disabled_features: ["left_toolbar","display_market_status","header_chart_type","use_localstorage_for_settings", "header_symbol_search", "header_compare", "header_undo_redo", "header_screenshot", "header_saveload", "go_to_date", "symbol_info"],
-            // 包含功能在默认情况下启用/禁用名称的数组。功能表示图表功能的一部分（更是UI/UX的一部分） http://tradingview.gitee.io/featuresets参考文档
-            enabled_features: ["hide_last_na_study_output", "study_templates"],
-            // 包含功能在默认情况下启用/禁用名称的数组。功能表示图表功能的一部分（更是UI/UX的一部分）  http://tradingview.gitee.io/featuresets 参考文档
-            charts_storage_url: 'https://k.a.mom',  //设置图库页面
-
-            // 下面三项是开发自己的后端用的 前台的请求会带着这三项值
-            charts_storage_api_version: "Index",
-            client_id: 'tradingview.com',
-            user_id: 'public_user_id',
-
-            //禁用
-            disabled_features: [
-                //用户本地存储
-                // "use_localstorage_for_settings",
-                //左边工具栏
-                "left_toolbar",
-                // 顶部工具栏
-                // "header_widget_dom_node",
-                //周围边框
-                "border_around_the_chart",
-                //底部时间栏目
-                "timeframes_toolbar",
-                //k线与销量分开
-                "volume_force_overlay",
-                //图表右键菜单
-                "pane_context_menu",
-                //搜索
-                "header_symbol_search", "symbol_search_hot_key",
-                //左右箭头
-                "header_undo_redo",
-                //compare
-                "header_compare",
-                //图表类型
-                "header_chart_type",
-                //照相机
-                "header_screenshot",
-                //设置按钮
-                //"header_settings",
-                //技术指标线
-                // "header_indicators",
-                //上传下载按钮
-                "header_saveload",
-                //分辨率
-                "header_resolutions",
-                //全屏
-                "header_fullscreen_button"
-            ],
-            overrides: {
-                //蜡烛样式
-                "mainSeriesProperties.candleStyle.upColor": "#48b451",
-                "mainSeriesProperties.candleStyle.downColor": "#db000c",
-
-                // 中央价格线宽度
-                // 'mainSeriesProperties.priceLineWidth': 5,
-                //  白色蜡烛样式
-                // "mainSeriesProperties.candleStyle.upColor" : "#F00",
-                // "mainSeriesProperties.candleStyle.downColor" : "#0F0",
-
-                //烛心
-                // "mainSeriesProperties.candleStyle.drawWick" : true,
-                //烛心颜色
-                //"mainSeriesProperties.candleStyle.wickUpColor:" : '#8a3a3b',
-                //"mainSeriesProperties.candleStyle.wickDownColor" : "#8a3a3b",
-
-                //  白色烛心颜色
-                // "mainSeriesProperties.candleStyle.wickUpColor:" : '#8a3a3b',
-                // "mainSeriesProperties.candleStyle.wickDownColor" : "#8a3a3b",
-
-                //边框
-                "mainSeriesProperties.candleStyle.drawBorder": true,
-                //"mainSeriesProperties.candleStyle.borderUpColor" : "#6a833a",
-                //"mainSeriesProperties.candleStyle.borderDownColor" : "#8a3a3b",
-
-                //-----------------------------------------------------------------------
-                //背景
-                // "paneProperties.background" : "#333449",
-                //  画布白色背景颜色
-                "paneProperties.background": "#FFF",
-                //网格线
-                "paneProperties.vertGridProperties.color": "#ebfded",
-                // "paneProperties.vertGridProperties.style" : 0,
-                "paneProperties.horzGridProperties.color": "#ebfded",
-                // "paneProperties.horzGridProperties.style" : 0,
-                //默认收缩行情信息
-                "paneProperties.legendProperties.showLegend": false,
-                //坐标轴和刻度标签颜色
-                "scalesProperties.lineColor": "#cacaca",
-                // "scalesProperties.textColor" : "#fff",
-                "scalesProperties.textColor": "#666666",
-                "mainSeriesProperties.areaStyle.color1": "#5E8BBF",
-                "mainSeriesProperties.areaStyle.color2": "#D9E8F9",
-                "mainSeriesProperties.areaStyle.linecolor": "#5E8BBF",
-                //成交量高度
-                "volumePaneSize": "medium",
-                "MACDPaneSize": "tiny",
-                'scalesProperties.fontSize': 12
-
-            }
-        });
-
-        widget.onChartReady(function () {
-
-            widget.MALine7 = widget.chart().createStudy("Moving Average Exponential", false, false, [5], null, {
-                "plot.color": "#989898",
-                "plot.linewidth": 1
-            });
-            widget.MALine15 = widget.chart().createStudy("Moving Average Exponential", false, false, [10], null, {
-                "plot.color": "#bc8b32",
-                "plot.linewidth": 1
-            });
-            widget.MALine30 = widget.chart().createStudy("Moving Average Exponential", false, false, [30], null, {
-                "plot.color": "#cf30af",
-                "plot.linewidth": 1
-            });
-
-            widget.createButton().attr('title', '分时').addClass("mydate")
-                .html("<span>分时</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, false);
-                    saveClass($(this));
-                    widget.chart().setChartType(3);
-                    widget.chart().setResolution('1',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().attr('title', "1min").addClass("mydate button")
-                .html("<span>1m</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('1',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().addClass("mydate").attr('title', "5min")
-                .html("<span>5m</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('5',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().addClass("mydate").attr('title', "15min")
-                .html("<span>15m</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('15',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().addClass("mydate").attr('title', "30min").addClass("mydate button active")
-                .html("<span>30m</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('30',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().addClass("mydate").attr('title', "1hour")
-                .html("<span>1h</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('60',
-                        function onReadyCallback() {
-                        });
-                });
-            widget.createButton().addClass("mydate").attr('title', "1day")
-                .html("<span>1D</span>").on(
-                'click',
-                function (e) {
-                    showLine(widget, true);
-                    saveClass($(this));
-                    widget.chart().setChartType(1);
-                    widget.chart().setResolution('D',
-                        function onReadyCallback() {
-                        });
-                });
-        });
-    })
 ```
+charting_library /_文件夹_/
+datafeeds /_文件夹_/
+```
+
+把以上两个放到 `tradingview-test`项目根目录下的 `static` 文件夹下
+
+2. 在其根目录下面的入口文件 `index.html` 中引入以下两个个文件，
+
+```js
+	<script type="text/javascript" src="./static/datafeeds/udf/dist/polyfills.js"></script>
+		<script type="text/javascript" src="./static/datafeeds/udf/dist/bundle.js"></script>
+```
+
+3. 在对应的组件,如`Exchange.vue`内引入 tradingview---这里的构造器 widget
+
+```js
+import { widget } from '../../../static/charting_library/charting_library.min.js'
+```
+
+&emsp;&emsp;至此 我们需要应用的图表库就可以使用了，下面开始下一步，配置 K 线图。
+
+### 2、参数配置
+
+&emsp;&emsp;关于 K 线图的参数配置，包括语言、样式、产品信息、数据展示方式、面板上禁用的功能、启用的功能等等,都是可以自己配置的。[文档](https://zlq4863947.gitbook.io/tradingview/4-tu-biao-ding-zhi/widget-constructor)也有详细介绍.其大致配置如下：
+
+```js
+new TradingView.widget({
+  symbol: 'A', // 产品
+  interval: 'D', // 时间间隔
+  timezone: 'America/New_York', // 默认时区
+  container_id: 'tv_chart_container', // 指定要包含widget的DOM元素id。
+  locale: 'ru', //  语言
+  datafeed: new Datafeeds.UDFCompatibleDatafeed(
+    'https://demo_feed.tradingview.com'
+  ), // 图表设置，可以自定义。当您创建一个实现接口的对象时，只需将它传递给图表库Widget的构造函数。
+})
+```
+
+### 3、绑定数据、
+
+&emsp;&emsp;demo 中的代码都是使用的 tradingview 官方的 UDF 接口来获取数据的，这有很大的局限性。如果我们需要自己的数据的，就要按照 Tradingviewd 的格式(传参为`{开始时间、结束时间、产品 id}`，返回值为`[{高、开、低、收、数量、时间戳}]`)，实现自己的接口。
+
+&emsp;&emsp;不过，如果你的团队后台人手够的话，也完全可以参照[UDF](https://b.aitrade.ga/books/tradingview/book/UDF.html), 去开发一个接口供使用，这样前端代码会少很多（这个我没尝试过）
+
+### 4、图表事件
+
+&emsp;&emsp;图表事件，也就是创建`Datafeed`函数。这是我们自定义使用 tradingview 的重点，其中包括了生命周期/事件触发等。
+
+&emsp;&emsp;推荐仔细阅读文档中 [JS Api](https://zlq4863947.gitbook.io/tradingview/3-shu-ju-bang-ding/js-api)，内容比较繁琐，但很有阅读必要。里面定义了数据的格式，用户操作的响应，每个参数是如何传递给图表的。
+
+&emsp;&emsp;需要重点掌握的方法有以下几个
+
+- onReady
+
+- resolveSymbol
+
+- getBars
+
+- subscribeBars
+
+- unsubscribeBars
+
+具体使用如下：
+
+```js
+ // 创建k线配置
+    createFeed () {
+      let that = this
+      let Datafeed = {}
+      Datafeed.Container = function (updateFrequency) {
+        this._configuration = {
+          supports_search: false,
+          supports_group_request: false,
+          supported_resolutions: [//支持的周期数组
+            '1',
+            '5',
+            '15',
+            '60',
+            '120',
+            '1D',
+            '1W'
+          ],
+          supports_marks: true,//来标识您的 datafeed 是否支持在K线上显示标记。
+          supports_timescale_marks: true,//标识您的 datafeed 是否支持时间刻度标记。
+          exchanges: ['myExchange1']//交易所对象数组
+        }
+      }
+      // onReady在图表Widget初始化之后立即调用，此方法可以设置图表库支持的图表配置
+      Datafeed.Container.prototype.onReady = function (callback) {
+        let that = this
+        if (this._configuration) {
+          setTimeout(function () {
+            callback(that._configuration)
+          }, 0)
+        } else {
+          this.on('configuration_ready', function () {
+            callback(that._configuration)
+          })
+        }
+      }
+      // 通过商品名称解析商品信息(SymbolInfo)，可以在此配置单个商品
+      Datafeed.Container.prototype.resolveSymbol = function (
+        symbolName,
+        onSymbolResolvedCallback,
+        onResolveErrorCallback
+      ) {
+        Promise.resolve().then(() => {
+          onSymbolResolvedCallback({
+            name: that.projectDetail.productName ,
+            ticker: symbolName,            //商品体系中此商品的唯一标识符
+            description: '',               //商品说明
+            session: '24x7',               //商品交易时间
+            timezone: 'Asia/Shanghai',     // 这个商品的交易所时区
+            pricescale: 100,               // 价格精度
+            minmov: 1,                     //最小波动
+            minmov2: 0,
+            type: 'bitcoin',               //  仪表的可选类型。
+            // 'exchange-traded': 'myExchange2',
+            // 'exchange-listed': productName,
+            has_intraday: true,            // 显示商品是否具有日内（分钟）历史数据
+            intraday_multipliers: ['1', '5', '15', '15', '60', '120'],     //日内周期(分钟单位)的数组
+            has_weekly_and_monthly: true,  // 显示商品是否具有以W和M为单位的历史数据
+            has_daily: true,               //显示商品是否具有以日为单位的历史数据
+            // has_empty_bars: true,
+            force_session_rebuild: true,   //是否会随着当前交易而过滤K柱
+            has_no_volume: false,          //表示商品是否拥有成交量数据。
+            regular_session: '24x7'
+          })
+        })
+      }
+      // 从我们的API源获取图表数据并将其交给TradingView。
+      Datafeed.Container.prototype.getBars = async function (
+        symbolInfo,      // 商品信息对象
+        resolution,      //（string （周期）
+        rangeStartDate,  // unix 时间戳, 最左边请求的K线时间
+        rangeEndDate,    // unix 时间戳, 最右边请求的K线时间
+        onDataCallback,  // 历史数据的回调函数。每次请求只应被调用一次。
+        onErrorCallback, // 错误的回调函数。
+        firstDataRequest //布尔值，以标识是否第一次调用此商品/周期的历史记录。
+      ) {
+        that.localresolution = resolution
+        if (firstDataRequest) {
+          let bars = await that.getChartData(resolution, rangeStartDate, rangeEndDate, firstDataRequest)
+          if (bars.length) {
+            onDataCallback(bars)
+          } else {
+            onDataCallback([], { noData: true })
+            // onErrorCallback([], { noData: true })
+          }
+        }
+        else {
+          onDataCallback([], { noData: true })
+          // onErrorCallback([], { noData: true })
+        }
+      }
+      // 订阅K线数据。图表库将调用onRealtimeCallback方法以更新实时数据。
+      Datafeed.Container.prototype.subscribeBars = function (
+        symbolInfo,         // ObjectsymbolInfo对象
+        resolution,         // StringK线周期
+        onRealtimeCallback, // Function将我们更新的K线传递给此回调以更新图表
+        listenerGUID,       // String此交易对的唯一ID和表示订阅的分辨率，生成规则：ticker+'_'+周期
+        onResetCacheNeededCallback // Function调用次回调让图表再次请求历史K线数据
+      ) {
+        that.callbacks = []
+        that.callbacks.push(onRealtimeCallback)
+        that.updateBar(resolution, onRealtimeCallback)
+        // 更改线型
+        that.chart.activeChart().setChartType(1);
+      }
+      // 取消订阅K线数据
+      Datafeed.Container.prototype.unsubscribeBars = function (listenerGUID) {
+      }
+      return new Datafeed.Container()
+    }
+```
+
+### 5、工作原理
+
+&emsp;&emsp;在我们对图表事件有所了解之后，可以知道，图表的工作原理就是我们喂数据，图表做可视化的展示。
+
+&emsp;&emsp;而我们如何把数据喂给图表，插件本身已经定义了对外接口，需要我们提供一个拥有这些接口的对象 datafeed。如 getBars 方法，这是获取交易记录的，我们用来实例化图表的对象 datafeed，需要实现这个方法，而且返回的值必须是图表插件预期的。
+
+&emsp;&emsp;对应的用户操作，图表插件对应的调用对外接口，所以我们需要在 datafeed 实现这些接口，返回预期数据，图表将会展示这些数据。
+
+### 6、websocket
+
+&emsp;&emsp;ajax 获取数据在用户量比较多的情况下，实时数据轮询会造成服务器压力大，所以一般都会使用 websocket 推送来获取数据。
+
+&emsp;&emsp;对于 websocket，官方没有给出 demo，但是很幸运的是，已经有博主实现了 websocket 的 demo，有需要的同学可以看一下[关于 tradingView 与 websocket 结合的可用案例](https://blog.csdn.net/weixin_41421227/article/details/81456205)
+
+## <a  id="chapter-4">四、一些小坑</a>
+
+> [返回目录](#catalog)
+
+&emsp;
 
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
 
-&emsp;这里是总结内容！
+&emsp;对于用户，这是一个很好用的插件，但是对于前端工程师，这个插件并不够友好。很多人接手这个插件都是云里雾里，包括我。但是通过对这个插件的学习，还是获得了很多知识，同时希望本文能帮到大家。
 
-### <a  id="reference-documents">参考文献</a>
+## <a  id="reference-documents">参考文献</a>
 
-- [Markdown 博客模板 | 掘金-豆包君](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
-
-- [TradingView 配置 |个人博客](https://www.imemm.com/index.php/archives/50/)
 - [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/4-tu-biao-ding-zhi/customization-overview)
+
+- [TradingView JS API 集成教程 | Ellite - 简书 ](https://zlq4863947.gitbook.io/tradingview/4-tu-biao-ding-zhi/customization-overview)
 
 - [tradingview 使用心得 | jacoby_fire - CSDN](https://blog.csdn.net/jacoby_fire/article/details/83376937)
 
-- [tradingview 入门 | jacoby_fire - CSDN](https://segmentfault.com/a/1190000016886299)
+- [tradingview 入门 | 陈其文 - 思否](https://segmentfault.com/a/1190000016886299)
 
-作者：FTG 王展堂
-链接：https://www.jianshu.com/p/3e26cf0d2922
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处
+- [TradingView 自定义指标 | x_smile - 博客园](https://www.cnblogs.com/xsmile/p/10640536.html)
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
