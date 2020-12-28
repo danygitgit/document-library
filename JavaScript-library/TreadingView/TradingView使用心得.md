@@ -1,7 +1,7 @@
-# [Markdown 博客模板](https://github.com/danygitgit/document-library)
+# [TradingView使用心得](https://github.com/danygitgit/document-library)
 
 > create by **db** on **2020-9-2 13:30:46**  
-> Recently revised in **2020-9-2 13:30:51**
+> Recently revised in **2020-12-28 09:52:10**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -23,7 +23,7 @@
 
 > [返回目录](#catalog)
 
-&emsp;&emsp;因为公司在做一个交易所的项目，页面中需要用到 k 线图,参考了另外几个同级网站，决定用 tradingview 这个专业的股票交易所类的图表库。参考了一些类似的项目，以及 Tradingview 的文档，终究是吧 K 线做出来了。现在整理一下笔记，以记录自己的心得。分享给大家，以供参考。
+&emsp;&emsp;因为公司在做一个交易所的项目，页面中需要用到 k 线图,参考了另外几个类似网站，决定用 tradingview 这个专业的股票交易所类的图表库。基于一些类似的项目，加上 Tradingview 的文档，终究是把 K 线做出来了。现在整理一下笔记，以记录自己的心得。分享给大家，以供参考。
 
 # <a  id="main-body">正文</a>
 
@@ -37,7 +37,7 @@
 
 &emsp;&emsp;简而言之，这是一个图表插件，刨除外观 UI 的设置，它的功能就是：获得数据——数据可视化——响应用户操作——获得数据——数据可视化——……
 
-&emsp;&emsp;有兴趣可以看下[在线 demo](https://www.tradingview.com/chart/)
+&emsp;&emsp;有兴趣可以看下 [官网在线 demo](https://www.tradingview.com/chart/)
 
 ## <a  id="chapter-2">二、使用之前</a>
 
@@ -51,11 +51,11 @@
 
 申请页面如下：
 
-![](../public-repertory/img/tradingView-img/tv官网.jpg)
+![](../../public-repertory/img/tradingView-img/tv官网.jpg)
 
 &emsp;&emsp;获取 github 授权之后，就可以将核心库(charting-library)下载到本地了。可以用`http-server`打开 charting-library 中的`index.html`（npm install http-server/ http-server -p 8080）,我使用的是 VScode 的`Live Server`插件运行的，运行之后，可以看到 demo 效果如下。
 
-![](../public-repertory/img/tradingView-img/liveServer.jpg)
+![](../../public-repertory/img/tradingView-img/liveServer.jpg)
 
 ### 2. 图表库内容说明
 
@@ -322,7 +322,65 @@ new TradingView.widget({
 
 > [返回目录](#catalog)
 
-&emsp;
+1. vue 中使用 TradingView 页面闪白解决方案
+
+&emsp;&emsp;闪白是 iframe 所引起的，解决方案：
+
+- 找到`\static\tradeView\charting_library\static\tv-chart.xxxx.html` 这个文件
+- 打开文件后直接在前面加上下面代码即可：
+
+```CSS
+<style>
+#loading-indicator,body.chart-page {
+background: 0 0
+}
+</style>
+```
+
+2. 自定义按钮及功能
+
+&emsp;&emsp;tradingView 支持用户在头部自定义按钮，代码如下。
+
+```js
+tvWidget.onChartReady(() => {
+  tvWidget.headerReady().then(() => {
+    const button = tvWidget.createButton()
+
+    button.setAttribute('title', 'Click to show a notification popup')
+    button.classList.add('apply-common-tooltip')
+
+    button.addEventListener('click', () =>
+      tvWidget.showNoticeDialog({
+        title: 'Notification',
+        body: 'TradingView Charting Library API works correctly',
+        callback: () => {
+          // eslint-disable-next-line no-console
+          console.log('Noticed!')
+        },
+      })
+    )
+
+    button.innerHTML = 'Check API'
+  })
+})
+```
+
+3. 更改默认显示指标
+
+&emsp;&emsp;TradingView 支持自定义指标，同样支持默认指标显示。代码如下。
+
+```js
+tvWidget.onChartReady(() => {
+  // 增加RSI
+  tvWidget.chart().createStudy('Connors RSI', false, false)
+  // 增加MACD
+  tvWidget.chart().createStudy('MACD', false, false)
+  // 增加移动平均线
+  tvWidget.chart().createStudy('moving average')
+})
+```
+
+&emsp;&emsp;添加自定义指标请参考 [TradingView 自定义指标 | x_smile - 博客园](https://www.cnblogs.com/xsmile/p/10640536.html)
 
 # <a  id="summary">总结</a>
 
@@ -339,6 +397,8 @@ new TradingView.widget({
 - [tradingview 使用心得 | jacoby_fire - CSDN](https://blog.csdn.net/jacoby_fire/article/details/83376937)
 
 - [tradingview 入门 | 陈其文 - 思否](https://segmentfault.com/a/1190000016886299)
+
+- [TradingView 笔记 | 索茄啦你 - CSDN](https://blog.csdn.net/m0_37567491/article/details/82948204)
 
 - [TradingView 自定义指标 | x_smile - 博客园](https://www.cnblogs.com/xsmile/p/10640536.html)
 
