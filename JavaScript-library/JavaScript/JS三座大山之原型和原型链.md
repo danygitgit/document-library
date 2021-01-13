@@ -1,7 +1,7 @@
-@[JS 三座大山之异步和单线程](https://github.com/danygitgit/document-library)
+@[JS三座大山之原型和原型链](https://github.com/danygitgit/document-library)
 
 > create by **db** on **2021-1-12 16:47:32**  
-> Recently revised in **2021-1-12 16:47:37**
+> Recently revised in **2021-1-13 19:36:35**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -17,7 +17,7 @@
 
 > [返回目录](#catalog)
 
-&emsp;作为一个前端工程师，javaScript 应该是我们赖以生存的本事了。那么，你知道所谓的 javaScript 的三座大山是什么吗？
+&emsp;作为一个前端工程师，JavaScript 应该是我们赖以生存的本事了。那么，你知道所谓的 JavaScript 的三座大山是什么吗？
 
 &emsp;对！那就是我们刚学习 js 时老师所强调的：
 
@@ -33,13 +33,15 @@
 
 > [返回目录](#catalog)
 
-## 什么是原型？
+## 原型
 
-&emsp;要想知道这个问题的答案，为我们需要从 javaScript 第一课——`数据类型`开始里聊起。
+### 什么是原型？
 
-### javaScript 数据类型
+&emsp;要想知道这个问题的答案，为我们需要从 JavaScript 第一课——`数据类型`开始里聊起。
 
-&emsp;众所周知，javaScript 是一门弱类型语言，具有如下的数据类型
+### JavaScript 数据类型
+
+&emsp;众所周知，JavaScript 是一门弱类型语言，具有如下的数据类型
 
 - **值类型(基本类型)：** 字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。
 
@@ -63,7 +65,7 @@ let laoWang = {
   name: '老王',
   feature: '热心肠',
   skill: function () {
-    alert('特长是修水管')
+    console.log('特长是修水管')
   },
 }
 ```
@@ -78,9 +80,11 @@ let laoWang = {
 
 它有几点特性：
 
-- 默认函数首字母大写
-- 通过 `new` 调用一个函数
-- 构造函数返回的是一个对象
+1. 构造函数的首字母必须大写，用来区分于普通函数
+
+2. 内部使用的 this 对象，来指向即将要生成的实例对象
+
+3. 使用 New 来生成实例对象并返回此对象
 
 举个栗子 🌰
 
@@ -89,10 +93,14 @@ function Person(name, feature, skill) {
   this.name = name
   this.feature = feature
   this.skill = function () {
-    alert(skill)
+    console.log(skill)
   }
 }
 let laoWang = new Person('老王', '热心肠', '特长是修水管')
+
+let laoLi = new Person('老李', '爱串门', '亲切问候邻居家孩子')
+
+console.log(laoWang.skill === laoLi.skill) //false
 ```
 
 &emsp;这样，我们就能只要传三个参数，就能很快的 new 出来一个`laoWang`。
@@ -133,9 +141,15 @@ const person = new Person('laoWang')
 person.constructor === Person // true
 ```
 
-所以我们得出一个结论：
+所以我们得出一个结论，划重点：
 
 **实例对象的属性 `constructor` 指向创建此实例的构造函数**
+
+同时，这个函数的原型的 constructor 会指向这个函数：
+
+```js
+Person.prototype.constructor === Person // true
+```
 
 当然，这个构造函数的 `constructor` 会指向创建此函数的构造函数。即
 
@@ -147,217 +161,273 @@ Person.constructor === Function // true
 
 &emsp;上面扯了半天对象和函数，到这里终于讲到本文的主要内容了--**原型(prototype)**。
 
-&emsp;在 JavaScript 中，每个**函数**都有一个 `prototype` 属性，这个属性的指向被称为这个函数的 **原型对象**（简称原型）。
+&emsp;讲原型之前，要先说下构造函数的缺点：
+
+- 所有的实例对象都可以继承构造器函数中的属性和方法。但是，不同对象实例之间，无法共享属性
+
+啥意思呢？举个栗子 🌰
+
+```JS
+function Person(name, feature, skill) {
+  this.name = name
+  this.feature = feature
+  this.skill = function () {
+    console.log(skill)
+  }
+}
+
+let laoWang = new Person('老王', '热心肠', '特长是修水管')
+let laoLi = new Person('老李', '爱串门', '亲切问候邻居家孩子')
+
+laoWang.skill()  // 特长是修水管
+laoLi.skill()  // 亲切问候邻居家孩子
+
+Person.skill = function () {
+  console.log('我是Person，我喂自己袋盐')
+}
+
+laoWang.skill()  // 特长是修水管
+laoLi.skill()  // 亲切问候邻居家孩子
+
+console.log(laoWang.skill === laoLi.skill);  // false
+```
+
+&emsp;通过以上例子可以看出，`laoWang`和`laoLi`虽然都是同一构造函数`Person`创建的，但他们都是独立的个体，不会随着构造函数的更改而更改——儿大不由娘！
+
+&emsp;这样的缺点就是：倘若我们我们需要修改或自改所有人的属性及方法的话，只能在函数初始化的时候修改，或者去每个实例对象挨个修改才行。
+
+&emsp;那如果我们希望修改构造函数之后，其构造出来的示例对象也跟着改变，应该怎么办呢？答案就是**原型（prototyp）**
+
+划重点：
+
+&emsp;**在 JavaScript 中，每个`函数`都有一个 `prototype` 属性，这个属性的指向被称为这个函数的`原型对象`（简称原型）**
+
+![](../../public-repertory/img/原型/prototype.webp)
+
+所谓原型，具体实现思路如下：
+
+1. 我们给老王和他的朋友们搞一个老年活动中心（prototype）
+
+2. 大家需要什么东西（重复使用或者公用），我们直接放在老年活动中心（prototype），统一更换维修
+
+3. 老王和他的朋友们如果需要什么，就去老年活动中心（prototype）拿就好
 
 举个栗子 🌰
 
 ```JS
-function Person() {};
-Person.prototype.name = 'laoWang';
-Person.prototype.sayName = function() {
-console.log(this.name);
+function Person(name, feature, skill) {
+  this.name = name
+  this.feature = feature
+  this.mySkill = skill
+}
+
+Person.prototype.skill = function() {
+console.log(this.mySkill);
 };
 
-const person1 = new Person();
-person1.sayName(); // laoWang
+let laoWang = new Person('老王', '热心肠', '特长是修水管')
+let laoLi = new Person('老李', '爱串门', '亲切问候邻居家孩子')
 
-const person2 = new Person();
-person2.sayName(); // laoWang
+laoWang.skill()  // 特长是修水管
+laoLi.skill()  // 亲切问候邻居家孩子
 
-// 这两个实例对应的原型方法 sayName 都是一样的
-console.log(person1.sayName === person2.sayName); // true
+Person.prototype.skill = function () {
+  console.log('我是Person，我喂自己袋盐')
+}
+
+laoWang.skill()  // 我是Person，我喂自己袋盐
+laoLi.skill()  // 我是Person，我喂自己袋盐
+console.log(laoWang.skill === laoLi.skill);  //true
 ```
 
-&emsp;在上面代码中 `person1` /`person` 是由构造函数 `Person` 实例化出来的，而且我们也没有给 `person1` 定义任何属性，但是 person1.name=='Nicholas';这是为什么？那我们就不得不说起-proto-这个属性了，每个对象都有这个属性，这个属性一般是隐藏的我们看不到，但是并不妨碍我们去了解他。
+&emsp;这样，我么通过更改构造函数的原型（即`Person.prototype`）的属性和方法，就能更改所有其构造出来的实例对象——很简单对吧。
 
-### _ proto_(隐式原型)
+### _ proto_（隐式原型）
 
-作者：我住隔壁我姓吴
-链接：https://www.jianshu.com/p/700a2a579351
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+&emsp;理解了`prototype`，我们看看`_ proto_`是什么？
 
-复制代码
-出来了出来了，呼应前言内容，我们通过 prototype 定义了构造函数 Person 的小区公共健身房，这样区里邻居（实例 person1 和 person2）就都可以过去健身了。
+&emsp;在上面，我们讲过 `Person` 有个属于自己的老年活动中心：`Person.prototype`。
 
-作者：jsliang
-链接：https://juejin.cn/post/6890716797436166152
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+&emsp;那么，对老王来说，怎么才能心走到老年活动中心呢？（`laoWang`怎么找到 `Person.prototype`）
 
-在使用对象字面量创建一系列同一类型的对象时，这些对象可能具有一些相似的特征(属性)和行为(方法)，此时会产生很多重复的代码，而使用构造函数就可以实现代码复用。
+继续划重点：
 
-作者：G_zefeng
-链接：https://www.jianshu.com/p/7e21e23ffba9
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+**JavaScript 中，所有的引用类型（对象）都有一个`__proto__`属性，指向它的构造函数的`prototype`属性**
 
-复制代码
-这里的 Person 就是构造函数，而 person 则是构造函数 Person 的 实例对象（后面简称实例）。
-要清楚构造函数具体内容，我们应该看一下 new 的实现机制，但是现在知识点前置不足，我们后面章节再进行讲解。
+![](../../public-repertory/img/原型/proto.webp)
 
-作者：jsliang
-链接：https://juejin.cn/post/6890716797436166152
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+看代码：
 
-上面的例子很好理解，但是数组和函数好像不能这样去定义属性，但他们也是对象啊，不要迷惑，他们有自己定义属性的方法。以函数为例：
+```js
+function Person() {}
+const person = new Person()
 
-var laoWang=function( ){
-alert('修水管');
+console.log(person.__proto__ === Person.prototype) // true
+```
+
+### 这就是原型
+
+&emsp;至此，我们的线索就连上了。我们尝试着解释下原型是个啥：
+
+- 原型是对象的一个属性（prototype），它也是个对象
+
+- 原型的所有属性和方法，都会被构造函数的实例继承
+
+- 所有的函数都有一个`prototype`对象属性，指向它的原型。
+
+- 所有的引用类型（对象），都有一个`__proto__`属性，指向它的构造函数的原型
+
+![](../../public-repertory/img/原型/原型.webp)
+
+## 原型链
+
+### 什么是原型链
+
+&emsp;知道了什么是原型，我们再看看原型链。
+
+&emsp;我们知道有供应链，区块链，他们有个相同点，那就是**链**。那么，原型链是怎样的一条链呢？
+
+看例子:
+
+```js
+Object.prototype.firstSkill = function () {
+  console.log('吃饭')
 }
-laoWang.skill='热心肠';
-laoWang.skill2='爱串门';
-laoWang.skill3={
-'a':'亲切问候邻居家孩子'
+
+function Person() {}
+Person.prototype.secondSkill = function () {
+  console.log('睡觉')
 }
-这不，function 就被赋予了 skill、skill2、skill3 这三个属性。
 
-上面说到 function 和 objec 这两个返回值是对象，既然都是对象，为什么返回的不是一个值。由于 function 和 object 的关系比较特殊所以返回的值不同，我在下文会详细讲到 function 和 object 的'特殊关系'。
+let laoWang = new Person()
 
-function 和 object 的关系
-
-上文说道 function 和 object 都是对象，但是 function 的返回值是 function 而不是 object，那么他俩之间肯定有某种'神秘的关系'。
-
-function 和 object 的关系其实就像'先有蛋还是先有鸡'这种让你抓狂的问题。function 是 object 的一种，但是 object 又是由 function 创建的，什么，你要打我脸？
-
-var arr=['a','b','c'];
-var obj={
-'name':'老王',
-'age':'99'
+laoWang.thirdSkill = function () {
+  console.log('修下水道')
 }
-以上两个都是对象，但是都不是由 function 创建的，不要忘记了这种写法只是用字面量的方式来创建对象的。这种写法只是为了让代码更简单明了更容易理解。归根到底以上两种对象是由 function 创建的，请看以下代码：
 
-var arr=new Arry('a','b','c');
-var obj=new Object();
-obj.name='老王';
-obj.age='99';
-在以上代码中 Arry( )和 Object( )都是函数，通常我们把他们当做构造函数，由构造函数我们可以 new 出很多实例对象，构造函数和我们平常自定义的函数没有语法上的区别，区分就是构造函数一般首字母是大写的。
+laoWang.thirdSkill() //修下水道
 
-是不是感觉很乱？为什么 function 和 object 的关系是这样的，不要慌张，耐心看完本文你就会豁然开朗。
+laoWang.secondSkill() // 睡觉
 
-原型(prototype)
+laoWang.firstSkill() //吃饭
 
-上面扯了半天对象，到这里终于讲到本文的主要内容了--原型(prototype)。
+laoWang.fourthSkill() // TypeError: laoWang.fourthSkill is not a function
+```
 
-那么 prototype 到底是什么呢？不要着急，让我们一步步来。
+&emsp;我们分步理解一下这段代码：
 
-上面我们说到 function 也是一种对象，现在对这个应该没有任何疑问了，如果有疑问请滑动你的鼠标从头开始看！！
+1. 执行`thirdSkill()`
 
-function 作为对象，那么他肯定是若干属性的集合，在 JavaScript 中，function 默认有一个属性，这个属性就是 prototype，既然是属性那么肯定有相对应的属性值，prototype 的属性值是一个对象，既然是对象，那么肯定是若干属性的集合，这个对象里有一个默认的属性：constructor，这个属性相当于一个'指针'，指向这个函数本身。
-以下图为例：
+&emsp;这很好理解，这是老王自己的方法。
 
-prototype 既然作为对象，属性的集合，不可能就只有 constructor 这一个属性，肯定可以自定义的增加许多属性，如上图所示。
-上图还出现了 person1 这个实例函数，他是由构造函数 Person 实例化出来的，上文说到每个 function 都有 prototype 这个属性，person1 也不例外，他的 prototype 大家会发现和 Person 这个构造函数的是一样的，实例对象的原型指向的是其构造函数的原型对象。我们再看一段代码：
+2. 执行 `secondSkill()`
 
-var Person=function(){};
-Person.prototype.name='Nicholas';
-Person.prototype.age='29';
-Person.prototype.job='Software Engineer';
-var person1=new Person();
-console.log(person1.name); // 'Nicholas'
-console.log(person1.age); // '29'
-在上面代码中 person1 是由构造函数 Person 实例化出来的，而且我们也没有给 person1 定义任何属性，但是 person1.name=='Nicholas';这是为什么？那我们就不得不说起-proto-这个属性了，每个对象都有这个属性，这个属性一般是隐藏的我们看不到，但是并不妨碍我们去了解他。
+&emsp;此时发生了什么？这里再记住一个重点
 
-这个属性指向了创建这个对象的构造函数的 prototype。即：person1._ proto_ ===Person.prototype，下面我们来看看这个'_ proto_'是什么鬼。
+**当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的`_proto_`（即它的构造函数的 prototype）中寻找**
+&emsp;因此 `laoWang` 就会找到 Person.prototype.secondSkill。
 
-_ proto_,隐式原型
+3. 执行 `firstSkill()`
 
-上文我们提到* proto*，那到底这个* proto*是什么呢？我看下面的代码：
+&emsp;因为`laoWang`本身没有 `firstSkill()`，并且`laoWang.__proto__`（即`Person.prototype`）中也没有`firstSkill()`。这个问题还是得拿出刚才那句话——**当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的**proto**（即它的构造函数的 prototype）中寻找**。
 
-var Person=function(){};
-Person.prototype.name='Nicholas';
-Person.prototype.age='29';
-Person.prototype.job='Software Engineer';
-var person1=new Person();
-console.log(person1._proto_===Person.prototype);//true
-通过看上面的代码会发现结果为 true，你没有看错，这也不是巧合，这是必然的结果。
+&emsp;然后`laoWang`就开始了他的寻 skill 之旅：
 
-实质上 person1 是被 Person 实例化出来的，那么 person1._ proto_===Person.prototype，下面用图给你展示一下：
+- `laoWang.__proto__` 即 `Person.prototype`，没有找到`firstSkill()`，继续往上找
 
-上图的 o1 和 o2 是由 Object 实例化出来的，他们的* proto*指向的是 Object.prototype，这就说明:每个对象都有一个* proto*属性，指向创建该对象的构造函数的 prototype。
-那么你肯定会问'每个对象都有一个* proto*属性，指向创建该对象的构造函数的 prototype'，那 Object 也是一个对象，肯定也有* proto*属性，那他指向谁？
+- `laoWang.__proto__.__proto__`即`Person.prototype.__proto__`。`Person.prototype`就是一个普通的对象，因此`Person.prototype.__proto__`就是`Object.prototype`，在这里可以找到`firstSkill()`
 
-关于 Object.* proto*的指向问题很特殊，在这个 Object.* proto*是个特例，它指向 null，这个地方大家一定要牢记。
+- 因此`laoWang.firstSkill()`最终对应到了`Object.prototype.firstSkill()`,这也生动的诠释了**万物皆对象**
 
-也许你还会有另一个疑问，函数也是对象，实例化出来的函数的* proto*属性指向其构造函数，那么其构造函数的* proto*指向谁？
+&emsp;这样一直往上找，你会发现是一个链式的结构，所以叫做**原型链**。
 
-Function 这个前面没有提到，现在拿出来晒晒，构造函数是由谁创建的，就是由 Function 这个函数创建的，所以你上面的疑问就很好解答了。再用一张图让你更清晰的看清他们的关系：
+4. 执行 `fourthSkill()`
 
-这张图清晰的表明了自定义构造函数、Object、Function 之间的关系！
+&emsp;`laoWang`如果一直找到最上层都没有找到`fourthSkill()`，那么就宣告失败，返回`undefined`或者报错。
 
-眼神好的人会在上图发现一个问题：自定义函数 Foo.* proto*指向 Function.prototype，Object.* proto*指向 Function.prototype，怎么 Function.* proto*也指向 Function.prototype，这不就是形成了一个'死循环'么，来，让我们仔细捋一捋，Function 也是一个函数，既然是函数那么他肯定是由 Function 创建的，那么上面的'死循环'就解释通了。
+&emsp;那原型链的最上层是什么？别问，问就是`null`
 
-在这里我还要解释一个地方，Function.prototype 也是一个对象，那其肯定有* proto*属性，那么指向谁呢？其指向 Object.prototype,为什么呢？Function.prototype 是一个普通的对象，就可以看成这个对象是由 Object 实例化出来的，那么 Function.prototype.* proto*指向就是 Object.prototype 了。
+![](../../public-repertory/img/原型/原型链.webp)
 
-下面上一张完整的图片，大家可以按照下面这种图片捋一下自己的思路，因为上面讲了那么多肯定会有些乱。
+```js
+console.log(Object.prototype.__proto__ === null) // true
+```
 
-这张图完整的呈现出了实例对象、自定义函数、Object、Function 之间种种错综复杂的关系，不要怕麻烦，一条一条的去找对应的关系。
+&emsp;所谓“无名，天地之始”，古人诚不欺我也。
 
-继承
+### 其他
 
-为什么会说到继承呢，因为继承是通过原型链来体现的，所以一并放在这里讲了。我们先看一段代码：
+#### new
 
-function Person（）{ }
-var p1=new Person();
-Person.prototype.name='老王';
-Person.prototype.age='99';
-console.log(p1.name);//'老王'
-以上代码中，p1 是 Person 实例化出来的函数，我并没有给 p1 定义 name 这个属性，那 p1.name 是怎么来的--是从 Person.prototype 来的，因为 p1.* proto*指向 Person.prototype，当访问对象的某个属性时，现在这个对象本身去找，如果找不到那就顺着* proto*往上找，直到找到或者 Object.prototype 为止。
+&emsp;我们 coding 的时候随手就 new 一个对象，那你知道 js 中的 new()到底做了什么?
 
-由于所有的对象的原型链都会找到 Object.prototype，因此所有的对象都会有 Object.prototype 的方法。这就是所谓的“继承”。
+&emsp;要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4 个步骤：
 
-讲到这里，关于原型和原型链就结束了，希望各位能深刻的理解。
+1. 创建一个新对象；
+2. 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；
+3. 执行构造函数中的代码（为这个新对象添加属性） ；
+4. 返回新对象。
 
-作者：我住隔壁我姓吴
-链接：https://www.jianshu.com/p/700a2a579351
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+#### this
 
-### 原型
+&emsp;先搞明白一个很重要的概念 —— `this` 的值是在执行的时候才能确认，定义的时候不能确认！ 为什么呢 —— 因为 this 是执行上下文环境的一部分，而执行上下文需要在代码执行之前确定，而不是定义的时候。
 
-&emsp;在 JavaScript 中，每当定义一个对象的时候，对象中都会包含一些预定义的属性。
+看如下例子
 
-&emsp;其中每个 函数对象 都有一个 prototype 属性，这个属性的指向被称为这个函数对象的 原型对象（简称原型）。
+```js
+var a = {
+  name: 'A',
+  fn: function () {
+    console.log(this.name)
+  },
+}
+a.fn() // this === a
+a.fn.call({ name: 'B' }) // this === {name: 'B'}
+var fn1 = a.fn
+fn1() // this === window
+```
 
-function Person() {};
-Person.prototype.name = 'jsliang';
-Person.prototype.sayName = function() {
-console.log(this.name);
-};
+this 执行会有不同，主要集中在这几个场景中
 
-const person1 = new Person();
-person1.sayName(); // jsliang
+- 作为构造函数执行，构造函数中
+- 作为对象属性执行，上述代码中 a.fn()
+- 作为普通函数执行，上述代码中 fn1()
+- 用于 call apply bind，上述代码中 a.fn.call({name: 'B'})
 
-const person2 = new Person();
-person2.sayName(); // jsliang
+#### 继承
 
-// 这两个实例对应的原型方法 sayName 都是一样的
-console.log(person1.sayName === person2.sayName); // true
-复制代码
-出来了出来了，呼应前言内容，我们通过 prototype 定义了构造函数 Person 的小区公共健身房，这样区里邻居（实例 person1 和 person2）就都可以过去健身了。
+&emsp;为什么会说到继承呢，因为继承是通过原型链来体现的。我们先看一段代码：
 
-作者：jsliang
-链接：https://juejin.cn/post/6890716797436166152
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```js
+function Person() {}
 
-## 为什么是原型
+var p1 = new Person()
+Person.prototype.name = '老王'
+Person.prototype.age = '99'
 
-## 什么是原型链
+console.log(p1.name) //'老王'
+```
+
+&emsp;以上代码中，p1 是 Person 实例化出来的函数，我并没有给 p1 定义 name 这个属性，那 p1.name 是怎么来的--是从 Person.prototype 来的，因为 p1.* proto*指向 Person.prototype，当访问对象的某个属性时，现在这个对象本身去找，如果找不到那就顺着* proto*往上找，直到找到或者 Object.prototype 为止。
+
+&emsp;由于所有的对象的原型链都会找到 Object.prototype，因此所有的对象都会有 Object.prototype 的方法。这就是所谓的**继承**。
 
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
 
-https://www.jianshu.com/p/700a2a579351?from
-
-作者：jsliang
-链接：https://juejin.cn/post/6890716797436166152
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+&emsp;关于原型和原型链，就先说这些了。好好学习，天天向上。
 
 &emsp;路漫漫其修远兮，与诸君共勉。
+## 参考文献：
+
+- [关于原型和原型链的详细理解 | 博客园-我住隔壁我姓吴 ](https://www.jianshu.com/p/700a2a579351)
+
+- [jsliang 求职系列 - 02 - 原型与原型链 | 掘金-jsliang ](https://juejin.cn/post/6890716797436166152)
+
+- [完全搞懂 js 中的 new()到底做了什么? | CSDN-一晌贪欢 i](https://blog.csdn.net/qq_27674439/article/details/99095336)
+
+
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
