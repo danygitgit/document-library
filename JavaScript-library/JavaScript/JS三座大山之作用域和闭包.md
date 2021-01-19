@@ -33,149 +33,309 @@
 
 > [返回目录](#catalog) >
 
+&emsp;阮一峰老师说：要理解闭包，首先必须理解 Javascript 特殊的`变量作用域。`
+
 ## 作用域
 
-&emsp;作用域是根据名称找变量的一套规则。
+&emsp;**作用域**是程序源代码中定义变量的区域。它规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。
 
-&emsp;变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量(如果之前没有声明过)，然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。
-
-&emsp;引擎在查找变量时执行怎样的查找，会影响最终的查找结果。
-
-&emsp;当变量出现在赋值操作的左侧时进行LHS查询，出现在右侧时进行RHS查询：
-
-console.log(a)对a的引用是一个RHS引用，这里a并没有赋予任何值。相应地，需要查找并取得a的值，这样才能将值传递给console.log(..)。
-
-a = 2对a的引用是LHS引用，因为实际上我们并不关心当前的值是什么，只是 为=2这个赋值操作找到一个目标。
-
-当一个块或函数嵌套在另一块或函数中时，就发生了作用域的嵌套。在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量，或抵达最外层的作用域为止。
-&emsp;ES5 中只有全局作用域和函数作用域，我们都知道他没有块级作用域。
-
-&emsp;ES6 中多了一个 let，他可以保证外层块不受内层块的影响。即内层块形成了一个块级作用域，这是 let 的一个特点。
+举个栗子：
 
 ```js
-var a = 1
-function f1() {
-  var b = 2
-  function f2() {
-    var c = b
-    b = a
-    a = c
-    console.log(a, b, c)
-  }
-  f2()
+if (true) {
+  var name = 'zhangsan'
 }
-f1() //2,1,2
+console.log(name) // zhangsan
 ```
 
-上面的代码，有三个执行上下文环境(EC)，全局 EC，f1EC，f2EC。全局环境下有一个变量 a 和一个函数 f1()，在 f1 环境中，有一个变量 b 和一个函数 f2()，在 f2 环境中有一个变量 c。但在 f2 中，可以访问到 f1 环境中的 b，也可以访问到全局环境中的 a，在 f1 中，可以访问到全局环境下的 a，但不可以访问 f2 中的 c，在全局中，不可以访问 f1 中的 b 也不可以访问 f2 中的 c。这就是一个作用域链。
+&emsp;从上面的例子可以体会到作用域的概念，作用域就是**一个独立的地盘，让变量不会外泄、暴露出去**。
 
-函数的内部环境可以通过作用域链访问到所有的外部环境，但是外部环境却不可以访问外部环境，这就是作用域的关键。但是我们要知道，作用域是在一个函数创建时就已经形成的，而不是调用时。
+&emsp;上面的 `name` 就被暴露出去了，因为，在 ES6 到来之前，javaScript 中只有**全局作用域**和**函数作用域**
 
-复制代码
-var a=10;
-function fn(){
-var a=20;
-return function b(){
-console.log(a);
-};
-}
-var g=fn();
-g();//20
-复制代码
-此图说明了作用域链向上查找是寻找创建它的那个作用域。
+### 全局作用域
 
-2. 闭包
+&emsp;全局作用域就是**最外层的作用域**，如果我们写了很多行 JS 代码，变量定义都没有用函数包括，那么它们就全部都在全局作用域中。
 
-“闭包，允许使用内部函数(即函数定义和函数表达式位于另一个函数的函数体内)，而且，这些内部函数可以访问他们所在的外部函数中的声明的所有局部变量丶参数和声明的其他内部函数，当其中一个这样的内部函数在包含他们的外部函数之外被调用时，就会形成闭包。即内部函数会在外部函数返回后被执行。而当这个内部函数执行时，它仍然必须访问其外部函数的局部变量丶参数以及其他内部函数。这些局部变量丶参数和函数声明(最初时)的值是外部函数返回时的值，但也会受到内部函数的影响。”
+&emsp;拥有全局作用域的变量叫做**全局变量**，他们在代码中任何地方都能访问到的，谁都可以对其更改，这样的坏处就是很容易撞车、冲突。
 
-简单来说，就是在一个函数 a 内部定义的另一个函数 b，当 b 在 a 之外被执行时，就会形成闭包。同时 b 函数仍然可以访问到 a 函数中的局部变量与函数。
+举个栗子：
 
-复制代码
-function fn(){
-var array=[];
-for(var i=0;i<10;i++){
-array[i]=function(){
-return i;
-}
-}
-return array;
-}
-fn();//[ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ]
-复制代码
-闭包保存的是定义它的那个函数内部的局部变量丶参数和其他内部函数，也就是说保存的是这个函数执行上下文中的整个 VO，而不是一个变量。上面代码中的函数作用域链中都保存着 fn 的活动对象，他们引用的都是一个 i，当 fn 返回时，i 的值是 10，所以每个函数都引用保存 i 那个变量的同一个变量。我们如果想得到原先想得到的那个结果，可以加上另一个匿名函数改变他的父作用域(其实应该是创建它的作用域)，将它包裹起来。
+```js
+// 张三写的代码中
+var data = { a: 100 }
 
-复制代码
-function fn(){
-var array=[];
-for(var i=0;i<10;i++){
-array[i]=function(num){
-return function(){
-return num;
-};
-}(i);
-}
-return array;
-}
-复制代码
-这个匿名函数有一个参数 num，同时是返回值。在调用每个匿名函数时，传入了变量 i。由于参数是按值传递的，所以 i 就会复制给 num，而这个匿名函数的内部又创建了一个访问 num 的闭包，返回后能够访问到该匿名函数中的 VO 变量对象（Variable Object）(包括参数)，于是每个函数返回的都是 num 的一个副本，所以可以得到不同的值。
+// 李四写的代码中
+var data = { x: true }
 
-闭包的两个场景;
+console.log(data) //  { x: true }
+```
 
-1. 函数作为函数的返回值
+### 函数作用域
 
-复制代码
-function f(){
-var a=1;
-return function(){
-console.log(a);
-}  
+&emsp;我们将使用`var`将变量声明在函数内部（`function(){....}`），就形成了**函数作用域**。
+
+&emsp;像这样，定义在函数内部的变量叫做**局部变量**，局部变量只能在它被调用的作用域范围内进行读和写的操作，对该函数外部来说，局部变量是不可见的，当然也不可更改。
+
+举个栗子：
+
+```js
+function fn() {
+  var a = 200
+  console.log('fn', a)
 }
 
-var g=f();
-g();//1;
-复制代码 2. 函数作为参数传递
+fn() // fn 200
 
-复制代码
-function f(){
-var a=1;
-return function(){
-console.log(a);
-}  
-}
-var g=f();
-g();//1;
+console.log('global', a) // Error: a is not defined
+```
 
-function F(fn){
-var a=2;
-fn();
+&emsp;这就是为何 jQuery、Zepto 等库的源码，所有的代码都会放在`(function(){....})()`中。因为放在里面的所有变量，都不会被外泄和暴露，不会污染到外面，不会对其他的库或者 JS 脚本造成影响。这是函数作用域的一个体现。
+
+### 块级作用域
+
+&emsp;现在我们有了 ES6， ES6定义了`let`和`const`，他们可以保证外层块不受内层块的影响。即内层块形成了一个块级作用域（`{}`）。
+举个栗子：
+
+```js
+if (true) {
+  let name = 'zhangsan'
 }
-F(g);//1
-复制代码
-上面两个小例子也正好说明了闭包可以访问定义它的那个函数作用域下的内部变量和内部函数。其实是整个 VO 变量对象（Variable Object），所以还包含参数。
+console.log(name) // undefined，因为let定义的name是在if这个块级作用域
+```
+
+## 作用域链
+
+&emsp;首先认识一下什么叫做**自由变量** 。
+
+### 自由变量
+
+&emsp;如我在全局中定义了一个变量`a`，然后我在函数中使用了这个`a`，这个`a`就可以称之为`自由变量`。可以这样理解，**凡是跨了自己的作用域的变量都叫自由变量**。
+
+举个栗子：
+
+```js
+var a = 100
+function fn() {
+  var b = 200
+  console.log(a)
+  console.log(b)
+}
+
+fn() // 100  200
+```
+
+&emsp;如上代码中，`console.log(a)`要得到 `a` 变量，但是在当前的作用域中没有定义 `a`（可对比一下 `b`）。 `a`就是`自由变量` 。
+
+&emsp;那么问题来了，`a`在当前作用域没有定义，他又是如何打印出来的呢？
+
+&emsp;没错，向父级作用域寻找。
+
+&emsp;如果父级也没呢？再一层一层向上寻找，直到找到全局作用域还是没找到，就宣布放弃。这种一层一层的关系，就是**作用域链** 。
+
+举个栗子：
+
+```js
+var a = 100
+function F1() {
+  var b = 200
+  function F2() {
+    var c = 300
+    console.log(a) // 自由变量，顺作用域链向父作用域找
+    console.log(b) // 自由变量，顺作用域链向父作用域找,找到全局作用域
+    console.log(c) // 本作用域的变量
+    console.log(d) // 没有定义，找到全局作用域找不到返回错误
+  }
+  F2()
+}
+F1() // 100  200  300  Error：d is not defined
+```
+
+## 闭包
+
+&emsp;了解了`作用域`和`作用域链`，我们就可以看看`闭包`了
+
+### 什么是闭包
+
+&emsp;在 JavaScript 中，根据变量作用域的规则，内部函数总是可以访问其外部函数中声明的变量。
+
+&emsp;当通过调用一个外部函数返回一个内部函数后，即使该外部函数已经执行结束了，但是内部函数引用外部函数的变量依然保存在内存中，我们就把这些变量的集合称为**闭包**。
+
+简单来说：
+
+- 在函数 A 中还有函数 B，函数 B 调用了函数 A 中的变量，那么函数 B 就称为函数 A 的闭包。
+
+&emsp;通俗来讲，JS 所有的 function 都是一个闭包。
+
+举个栗子：
+
+```js
+function foo() {
+  let num = 0
+  return function () {
+    num++
+    console.log(num)
+  }
+}
+const f = foo()
+var num = 100
+f() // 1
+f() // 2
+```
+
+&emsp; 自由变量将从作用域链中去寻找，所以自由变量`num`找到函数`foo`中就找到了，于是`num`的值是`1`;
+
+&emsp;函数`foo`执行时创建了一个内部函数，这个内部函数作为返回值，以某种方式保留下来（`num`一直存在），所以每次调用`num`都会 + 1。这里就用了闭包。
+
+<!-- ### 闭包的特点
+
+
+1. 作为一个函数变量的一个引用，当函数返回时，其处于激活状态。
+一个闭包就是当一个函数返回时，一个没有释放资源的栈区。 -->
+
+#### 闭包的用途场景
+
+&emsp;也许你会疑惑，闭包就这？这有啥用？
+
+1. 匿名自执行函数
+
+&emsp;我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象。
+
+代码如下：
+
+```js
+;(function () {
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    today = new Date(),
+    msg = 'Today is ' + days[today.getDay()] + ', ' + today.getDate()
+  alert(msg)
+})()
+```
+
+2. 结果缓存
+
+&emsp;我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。
+
+&emsp;闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
+代码如下：
+
+```js
+var CachedSearchBox = (function () {
+  var cache = {},
+    count = []
+  return {
+    attachSearchBox: function (dsid) {
+      if (dsid in cache) {
+        //如果结果在缓存中
+        return cache[dsid] //直接返回缓存中的对象
+      }
+      var fsb = new uikit.webctrl.SearchBox(dsid) //新建
+      cache[dsid] = fsb //更新缓存
+      if (count.length > 100) {
+        //保正缓存的大小<=100
+        delete cache[count.shift()]
+      }
+      return fsb
+    },
+
+    clearSearchBox: function (dsid) {
+      if (dsid in cache) {
+        cache[dsid].clearSelection()
+      }
+    },
+  }
+})()
+```
+
+3. 封装
+
+代码如下：
+
+```js
+var person = (function () {
+  //变量作用域为函数内部，外部无法访问
+  var name = 'default'
+  return {
+    getName: function () {
+      return name
+    },
+    setName: function (newName) {
+      name = newName
+    },
+  }
+})()
+```
+
+4. 实现类和继承
+
+代码如下：
+
+```js
+function Person() {
+  var name = 'default'
+  return {
+    getName: function () {
+      return name
+    },
+    setName: function (newName) {
+      name = newName
+    },
+  }
+}
+
+var p = new Person()
+p.setName('Tom')
+alert(p.getName()) //Tom
+
+var Jack = function () {}
+//继承自Person
+Jack.prototype = new Person()
+//添加私有方法
+Jack.prototype.Say = function () {
+  alert('Hello,my name is Jack')
+}
+var j = new Jack()
+j.setName('Jack')
+j.Say()
+alert(j.getName()) //Jack
+```
+
+#### 闭包的优缺点
+
+**优点：**
+
+1.  函数作为返回值，缓存数据
+
+- 可以让这些局部变量隐藏起来。保存在内存中，不被 GC 回收，实现变量数据共享。
+
+2.  函数作为参数传递
+
+- 利用闭包特性完成柯里化（通过将多个参数换成一个参数，每次运行返回新函数的技术）,详见[详解 JS 函数柯里化](https://www.jianshu.com/p/2975c25e4d71)
+
+**缺点：**
+
+1.  内存消耗
+
+- 由于闭包会使得函数中的变量都被保存在内存中，无法被销毁，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在 IE 中可能导致内存泄露。
+
+- 解决方法是：在退出函数之前，将不使用的局部变量全部删除。
+
+2.  闭包会在父函数外部，改变父函数内部变量的值。
+
+- 如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。
 
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
 
-&emsp;
+&emsp;关于作用域和闭包，就先说这些了。好好学习，天天向上。
 
-http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+&emsp;路漫漫其修远兮，与诸君共勉。
 
-https://www.cnblogs.com/fuGuy/p/9206350.html
+## 参考文献：
 
-https://www.cnblogs.com/gzhjj/p/9014556.html
+- [jsliang 求职系列 - 03 - 闭包与柯里化 | 掘金-jsliang ](https://juejin.cn/post/6891097178064814088)
 
-http://blog.sina.com.cn/s/blog_173fe976d0102wxcu.html
-
-https://www.jianshu.com/p/a57a7cfc9755
-
-https://www.cnblogs.com/sarah-wen/p/10809542.html
-
-https://juejin.cn/post/6891097178064814088#heading-1
-
-https://segmentfault.com/a/1190000017136436
-
-https://juejin.cn/book/6844733713780047886/section/6844733713830379533
+- [js 中闭包的理解、用途场景、优缺点及解决办法 | 简书-sdcV ](https://www.jianshu.com/p/8376170fb228)
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
