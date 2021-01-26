@@ -1,7 +1,7 @@
 @[JS 三座大山之作用域和闭包](https://github.com/danygitgit/document-library)
 
 > create by **db** on **2021-1-12 16:47:32**  
-> Recently revised in **2021-1-12 16:47:37**
+> Recently revised in **2021-1-26 14:50:43**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -29,6 +29,8 @@
 
 下面我们就来爬上第二座大山——作用域和闭包，去领略一下吧。
 
+求票
+&emsp;本人正在参与掘金2020年度人气创作者榜单排名，希望各位小伙伴帮我投票，2021年会给大家带来更多优质的文章，感谢大家。
 # <a  id="main-body">正文</a>
 
 > [返回目录](#catalog) >
@@ -42,15 +44,26 @@
 举个栗子：
 
 ```js
+// 全局作用域
 if (true) {
-  var name = 'zhangsan'
+  var personName = 'zhangsan'
 }
-console.log(name) // zhangsan
+
+// 函数作用域
+function fn() {
+  var personAge = 18
+  console.log(personAge) // 18
+}
+
+fn()
+
+console.log(personName) // zhangsan
+console.log(personAge) // personAge is not defined
 ```
 
-&emsp;从上面的例子可以体会到作用域的概念，作用域就是**一个独立的地盘，让变量不会外泄、暴露出去**。
+&emsp;上面的 `personName` 就被暴露到了全局了，而 `personAge` 则只能再函数 fn 内部可以访问，在 ES6 到来之前，javaScript 中只有**全局作用域**和**函数作用域**
 
-&emsp;上面的 `name` 就被暴露出去了，因为，在 ES6 到来之前，javaScript 中只有**全局作用域**和**函数作用域**
+&emsp;从上面的例子可以体会到作用域的概念，作用域就是**一个独立的地盘，让变量不会外泄、暴露出去**。
 
 ### 全局作用域
 
@@ -93,16 +106,20 @@ console.log('global', a) // Error: a is not defined
 
 ### 块级作用域
 
-&emsp;现在我们有了 ES6， ES6定义了`let`和`const`，他们可以保证外层块不受内层块的影响。即内层块形成了一个块级作用域（`{}`）。
+&emsp;现在我们有了 ES6， ES6 定义了`let`和`const`，他们可以保证外层块不受内层块的影响。即内层块形成了一个块级作用域（`{}`）。
+
 举个栗子：
 
 ```js
 if (true) {
-  let name = 'zhangsan'
+  let personName = 'zhangsan'
+
+  console.log(personName) // zhangsan
 }
-console.log(name) // undefined，因为let定义的name是在if这个块级作用域
+console.log(personName) // personName is not defined
 ```
 
+&emsp;从上可以看出，`let`定义的`personName`是在if这个块级作用域内定义的，因此只能在块内访问。
 ## 作用域链
 
 &emsp;首先认识一下什么叫做**自由变量** 。
@@ -253,13 +270,13 @@ var CachedSearchBox = (function () {
 ```js
 var person = (function () {
   //变量作用域为函数内部，外部无法访问
-  var name = 'default'
+  var personName = 'default'
   return {
     getName: function () {
-      return name
+      return personName
     },
     setName: function (newName) {
-      name = newName
+      personName = newName
     },
   }
 })()
@@ -271,13 +288,13 @@ var person = (function () {
 
 ```js
 function Person() {
-  var name = 'default'
+  var personName = 'default'
   return {
     getName: function () {
-      return name
+      return personName
     },
     setName: function (newName) {
-      name = newName
+      personName = newName
     },
   }
 }
@@ -291,7 +308,7 @@ var Jack = function () {}
 Jack.prototype = new Person()
 //添加私有方法
 Jack.prototype.Say = function () {
-  alert('Hello,my name is Jack')
+  alert('Hello,my personName is Jack')
 }
 var j = new Jack()
 j.setName('Jack')
