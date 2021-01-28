@@ -1,7 +1,7 @@
 @[JS 三座大山之异步和单线程](https://github.com/danygitgit/document-library)
 
-> create by **db** on **2021-1-12 16:47:32**  
-> Recently revised in **2021-1-12 16:47:37**
+> create by **db** on **2021-1-22 16:47:32**  
+> Recently revised in **2021-1-28 09:47:05**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
