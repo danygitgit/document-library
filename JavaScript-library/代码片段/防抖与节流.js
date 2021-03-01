@@ -14,7 +14,9 @@ function throttle (fn, delay) {
     }
   }
 }
-const throttled = throttle(() => console.log('Hi'),100)
+const throttled = throttle(() => {
+  delay
+},100)
 throttled()
 throttled()
 throttled()

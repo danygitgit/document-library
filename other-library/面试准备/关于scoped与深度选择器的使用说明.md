@@ -1,4 +1,4 @@
-# [关于 scoped 与 deep 的使用说明](https://github.com/danygitgit/document-library)
+# [关于scoped与深度选择器的使用说明](https://github.com/danygitgit/document-library)
 
 > create by **db** on **2020-5-12 01:23:06**  
 > Recently revised in **2020-5-12 02:42:55**
@@ -29,7 +29,7 @@
 
 ### 什么是 scoped
 
-&emsp;在 vue 文件中的 style 标签上，有一个特殊的属性：scoped。当一个 style 标签拥有 scoped 属性时，它的 CSS 样式就只能作用于当前的组件，也就是说，该样式只能适用于当前组件元素。通过该属性，可以使得组件之间的样式不互相污染。如果一个项目中的所有 style 标签全部加上了 scoped，相当于实现了样式的模块化。
+&emsp;在 vue 文件中的 style 标签上，有一个特殊的属性：`scoped`。当一个 style 标签拥有 `scoped` 属性时，它的 CSS 样式就只能作用于当前的组件，也就是说，该样式只能适用于当前组件元素。通过该属性，可以使得组件之间的样式不互相污染。如果一个项目中的所有 style 标签全部加上了 scoped，相当于实现了样式的模块化。
 
 ### scoped 的实现原理
 
@@ -159,7 +159,7 @@
 
 ### >>>
 
-&emsp;**>>>**适用于`css`及`stylus`的样式穿透
+&emsp;**>>>** 适用于`css`及`stylus`的样式穿透
 
 1. 使用>>>和不使用的区别
 
@@ -189,7 +189,7 @@
 </style>
 ```
 
-2. > > > 位置的区别
+2. `>>>`使用位置的区别
 
 如下是转译前的 vue 代码：
 
@@ -217,11 +217,10 @@
 </style>
 ```
 
-&emsp;可以看出.在哪里加的`>>>` ,data 属性选择器就会跑到写的上一层去，权重来说是一样的，后面的样式会覆盖前民的样式。
+&emsp;可以看出.在哪里加的`>>>` ,data 属性选择器就会跑到写的上一层去，权重来说是一样的，后面的样式会覆盖前面的样式。
 
 ### /deep/
-
-&emsp;**/deep/**适用于`sass`和`less`的样式穿透
+&emsp;某些情况下>>>符号有可能无法正确解析,如Sass，可以替换为别名 **/deep/** 或 **::v-deep** 。
 
 1. 在有多层嵌套的情况下，使用/deep/和不使用的区别
 
@@ -289,6 +288,10 @@
 # <a name="chapter3" id="chapter3">总结</a>
 
 > [返回目录](#chapter-menu)
+> 
+&emsp;不经意间皆学问。希望在我们使用一些技术的同时，不止是要关心怎么用，更要多问几句为什么这样用，了解其中原理，才能让我们在技术的道路上走的越远。
+
+&emsp;路漫漫其修远兮，与诸君共勉。
 
 - **参考文献**：
 
@@ -298,9 +301,9 @@
 
 3. [.vue 文件 加 scoped 样式不起作用 | CSDN - 努力吧灰灰兔](https://blog.csdn.net/weixin_45842655/article/details/103490900)
 
-https://www.php.cn/js-tutorial-407854.html
+4. [Vue中的scoped的实现原理以及scoped穿透的用法（附代码）](https://www.php.cn/js-tutorial-407854.html)
 
-https://www.cnblogs.com/CyLee/p/10006065.html
+
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
