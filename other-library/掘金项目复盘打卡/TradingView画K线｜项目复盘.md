@@ -1,6 +1,6 @@
-# [Markdown 博客模板](https://github.com/danygitgit/document-library)
+# [TradingView画K线｜项目复盘](https://github.com/danygitgit/document-library)
 
-> create by **db** on **2020-9-2 13:30:46**  
+> create by **db** on **2021-3-15 15:46:50**  
 > Recently revised in **2020-9-2 13:30:51**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
@@ -10,11 +10,11 @@
 - [前言](#preface)
 - [正文](#main-body)
 
-  - [一、第一章](#chapter-1)
-  - [二、第二章](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
-  - [五、第五章](#chapter-5)
+  - [一、项目简介](#chapter-1)
+  - [二、项目背景](#chapter-2)
+  - [三、实践过程](#chapter-3)
+  - [四、项目成果](#chapter-4)
+  - [五、总结思考](#chapter-5)
 
 - [总结](#summary)
 
@@ -30,35 +30,47 @@
 
 &emsp;这里是正文内容！
 
-## <a  id="chapter-1">一、第一章</a>
+## <a  id="chapter-1">一、项目简介</a>
 
 > [返回目录](#catalog)
 
-&emsp;第一章内容！
+&emsp;综述：
 
-## <a  id="chapter-2">二、第二章</a>
+你所做项目的功能、作用
+你担任的角色，主要的贡献
 
-> [返回目录](#catalog)
-
-&emsp;第二章内容！
-
-## <a  id="chapter-3">三、第三章</a>
+## <a  id="chapter-2">二、项目背景</a>
 
 > [返回目录](#catalog)
 
-&emsp;第三章内容！
+&emsp;这部分可以写写：
 
-## <a  id="chapter-4">四、第四章</a>
+这个项目面向的业务场景是什么？
+为什么要做这个项目？需要解决的业务痛点及原因
+
+## <a  id="chapter-3">三、实践过程</a>
+
+> [返回目录](#catalog)
+
+&emsp;技术选型：
+项目中用了什么技术？为什么在多个产品中选择了这项技术？
+实践过程中遇到的问题，以及解决方式？
+最后达成了什么效果，或者什么样的优化和提升？
+
+## <a  id="chapter-4">四、项目成果</a>
 
 > [返回目录](#catalog)
 
 &emsp;第四章内容！
 
-## <a  id="chapter-5">五、第五章</a>
+## <a  id="chapter-5">五、总结思考</a>
 
 > [返回目录](#catalog)
 
-&emsp;第五章内容！
+&emsp;自己在哪些地方做得出色/和别人不一样/成长快：
+在这个项目中，我最自豪的技术细节是什么？
+同事和领导对自己所做的工作的评价？
+或者评价一下该项目未来可以改进的地方，未来优化的方向。
 
 # <a  id="summary">总结</a>
 
@@ -69,6 +81,8 @@
 ### <a  id="reference-documents">参考文献</a>
 
 - [Markdown 博客模板 | 掘金-豆包君](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
+
+本文正在参与「掘金 2021 春招闯关活动」, 点击查看 [活动详情](https://juejin.cn/post/6939329638506168334/)
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
