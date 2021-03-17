@@ -375,13 +375,13 @@ tvWidget.onChartReady(() => {
   tvWidget.chart().createStudy('Connors RSI', false, false)
   // 增加MACD
   tvWidget.chart().createStudy('MACD', false, false)
-  // 增加移动平均线
+  
+// 增加移动平均线
   tvWidget.chart().createStudy('moving average')
 })
 ```
 
 &emsp;&emsp;添加自定义指标请参考 [TradingView 自定义指标 | x_smile - 博客园](https://www.cnblogs.com/xsmile/p/10640536.html)
-
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
