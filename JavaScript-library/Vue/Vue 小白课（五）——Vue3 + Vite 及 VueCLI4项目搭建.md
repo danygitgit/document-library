@@ -327,7 +327,7 @@ Done. Now run:
 
 输入以下命令，回车进入新建的项目。
 
-> <font color=red>cd</font> cd vue3-vite-demo
+> <font color=red>cd</font> vue3-vite-demo
 
 ### 3、安装依赖
 
