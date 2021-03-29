@@ -13,7 +13,7 @@
   - [call](#chapter-1)
   - [apply](#chapter-2)
   - [bind](#chapter-3)
-  - [关于 this](#chapter-4)
+  - [关于 this的指向](#chapter-4)
   - [五、第五章](#chapter-5)
 
 - [总结](#summary)
@@ -28,7 +28,104 @@
 
 # <a  id="main-body">正文</a>
 
-&emsp;这里是正文内容！
+## <a  id="chapter-4">关于 this的指向</a>
+
+> [返回目录](#catalog)
+
+&emsp;如果要判断一个运行中函数的`this`绑定，就需要找到这个函数的直接调用位置。找到之后可以应用四条规则来判断`this`的绑定对象。
+
+### 1. new 绑定
+
+&emsp;使用new来调用foo(..)时，我们会构造一个新对象并且把它绑定到foo(..)调用中的this上，即此时的this指向新创建的对象。此时的绑定行为我们称之为**new绑定**。
+示例如下：
+```js
+var a = 2
+function foo(a) {
+  this.a = a
+}
+var obj = new foo(3)
+console.log('a的值是', obj.a)
+// a的值是 3
+```
+
+### 2. 显示绑定
+&emsp;即使用函数的`call`、`apply`或者`bind`方法绑定，此时`this`指向被绑定的对象，即函数的第一个参数。
+示例如下：
+```js
+var a = 2
+var obj = {
+  a: 3
+}
+function foo() {
+  console.log('当前this指向', this)
+  console.log('a的值是', this.a)
+}
+foo.call(obj) 
+// 当前this指向 {a: 2, foo: ƒ}   --> 直接调用形成隐式绑定，指向obj
+// a的值是 3
+```
+&emsp;因为你可以最直接指定this的绑定对象，因此我们称之为**显式绑定**。
+
+### 3. 隐式绑定
+&emsp;即被对象直接调用，此时`this`指向当前上下文对象。
+示例如下：
+```js
+var a = 2
+var obj = {
+  a: 3,
+  foo: foo
+}
+function foo() {
+  console.log('当前this指向', this)
+  console.log('a的值是', this.a)
+}
+obj.foo()
+// 当前this指向 {a: 2, foo: ƒ}   --> 直接调用形成隐式绑定，指向obj
+// a的值是 3
+```
+
+### 4. 默认绑定
+&emsp;如果以上绑定都不存在，或者说函数不带任何修饰被直接调用，那就属于**默认绑定**，此时氛围两种情况：
+1. 非严格模式
+   - 函数指向全局对象，及`window`
+示例如下：
+```js
+var a = 2
+let b = 3
+function foo() {
+  console.log('当前this指向', this)
+  console.log('a的值', this.a) 
+  console.log('b的值', this.b)
+}
+foo()
+// 当前this指向 Window {window: Window, self: Window, document: document…}               --> this指向window
+// a的值是 2              
+// b的值是 undefined      --> 因为let在全局作用域中声明的变量不会成为window对象的属性
+```
+2. 严格模式
+   - 函数指向`undefind`
+
+示例如下：
+```js
+'use strict'
+var a = 2
+function foo() {
+  console.log('当前this指向', this)
+  console.log('a的值是', this.a)
+}
+foo()
+
+// 当前this指向 undefined
+//  TypeError: Cannot read property 'a' of undefined  
+```
+
+### 优先级
+
+先说结论：
+
+new绑定 > 显示绑定 > 隐式绑定 > 默认绑定
+
+也就是说，我们可以根据以下顺序进行判断
 
 ## <a  id="chapter-1">call</a>
 
@@ -78,11 +175,7 @@ console.log(food.name) // 'cheese'
 
 &emsp;第三章内容！
 
-## <a  id="chapter-4">关于 this</a>
 
-> [返回目录](#catalog)
-
-&emsp;第四章内容！
 
 ## <a  id="chapter-5">五、第五章</a>
 
