@@ -1,7 +1,7 @@
-# [Markdown 博客模板](https://github.com/danygitgit/document-library)
+# [手写 call、apply、bind](https://github.com/danygitgit/document-library)
 
-> create by **db** on **2020-9-2 13:30:46**  
-> Recently revised in **2020-9-2 13:30:51**
+> create by **db** on **2021-3-29 18:47:18**  
+> Recently revised in **2021-3-29 18:47:22**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -10,10 +10,10 @@
 - [前言](#preface)
 - [正文](#main-body)
 
-  - [一、第一章](#chapter-1)
-  - [二、第二章](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
+  - [call](#chapter-1)
+  - [apply](#chapter-2)
+  - [bind](#chapter-3)
+  - [关于 this](#chapter-4)
   - [五、第五章](#chapter-5)
 
 - [总结](#summary)
@@ -30,25 +30,55 @@
 
 &emsp;这里是正文内容！
 
-## <a  id="chapter-1">一、第一章</a>
+## <a  id="chapter-1">call</a>
 
 > [返回目录](#catalog)
 
-&emsp;第一章内容！
+&emsp;`call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
+x
+&emsp;注意：该方法的语法和作用与 apply() 方法类似，只有一个区别，就是 call() 方法接受的是一个参数列表，而 apply() 方法接受的是一个包含多个参数的数组。
 
-## <a  id="chapter-2">二、第二章</a>
+#### 语法：
+
+`function.call(thisArg, arg1, arg2, ...)`
+
+#### 参数：
+
+- `thisArg`：可选的。在 function 函数运行时使用的 this 值。
+- `arg1, arg2, ...`：指定的参数列表
+
+#### 使用：
+
+```js
+function Product(name, price) {
+  this.name = name
+  this.price = price
+}
+
+function Food(name, price) {
+  Product.call(this, name, price)
+  this.category = 'food'
+}
+
+const food = new Food('cheese', 5)
+console.log(food.name) // 'cheese'
+```
+
+### 手写 call
+
+## <a  id="chapter-2">apply</a>
 
 > [返回目录](#catalog)
 
 &emsp;第二章内容！
 
-## <a  id="chapter-3">三、第三章</a>
+## <a  id="chapter-3">bind</a>
 
 > [返回目录](#catalog)
 
 &emsp;第三章内容！
 
-## <a  id="chapter-4">四、第四章</a>
+## <a  id="chapter-4">关于 this</a>
 
 > [返回目录](#catalog)
 
@@ -68,7 +98,7 @@
 
 ### <a  id="reference-documents">参考文献</a>
 
-- [Markdown 博客模板 | 掘金-豆包君](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
+- [jsliang 求职系列 - 10 - 手写 call/apply/bind | 掘金-jsliang](https://juejin.cn/post/6893642486556655630#heading-6)
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
