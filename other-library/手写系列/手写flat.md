@@ -1,7 +1,7 @@
-# [Markdown 博客模板](https://github.com/danygitgit/document-library)
+# [手写 flat](https://github.com/danygitgit/document-library)
 
 > create by **db** on **2020-9-2 13:30:46**  
-> Recently revised in **2020-9-2 13:30:51**
+> Recently revised in **2021-3-30 18:00:04**
 >
 > **闲时要有吃紧的心思，忙时要有悠闲的趣味**
 
@@ -10,11 +10,8 @@
 - [前言](#preface)
 - [正文](#main-body)
 
-  - [一、第一章](#chapter-1)
-  - [二、第二章](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
-  - [五、第五章](#chapter-5)
+  - [flat](#chapter-1)
+  - [实现 myFlat](#chapter-2)
 
 - [总结](#summary)
 
@@ -24,51 +21,131 @@
 
 > [返回目录](#catalog)
 
-&emsp;这里是前言内容！
+&emsp;如题。
 
 # <a  id="main-body">正文</a>
 
-&emsp;这里是正文内容！
-
-## <a  id="chapter-1">一、第一章</a>
+## <a  id="chapter-1">flat</a>
 
 > [返回目录](#catalog)
 
-&emsp;第一章内容！
+详情请参考：[Array.prototype.flat() | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
 
-## <a  id="chapter-2">二、第二章</a>
+&emsp;flat() 方法会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
+
+&emsp;也就是说，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维数组。
+
+&emsp;该方法返回一个新数组，会移除数组中的空项，对原数据没有影响。
+
+#### 语法：
+
+`var newArray = arr.flat([depth])`
+
+#### 参数：
+
+- `：depth` 可选；指定要提取嵌套数组的结构深度，默认值为 1。
+
+#### 返回值:
+
+&emsp;一个包含将数组与子数组中所有元素的新数组。
+
+#### 使用：
+
+```js
+var arr1 = [1, 2, [3, 4]]
+arr1.flat()
+// [1, 2, 3, 4]
+
+var arr2 = [1, 2, [, 4, [5, 6]]]
+arr2.flat()
+// [1, 2, 3, 4, [5, 6]]
+
+var arr3 = [1, 2, [3, 4, [5, 6]]]
+arr3.flat(2)
+// [1, 2, 3, 4, 5, 6]
+
+//使用 Infinity，可展开任意深度的嵌套数组
+var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]
+arr4.flat(Infinity)
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+## <a  id="chapter-2">实现 myFlat</a>
 
 > [返回目录](#catalog)
 
-&emsp;第二章内容！
+代码实现：
 
-## <a  id="chapter-3">三、第三章</a>
+### 递归实现
 
-> [返回目录](#catalog)
+```js
+Array.prototype.myFlat = function (dep = 1) {
+  // 声明一个新数组
+  let result = []
+  // 遍历原数组
+  this.forEach((item, index) => {
+    // 当原数组内存在数组并且层级dep大于时递归
+    if (Array.isArray(item) && dep > 0) {
+      // 层级递减
+      dep--
+      // 使用concat链接数组
+      result = result.concat(item.myFlat(dep))
+    } else {
+      result.push(item)
+    }
+  })
+  return result
+}
+```
 
-&emsp;第三章内容！
+简洁版：
 
-## <a  id="chapter-4">四、第四章</a>
+```js
+// 重写数组flat方法
+// 1.会去掉数组的空项
+// 2.返回新数组
 
-> [返回目录](#catalog)
+Array.prototype.myFlat = function (dep = 1) {
+  return this.reduce((acc, val) => {
+    return acc.concat(
+      Array.isArray(val) && dep > 0
+        ? // 这里的三目就是防止这个现象：[3].concat([4]) // 结果为[3, 4]
+          val.myFlat(--dep)
+        : Array.isArray(val)
+        ? [val]
+        : val
+    )
+  }, [])
+}
+```
 
-&emsp;第四章内容！
+### 循环实现
 
-## <a  id="chapter-5">五、第五章</a>
-
-> [返回目录](#catalog)
-
-&emsp;第五章内容！
+```js
+Array.prototype.myFlat = function (dep = 1) {
+  // 声明一个新数组
+  let result = this
+  // // 当原数组内存在数组并且层级dep大于时循环
+  while (result.some(Array.isArray) && dep > 0) {
+    // 连接数组，并去除空值
+    result = [].concat(...result.filter((item) => item))
+    dep--
+  }
+  return result
+}
+```
 
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
 
-&emsp;这里是总结内容！
+&emsp;路漫漫其修远兮，与诸君共勉。 
 
-### <a  id="reference-documents">参考文献</a>
+### <a  id="reference-documents">参考文献</a>、
 
-- [Markdown 博客模板 | 掘金-豆包君](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
+- [JS 数组扁平化(flat)方法总结详解 ](http://www.45fan.com/article.php?aid=19062442766002048192992081)
+
+- [带你手动实现 JS 数组扁平化 flat()方法| CSDN - 选择远方](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 
