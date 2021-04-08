@@ -191,11 +191,11 @@ Function.prototype.myApply = function (context, args) {
   context = context || window
   // 接下来给content创建一个_fn属性，并将值设置为需要调用的函数
   context._fn = this
-  // 判断参数数组是否存在，不存在
+  // 判断参数数组是否存在，不存在直接返回
   if (!args) {
     return context._fn()
   }
-  // 如果参数不是数组，则跑出错位
+  // 如果参数不是数组，则抛出错误
   if (!(args instanceof Array)) {
     throw new Error('params must be array')
   }
