@@ -358,7 +358,7 @@ let addNewItem = () => {
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-## 参考文献：
+## 参考文档：
 
 - [ Vue 官网](https://v3.cn.vuejs.org/)
 - [vue3.0 中 setup 使用 | CSDN - 前端小 99 ](https://blog.csdn.net/qq_41328247/article/details/109286022)

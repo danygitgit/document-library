@@ -703,7 +703,7 @@ Promise.retry = function(getData, times, delay) {
 
 &emsp;路漫漫其修远兮，与诸君共勉。 
 
-### <a  id="reference-documents">参考文献</a>、
+### <a  id="reference-documents">参考文档</a>、
 
 - [JS 数组扁平化(Promise)方法总结详解 ](http://www.45fan.com/article.php?aid=19062442766002048192992081)
 

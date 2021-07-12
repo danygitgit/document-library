@@ -17,7 +17,7 @@
 
 &emsp;ES6到来了，你还在用最简单的for循环吗？
   
-&emsp;参考文献：  
+&emsp;参考文档：  
 
 - [JS中的循环---最全的循环总结 | 博客园-baiyunke ](https://www.cnblogs.com/baiyunke/p/7821299.html)  
 - [深入了解 JavaScript 中的 for 循环 | 码农网-编译青春 ](http://www.codeceo.com/article/javascript-for-loop.html)  

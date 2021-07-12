@@ -7,7 +7,7 @@
 
 &emsp;最近借鉴总结了一波ESLint的小技巧，以记录自己的学习心得。现分享给大家，以供参考。如有不足，还请多多指教，谢谢大家。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [1-VScode格式化ESlint-方法（最全最好用方法！） | 简书-Guoyubo](https://www.jianshu.com/p/23a5d6194a4b)
 

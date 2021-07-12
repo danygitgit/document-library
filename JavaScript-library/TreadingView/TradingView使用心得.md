@@ -388,7 +388,7 @@ tvWidget.onChartReady(() => {
 
 &emsp;对于用户，这是一个很好用的插件，但是对于前端工程师，这个插件并不够友好。很多人接手这个插件都是云里雾里，包括我。但是通过对这个插件的学习，还是获得了很多知识，同时希望本文能帮到大家。
 
-## <a  id="reference-documents">参考文献</a>
+## <a  id="reference-documents">参考文档</a>
 
 - [TradingView 中文开发文档](https://zlq4863947.gitbook.io/tradingview/4-tu-biao-ding-zhi/customization-overview)
 

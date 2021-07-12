@@ -185,7 +185,7 @@ chore:    不修改src或者test的其余修改，例如构建过程或辅助工
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-## 参考文献：
+## 参考文档：
 
 - [关于 Git 提交规范 | 博客园 - 挑战者 V ](https://www.cnblogs.com/youcong/p/9470585.html)
 

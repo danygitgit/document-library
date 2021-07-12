@@ -588,7 +588,7 @@ macro task 4 callback
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-## 参考文献：
+## 参考文档：
 
 - [Javascript异步编程的4种方法 | 阮一峰的网络日志 - 阮一峰 ](http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html)
 - [JavaScript 运行机制详解：再谈Event Loop | 阮一峰的网络日志 - 阮一峰 ](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)

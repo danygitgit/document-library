@@ -18,7 +18,7 @@
 
 &emsp;组件间的通信是是实际开发中非常常用的一环，Vue中实现组件之间的通信方式有很多种， props,eventBus, Vuex, v-on, ref...等等。如何使用组件通信，对项目整体设计、开发、规范都有很实际的的作用。Vue文档上以及各类大佬博客中对总结vue组件间通信都写的很详细了，我也抛砖引玉，浅谈一下vue组件间通信的几种方式以及各自的使用场景。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [Vue组件通信 | 思否-老虎不长牙 ](https://segmentfault.com/a/1190000015040856#articleHeader8)
 - [vue组件通信--注意事项及经验总结 | 掘金-王文健 ](http://blog.wwenj.com/index.php/archives/69/)

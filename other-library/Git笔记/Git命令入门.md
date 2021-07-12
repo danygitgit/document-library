@@ -11,7 +11,7 @@
 
 # 前言
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [Git版本控制管理教程 | CSDN-呆萌钟](https://blog.csdn.net/damienzhong/article/details/78572043)
 - [Git教程 | 廖雪峰的官方网站-廖雪峰 ](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)

@@ -55,7 +55,7 @@
 
 &emsp;此笔记旨在帮助 Vue 小白了解并应用 Vue3 + Vite 及 VueCLI4 项目的命令行搭建过程，希望能帮得到大家。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [Vue3 官网](https://v3.cn.vuejs.org/guide/introduction.html#vue-js-%E6%98%AF%E4%BB%80%E4%B9%88)
 

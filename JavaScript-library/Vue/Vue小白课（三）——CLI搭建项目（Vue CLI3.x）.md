@@ -27,7 +27,7 @@
 
 &emsp;此笔记旨在帮助Vue小白了解并应用Vue3项目的命令行搭建过程，希望能帮得到大家。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [Vue3.x官方文档](https://cli.vuejs.org/)
 

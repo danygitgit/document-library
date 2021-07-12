@@ -74,7 +74,7 @@ this.$router.push(
 
 &emsp;双节将至，祝大家中秋&&国庆愉快！
 
-### <a  id="reference-documents">参考文献</a>
+### <a  id="reference-documents">参考文档</a>
 
 - [Element/vue router连续点击多次路由报错解决方法 | CSDN-ldz_miantiao](https://blog.csdn.net/qq_40282732/article/details/99693491)
 

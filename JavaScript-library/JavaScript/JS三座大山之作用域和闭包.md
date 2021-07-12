@@ -348,7 +348,7 @@ alert(j.getName()) //Jack
 
 &emsp;路漫漫其修远兮，与诸君共勉。
 
-## 参考文献：
+## 参考文档：
 
 - [jsliang 求职系列 - 03 - 闭包与柯里化 | 掘金-jsliang ](https://juejin.cn/post/6891097178064814088)
 

@@ -13,7 +13,7 @@
 
 &emsp;在上一篇项目搭建文章中，我们已经下载安装了node环境以及vue-cli，并且已经成功构建了一个vue-cli项目——见[Vue小白课（一）——CLI搭建项目（Vue2.x）](https://github.com/danygitgit/document-library/blob/master/JavaScript-library/Vue/Vue%E5%B0%8F%E7%99%BD%E8%AF%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94CLI%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88Vue2.x%EF%BC%89.md)。那么接下来，我们来梳理一下vue-cli项目的结构。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [vue-cli入门（二）——项目结构 | 思否-Reachel](https://segmentfault.com/a/1190000009151589)
 - [Vue-cli创建vue项目以及配置文件梳理 | 思否-AshleyLv](https://segmentfault.com/a/1190000010659925)

@@ -17,7 +17,7 @@
 
 > I do and I understand.
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [学习Less-看这篇就够了](https://segmentfault.com/a/1190000012360995#articleHeader10)
 - [Less.js中文文档](https://www.html.cn/doc/less/#)

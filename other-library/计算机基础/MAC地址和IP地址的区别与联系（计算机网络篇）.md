@@ -13,7 +13,7 @@
 
 &emsp;作为一个前端码农，每天都在跟浏览器打交道，大家有对浏览器的数据存储方案有多少了解呢？
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [MAC地址和IP地址的区别与联系 | CSDN-gogo_hua ](https://blog.csdn.net/yang_best/article/details/41643589 )
 

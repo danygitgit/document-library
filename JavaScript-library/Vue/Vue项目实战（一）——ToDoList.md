@@ -19,7 +19,7 @@
 &emsp;小白课系列告一段落，下面开始我们的实战课程吧！
 * 注：本项目基于VueCLI2框架实现搭建
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [Vue之ToDoList实战 | CSDN -充电实践 ](https://blog.csdn.net/wu__di/article/details/54918454 )
 - [简单实现一个todo-list | FatDong1 ](https://segmentfault.com/a/1190000010487690#vue)

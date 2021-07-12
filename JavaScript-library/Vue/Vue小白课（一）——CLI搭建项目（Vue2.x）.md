@@ -17,7 +17,7 @@
 
 &emsp;此笔记旨在帮助Vue小白了解并应用Vue2.0项目搭建过程，希望能帮得到大家。
 
-&emsp;参考文献：
+&emsp;参考文档：
 
 - [vue-cli搭建项目 | 思否-villelee](https://segmentfault.com/a/1190000015475645)
 - [windows下搭建vue开发环境 | 充电实践 ](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)

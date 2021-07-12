@@ -7,47 +7,43 @@
 
 <a id="catalog">目录</a>
 
-- [前言](#preface)
-- [正文](#main-body)
+* [前言](#preface)
+* [正文](#main-body)
 
-  - [一、什么是 Vue.nextTick()](#chapter-1)
-  - [二、第二章](#chapter-2)
-  - [三、第三章](#chapter-3)
-  - [四、第四章](#chapter-4)
-  - [五、第五章](#chapter-5)
+  + [一、什么是 Vue.nextTick()](#chapter-1)
+  + [二、第二章](#chapter-2)
+  + [三、第三章](#chapter-3)
+  + [四、第四章](#chapter-4)
+  + [五、第五章](#chapter-5)
 
-- [总结](#summary)
+* [总结](#summary)
 
-- [参考文档](#reference-documents)
-
+* [参考文档](#reference-documents)
 # <a  id="preface">前言</a>
 
 > [返回目录](#catalog)
 
-&emsp;这里是前言内容！
+&emsp; 这里是前言内容！
 
 # <a  id="main-body">正文</a>
-
-&emsp;这里是正文内容！
-
 ## <a  id="chapter-1">一、什么是 Vue.nextTick()</a>
 
 > [返回目录](#catalog)
 
-&emsp;关于 nextTick，其实逛网上面讲的蛮明白的，详情请看：[Vue.nextTick( [callback, context] )](https://cn.vuejs.org/v2/api/#Vue-nextTick)
+&emsp; 关于 nextTick，其实官网上面讲的蛮明白的，详情请看：[Vue.nextTick( [callback, context] )](https://cn.vuejs.org/v2/api/#Vue-nextTick)
 
 **参数：**
 
-- {Function} [callback]
-- {Object} [context]
+* {Function} [callback]
+* {Object} [context]
 
 **用法：**
 
-&emsp;在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+&emsp; 在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
 
-&emsp;简单的理解是：当数据更新了，在 dom 中渲染后，自动执行该函数。
+&emsp; 简单的理解是：当数据更新了，在 dom 中渲染后，自动执行该函数。
 
-**示例：**
+**举个栗子：**
 
 ```vue
 <template>
@@ -73,9 +69,11 @@ export default {
       this.testMsg = '已更新'
       this.testMsg = '再次更新'
       this.testMsg = '最后更新'
+      // 使用nextTic获取dom数据
       this.$nextTick(function () {
         console.log(this.$refs.firstBtn.innerText) // => '最后更新'
       })
+      // 直接获取dom数据
       console.log(this.$refs.firstBtn.innerText) // => '未更新'
     },
   },
@@ -83,36 +81,44 @@ export default {
 </script>
 ```
 
-注意：Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM，
+&emsp; 注意：Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM，
 
-什么时候需要用的 Vue.nextTick()？？
+### 什么时候需要用的 Vue.nextTick()？？
 
-1、Vue 生命周期的 created()钩子函数进行的 DOM 操作一定要放在 Vue.nextTick()的回调函数中，原因是在 created()钩子函数执行的时候 DOM 其实并未进行任何渲染，而此时进行 DOM 操作无异于徒劳，所以此处一定要将 DOM 操作的 js 代码放进 Vue.nextTick()的回调函数中。与之对应的就是 mounted 钩子函数，因为该钩子函数执行时所有的 DOM 挂载已完成。
+1. Vue 生命周期的 created()钩子函数进行的 DOM 操作一定要放在 Vue.nextTick()的回调函数中，原因是在 created()钩子函数执行的时候 DOM 其实并未进行任何渲染，而此时进行 DOM 操作无异于徒劳，所以此处一定要将 DOM 操作的 js 代码放进 Vue.nextTick()的回调函数中。与之对应的就是 mounted 钩子函数，因为该钩子函数执行时所有的 DOM 挂载已完成。
 
-created(){
-let that=this;
-that.$nextTick(function(){  //不使用this.$nextTick()方法会报错
-that.$refs.firstBtn.innerHTML="created 中更改了按钮内容"; //写入到 DOM 元素
-});
-},
+```js
+created() {
+    let that = this;
+    that.$nextTick(function() { //不使用this.$nextTick()方法会报错
+        that.$refs.firstBtn.innerHTML = "created 中更改了按钮内容"; //写入到 DOM 元素
+    });
+}
+```
 
-2、当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它
+2. 当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它
 
+```vue
 <template>
   <div class="hello">
+
     <h3 id="h">{{testMsg}}</h3>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'HelloWorld', 
   data () {
+
     return {
       testMsg:"未更新",
     }
-  },
+
+  }, 
   methods:{
+
     changeTxt:function(){
       let that=this;
       that.testMsg="修改后的文本值";  //vue数据改变，改变dom结构
@@ -128,6 +134,7 @@ export default {
   }
 }
 </script>
+```
 
 正确的用法是：vue 改变 dom 元素结构后使用 vue.$nextTick()方法来实现 dom 数据更新后延迟执行后续代码
 
@@ -158,11 +165,11 @@ Vue.nextTick(callback) 使用原理：
 
 > [返回目录](#catalog)
 
-&emsp;简单理解 Vue 中的 nextTick
+&emsp; 简单理解 Vue 中的 nextTick
 Vue 中的 nextTick 涉及到 Vue 中 DOM 的异步更新，感觉很有意思，特意了解了一下。其中关于 nextTick 的源码涉及到不少知识，很多不太理解，暂且根据自己的一些感悟介绍下 nextTick。
 
-一、示例
-先来一个示例了解下关于 Vue 中的 DOM 更新以及 nextTick 的作用。
+一、举个栗子
+先来一个举个栗子了解下关于 Vue 中的 DOM 更新以及 nextTick 的作用。
 
 模板
 
@@ -172,28 +179,34 @@ Vue 中的 nextTick 涉及到 Vue 中 DOM 的异步更新，感觉很有意思�
   <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
   <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
   <button @click="changeMsg">
+
     Change the Message
+
   </button>
 </div>
 复制代码
 Vue实例
 
 new Vue({
-el: '.app',
+el: '.app', 
 data: {
-msg: 'Hello Vue.',
-msg1: '',
-msg2: '',
+msg: 'Hello Vue.', 
+msg1: '', 
+msg2: '', 
 msg3: ''
-},
+}, 
 methods: {
 changeMsg() {
 this.msg = "Hello world."
 this.msg1 = this.$refs.msgDiv.innerHTML
+
       this.$nextTick(() => {
+
 this.msg2 = this.$refs.msgDiv.innerHTML
+
       })
       this.msg3 = this.$refs.msgDiv.innerHTML
+
 }
 }
 })
@@ -226,7 +239,7 @@ Vue.nextTick 用于延迟执行一段代码，它接受 2 个参数（回调函�
 
 /\*\*
 
-- Defer a task to execute it asynchronously.
+* Defer a task to execute it asynchronously.
   \*/
   export const nextTick = (function () {
   const callbacks = []
@@ -266,7 +279,7 @@ isNative(MutationObserver) ||
 // PhantomJS and iOS 7.x
 MutationObserver.toString() === '[object MutationObserverConstructor]'
 )) {
-// use MutationObserver where native Promise is not available,
+// use MutationObserver where native Promise is not available, 
 // e.g. PhantomJS, iOS7, Android 4.4
 var counter = 1
 var observer = new MutationObserver(nextTickHandler)
@@ -373,18 +386,21 @@ characterData: true //说明监听文本内容的修改。
 
 > [返回目录](#catalog)
 
-&emsp;Vue 中$nextTick 源码解析
+&emsp; Vue 中$nextTick 源码解析
    在做项目的时候，我们经常会用到 nextTick，简单的理解就是它就是一个 setTimeout 函数，将函数放到异步后去处理；将它替换成 setTimeout 好像也能跑起来，但它仅仅这么简单吗？那为什么我们不直接用 setTimeout 呢？让我们深入剖析一下。
 
 发现问题
    记得之前有一个需求，就是根据文字的行数来显示展开更多的一个按钮，因此我们在 Vue 中给数据赋值之后需要获取文字高度。
 
 <div id="app">
+
     <div class="msg">
         {{msg}}
     </div>
+
 </div>
 new Vue({
+
     el: '#app',
     data: function(){
         return {
@@ -395,6 +411,7 @@ new Vue({
         this.msg = '我是测试文字'
         console.log(document.querySelector('.msg').offsetHeight) //0
     }
+
 })
 复制代码
   这时不管怎么获取，文字的Div高度都是0；但是直接获取却是有值：
@@ -403,11 +420,14 @@ problem.png
    同样的情况也发生在给子组件传参上；我们给子组件传参数后，在子组件中调用函数查看参数。
 
 <div id="app">
+
     <div class="msg">
         <form-report ref="child" :name="childName"></form-report>
     </div>
+
 </div>
 Vue.component('form-report', {
+
     props: ['name'],
     methods: {
         showName(){
@@ -415,8 +435,10 @@ Vue.component('form-report', {
         }
     },
     template: '<div>{{name}}</div>'
+
 })
 new Vue({
+
     el: '#app',
     data: function(){
         return {
@@ -427,6 +449,7 @@ new Vue({
         this.childName = '我是子组件名字'
         this.$refs.child.showName()
     }
+
 })
 复制代码
   虽然页面上展示了子组件的name，但是打印出来却是空值：
@@ -446,8 +469,10 @@ problem1.png
 //第一个 demo
 this.msg = '我是测试文字'
 this.$nextTick(()=>{
+
     //20
     console.log(document.querySelector('.msg').offsetHeight)
+
 })
 //第二个demo
 this.childName = '我是子组件名字'
@@ -485,9 +510,11 @@ timerFunc()
 }
 // $flow-disable-line
   if (!cb && typeof Promise !== 'undefined') {
+
     return new Promise(resolve => {
       _resolve = resolve
     })
+
   }
 }
 复制代码
@@ -561,7 +588,9 @@ setTimeout(()=>{
 console.log(1)
 }, 0)
 this.$nextTick(()=>{
+
     console.log(2)
+
 })
 this.$nextTick(()=>{
 console.log(3)
@@ -576,31 +605,25 @@ console.log(3)
 
 > [返回目录](#catalog)
 
-&emsp;第四章内容！
+&emsp; 第四章内容！
 
 ## <a  id="chapter-5">五、第五章</a>
 
 > [返回目录](#catalog)
 
-&emsp;第五章内容！
+&emsp; 第五章内容！
 
 # <a  id="summary">总结</a>
 
 > [返回目录](#catalog)
 
-&emsp;这里是总结内容！
+&emsp;路漫漫其修远兮，与诸君共勉。
 
-### <a  id="reference-documents">参考文献</a>
+### <a  id="reference-documents">参考文档</a>
 
-- [Markdown 博客模板 | 掘金-豆包君](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
-
-————————————————
-版权声明：本文为 CSDN 博主「广积粮缓称王」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/zhouzuoluo/article/details/84752280
-
-https://juejin.cn/post/6844903557372575752#heading-0
-
-https://juejin.cn/post/6844904147804749832#heading-2
+* [vue.nextTick()方法的使用详解（简单明了） | CSDN-广积粮缓称王](https://blog.csdn.net/zhouzuoluo/article/details/84752280)
+* [简单理解Vue中的nextTick | 掘金-Ruheng](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
+* [Vue中$nextTick源码解析 | 掘金-谢小飞](https://juejin.im/user/5b1a3eb7f265da6e572b3ada)
 
 **后记：Hello 小伙伴们，如果觉得本文还不错，记得点个赞或者给个 star，你们的赞和 star 是我编写更多更丰富文章的动力！[GitHub 地址](https://github.com/danygitgit/document-library)**
 

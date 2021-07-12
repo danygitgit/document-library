@@ -285,7 +285,7 @@ console.log(add.myBind({ a: 3, b: 9 }, { xx: 1 }, 4)()) // 12[object Object]4
 - 如果你要**传递的参数很多**，则可以用数组将参数整理好调用 `fn.apply(thisObj, [arg1, arg2 ...])`
 - 如果你想**生成一个新的函数长期绑定某个函数给某个对象使用**，则可以使用 `const newFn = fn.bind(thisObj); newFn(arg1, arg2...)`
 
-### <a  id="reference-documents">参考文献</a>
+### <a  id="reference-documents">参考文档</a>
 
 - [jsliang 求职系列 - 10 - 手写 call/apply/bind | 掘金-jsliang](https://juejin.cn/post/6893642486556655630#heading-6)
 
