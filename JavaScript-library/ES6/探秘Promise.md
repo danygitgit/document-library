@@ -125,7 +125,7 @@ Promise.resolve(11).then(function(value){
 
 比如如下代码：
 ```javaScript
-Promise.reject(new Error(“我错了，请原谅俺！！”));
+Promise.reject(new Error("我错了，请原谅俺！！")));
 ```
 就是下面的代码new Promise的简单形式：
 ```javaScript
